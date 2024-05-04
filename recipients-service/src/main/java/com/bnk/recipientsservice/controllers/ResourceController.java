@@ -5,9 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/rs")
 public class ResourceController {
     @GetMapping(value = "/admin")
     public ResponseEntity<Message> helloAdmin(){
@@ -16,8 +19,8 @@ public class ResourceController {
     }
 
     @GetMapping(value = "/user")
-    public ResponseEntity<Message> helloUser(){
-        return new ResponseEntity<>(new Message(true, "Hello from User"), HttpStatusCode.valueOf(HttpStatus.OK.value()));
+    public ResponseEntity<Message> helloUser(@RequestHeader("sub") String uid){
+        return new ResponseEntity<>(new Message(true, "uid: "+ uid), HttpStatusCode.valueOf(HttpStatus.OK.value()));
     }
 
 }
