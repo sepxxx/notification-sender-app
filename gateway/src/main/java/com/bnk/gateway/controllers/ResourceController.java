@@ -1,22 +1,22 @@
 package com.bnk.gateway.controllers;
-
-import com.bnk.gateway.Message;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 @RestController
 public class ResourceController {
-    @GetMapping(value = "/admin")
-    public ResponseEntity<Message> helloAdmin(){
-        return new ResponseEntity<>(new Message(true, "Hello from Admin"), HttpStatusCode.valueOf(HttpStatus.OK.value()));
+    @GetMapping(value = "/token")
+    public Mono<String> getHome(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient) {
+        return Mono.just(authorizedClient.getAccessToken().getTokenValue());
     }
 
-    @GetMapping(value = "/user")
-    public ResponseEntity<Message> helloUser(){
-        return new ResponseEntity<>(new Message(true, "Hello from User"), HttpStatusCode.valueOf(HttpStatus.OK.value()));
+    @GetMapping(value = "/myone")
+    public Mono<Object> getMyOne(OAuth2AuthenticationToken authentication) {
+//        System.out.println(authentication.getPrincipal().getAttributes().get("sub"));
+        return Mono.just(authentication.getPrincipal().getAttributes().get("sub"));
     }
 
 }

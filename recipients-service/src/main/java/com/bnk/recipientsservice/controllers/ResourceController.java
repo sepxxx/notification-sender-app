@@ -12,6 +12,7 @@ public class ResourceController {
     @GetMapping(value = "/admin")
     public ResponseEntity<Message> helloAdmin(){
         return new ResponseEntity<>(new Message(true, "Hello from Admin"), HttpStatusCode.valueOf(HttpStatus.OK.value()));
+    //98724058-f909-4163-926b-3382fd8d270c
     }
 
     @GetMapping(value = "/user")
