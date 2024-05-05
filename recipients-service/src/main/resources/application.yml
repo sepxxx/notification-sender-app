@@ -1,6 +1,22 @@
 spring:
   application:
     name: recipients-service
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost/postgres
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate.format_sql: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
 server:
     port: 0
 eureka:

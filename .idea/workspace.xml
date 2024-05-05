@@ -4,19 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="rs отдает uid который gateway всегда прикладывает к запросам">
-      <change afterPath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" afterDir="false" />
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="подружил gateway + eureka + loadbalancer">
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/CsvController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/dtos/RecipientDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/dtos/responses/RecipientListResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/Recipient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/RecipientList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/repositories/RecipientListNameRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/repositories/RecipientRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/RecipientsSaverService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsSaverServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/java/com/bnk/eurekaserver/EurekaServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/eureka-server/src/main/java/com/bnk/eurekaserver/EurekaServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/bnk/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/bnk/gateway/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/RecipientsServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/RecipientsServiceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/ResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/ResourceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +28,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -76,6 +79,9 @@
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ],
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
       "JAVA"
     ]
@@ -93,7 +99,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+  <component name="RunManager" selected="Spring Boot.RecipientsServiceApplication">
     <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="eureka-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.bnk.eurekaserver.EurekaServerApplication" />
@@ -158,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714840978472</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="подружил gateway + eureka + loadbalancer">
+      <option name="closed" value="true" />
+      <created>1714910198351</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714910198351</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +227,18 @@
     </ignored-roots>
     <MESSAGE value="попытался совместить решение хабра и baeldung" />
     <MESSAGE value="rs отдает uid который gateway всегда прикладывает к запросам" />
-    <option name="LAST_COMMIT_MESSAGE" value="rs отдает uid который gateway всегда прикладывает к запросам" />
+    <MESSAGE value="подружил gateway + eureka + loadbalancer" />
+    <option name="LAST_COMMIT_MESSAGE" value="подружил gateway + eureka + loadbalancer" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsSaverServiceImpl.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
