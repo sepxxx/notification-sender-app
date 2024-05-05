@@ -21,8 +21,17 @@ spring:
   cloud:
     gateway:
       routes:
+#        - id : rs_route
+#          uri: http://localhost:8081
+#          predicates:
+#            - Path=/rs/user
         - id : rs_route
-          uri: http://localhost:8081
+          uri: lb://recipients-service
           predicates:
             - Path=/rs/user
-
+          filters:
+              - StripPrefix=1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka

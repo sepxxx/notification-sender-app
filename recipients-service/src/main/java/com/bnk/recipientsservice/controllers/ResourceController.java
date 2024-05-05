@@ -1,6 +1,7 @@
 package com.bnk.recipientsservice.controllers;
 
 import com.bnk.recipientsservice.Message;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -10,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rs")
+//@RequestMapping("/rs")
 public class ResourceController {
+
+    @Value("${server.port}")
+    private int port;
     @GetMapping(value = "/admin")
     public ResponseEntity<Message> helloAdmin(){
         return new ResponseEntity<>(new Message(true, "Hello from Admin"), HttpStatusCode.valueOf(HttpStatus.OK.value()));
@@ -20,7 +24,7 @@ public class ResourceController {
 
     @GetMapping(value = "/user")
     public ResponseEntity<Message> helloUser(@RequestHeader("sub") String uid){
-        return new ResponseEntity<>(new Message(true, "uid: "+ uid), HttpStatusCode.valueOf(HttpStatus.OK.value()));
+        return new ResponseEntity<>(new Message(true, "uid: "+ uid + "FROM PORT: " + port), HttpStatusCode.valueOf(HttpStatus.OK.value()));
     }
 
 }
