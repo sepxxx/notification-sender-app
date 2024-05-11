@@ -16,6 +16,8 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,6 +36,8 @@ public class RecipientsSaverServiceImpl implements RecipientsSaverService {
 
     RecipientRepository recipientRepository;
     RecipientListNameRepository recipientListNameRepository;
+    KafkaTemplate<String, String> kafkaTemplate;
+
 
     @SneakyThrows
     @Transactional
@@ -55,15 +60,33 @@ public class RecipientsSaverServiceImpl implements RecipientsSaverService {
                                     recipientDto.getToken())
                             ).collect(Collectors.toSet())
                 );
-        RecipientList recipientListWithId = recipientListNameRepository
-                .findByNameAndUserId(recipientsListName, currentUserId)
-                .orElseGet(() -> recipientListNameRepository
-                        .save(new RecipientList(recipientsListName, currentUserId))
-                );
+        RecipientList recipientListWithId =
+                recipientListNameRepository.findByNameAndUserId(recipientsListName, currentUserId)
+                        .orElseGet(() -> recipientListNameRepository.save(
+                                new RecipientList(recipientsListName, currentUserId))
+                        );
+
+        //TODO: сейчас реализуем только создание нового списка
+        //нужен еще механизм как для объединения списков только для дополнения текущего
+        //или можно убрать эту логику и порефачить текущий метод для использования в функционале объединения
         recipientListWithId.appendRecipientList(recipientsWithIds);
 
+        sendMessage(recipientsListName + " was created by "+currentUserId, "recipients-lists-updates");
         return new RecipientListResponseDto(recipientListWithId.getId(),
                 recipientsListName, recipientListWithId.getRecipientList().size());
+    }
+
+    public void sendMessage(String message, String topicName) {
+        CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
+        future.whenComplete((result, ex) -> {
+            if (ex == null) {
+                System.out.println("Sent message=[" + message +
+                        "] with offset=[" + result.getRecordMetadata().offset() + "]");
+            } else {
+                System.out.println("Unable to send message=[" +
+                        message + "] due to : " + ex.getMessage());
+            }
+        });
     }
 
     //TODO: сделать парсер универсальным, вынести в бин, не создавать кучу объектов

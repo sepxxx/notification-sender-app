@@ -16,9 +16,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  kafka:
+    bootstrap-servers: localhost:9092
 
 server:
-    port: 0
+    port: 8080
 eureka:
   client:
     serviceUrl:
