@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="RS парсит csv и сохраняет пользователей">
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/configs/KafkaProducerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/configs/KafkaTopicConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/TaskResolverServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/KafkaConsumerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/test/java/com/bnk/taskresolverservice/TaskResolverServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/repositories/RecipientListNameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/repositories/RecipientListNameRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsSaverServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsSaverServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="решен баг с асинхронным проставлением статуса LIUMessage" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +25,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -97,6 +77,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mihar\Desktop\notification-sender-app\gateway\src\main\java\com\bnk\gateway" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.bnk.taskresolverservice.dtos" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -105,7 +88,30 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.RecipientsServiceApplication">
+  <component name="RunManager" selected="JUnit.RecipientsServiceApplicationTests.contextLoads">
+    <configuration name="RecipientsServiceApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="recipients-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bnk.recipientsservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bnk.recipientsservice" />
+      <option name="MAIN_CLASS_NAME" value="com.bnk.recipientsservice.RecipientsServiceApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="eureka-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.bnk.eurekaserver.EurekaServerApplication" />
@@ -145,12 +151,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Java Scratch.Scratch" />
+      <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads" />
       <item itemvalue="Spring Boot.TaskResolverServiceApplication" />
       <item itemvalue="Spring Boot.EurekaServerApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
       <item itemvalue="Spring Boot.RecipientsServiceApplication" />
       <item itemvalue="Spring Boot.RecipientsServiceApplication (1)" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads" />
+        <item itemvalue="Java Scratch.Scratch" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -163,7 +177,7 @@
       <workItem from="1714667218924" duration="18759000" />
       <workItem from="1714922388473" duration="2151000" />
       <workItem from="1715424538016" duration="5617000" />
-      <workItem from="1715436157891" duration="769000" />
+      <workItem from="1715436157891" duration="16362000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />
@@ -197,7 +211,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714921983435</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="подружил RS и TRS через кафку для строковых значений">
+      <option name="closed" value="true" />
+      <created>1715437085659</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715437085659</updated>
+    </task>
+    <task id="LOCAL-00006" summary="решен баг с асинхронным проставлением статуса LIUMessage">
+      <option name="closed" value="true" />
+      <created>1715517844878</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715517844880</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,11 +279,14 @@
       <path value="$PROJECT_DIR$/eureka-server" />
       <path value="$PROJECT_DIR$/gateway" />
       <path value="$PROJECT_DIR$/recipients-service" />
+      <path value="$PROJECT_DIR$/task-resolver-service" />
     </ignored-roots>
     <MESSAGE value="попытался совместить решение хабра и baeldung" />
     <MESSAGE value="rs отдает uid который gateway всегда прикладывает к запросам" />
     <MESSAGE value="подружил gateway + eureka + loadbalancer" />
     <MESSAGE value="RS парсит csv и сохраняет пользователей" />
-    <option name="LAST_COMMIT_MESSAGE" value="RS парсит csv и сохраняет пользователей" />
+    <MESSAGE value="подружил RS и TRS через кафку для строковых значений" />
+    <MESSAGE value="решен баг с асинхронным проставлением статуса LIUMessage" />
+    <option name="LAST_COMMIT_MESSAGE" value="решен баг с асинхронным проставлением статуса LIUMessage" />
   </component>
 </project>

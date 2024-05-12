@@ -2,8 +2,11 @@ package com.bnk.recipientsservice.services.impl;
 
 import com.bnk.recipientsservice.dtos.RecipientDto;
 import com.bnk.recipientsservice.dtos.responses.RecipientListResponseDto;
+import com.bnk.recipientsservice.entities.ListInfoUpdateEventType;
+import com.bnk.recipientsservice.entities.ListsInfoUpdateMessage;
 import com.bnk.recipientsservice.entities.Recipient;
 import com.bnk.recipientsservice.entities.RecipientList;
+import com.bnk.recipientsservice.repositories.LIUMessageRepository;
 import com.bnk.recipientsservice.repositories.RecipientListNameRepository;
 import com.bnk.recipientsservice.repositories.RecipientRepository;
 import com.bnk.recipientsservice.services.RecipientsSaverService;
@@ -24,7 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -36,7 +41,9 @@ public class RecipientsSaverServiceImpl implements RecipientsSaverService {
 
     RecipientRepository recipientRepository;
     RecipientListNameRepository recipientListNameRepository;
-    KafkaTemplate<String, String> kafkaTemplate;
+    KafkaTemplate<String, ListsInfoUpdateMessage> kafkaTemplate;
+    LIUMessageRepository LIUMessageRepository;
+    static String LIU_TOPIC_NAME = "recipients-lists-updates";
 
 
     @SneakyThrows
@@ -70,23 +77,48 @@ public class RecipientsSaverServiceImpl implements RecipientsSaverService {
         //нужен еще механизм как для объединения списков только для дополнения текущего
         //или можно убрать эту логику и порефачить текущий метод для использования в функционале объединения
         recipientListWithId.appendRecipientList(recipientsWithIds);
-
-        sendMessage(recipientsListName + " was created by "+currentUserId, "recipients-lists-updates");
+        ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
+                .setCreatedAt(LocalDateTime.now())
+                .setEventType(ListInfoUpdateEventType.CREATION)
+                .setNewListName(recipientsListName);
+        LIUMessage = LIUMessageRepository.save(LIUMessage);
+        sendMessageAndSetStatus(LIUMessage, LIU_TOPIC_NAME);
         return new RecipientListResponseDto(recipientListWithId.getId(),
                 recipientsListName, recipientListWithId.getRecipientList().size());
     }
 
-    public void sendMessage(String message, String topicName) {
-        CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(topicName, message);
+//    @Transactional
+    public void sendMessageAndSetStatus(ListsInfoUpdateMessage message, String topicName) {
+        CompletableFuture<SendResult<String, ListsInfoUpdateMessage>> future = kafkaTemplate.send(topicName, message);
         future.whenComplete((result, ex) -> {
             if (ex == null) {
                 System.out.println("Sent message=[" + message +
                         "] with offset=[" + result.getRecordMetadata().offset() + "]");
+                setLIUMessageStatus(message, Boolean.TRUE);
             } else {
                 System.out.println("Unable to send message=[" +
                         message + "] due to : " + ex.getMessage());
+                setLIUMessageStatus(message, Boolean.FALSE);
             }
         });
+    }
+    /*
+        вынуждены сначала проверить записал ли основной поток сообщение в бд
+        иначе бывает что при сеттинге статуса пишем первые а основной метод дублирует строку
+        но уже с новым id
+    */
+
+    private void setLIUMessageStatus(ListsInfoUpdateMessage message, boolean status) {
+        boolean check = Boolean.FALSE;
+        while (!check) {
+            check = LIUMessageRepository.findById(message.getId()).isPresent();
+            try {
+                Thread.sleep(5000L);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        LIUMessageRepository.save(message.setPushedToKafka(status));
     }
 
     //TODO: сделать парсер универсальным, вынести в бин, не создавать кучу объектов

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: task-resolver-service
+  kafka:
+    bootstrap-servers: localhost:9092
+#    consumer:
+#      properties:
+#        spring.json.trusted.packages: "*"
+server:
+  port: 0
