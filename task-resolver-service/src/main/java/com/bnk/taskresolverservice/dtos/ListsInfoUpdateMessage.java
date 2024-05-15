@@ -14,8 +14,8 @@ public class ListsInfoUpdateMessage {
     Long id;
     ListInfoUpdateEventType eventType;
     LocalDateTime createdAt;
-    Boolean pushedToKafka;
     String listName1;
     String listName2;
     String newListName;
+    String userId;
 }

@@ -28,9 +28,6 @@ public class ListsInfoUpdateMessage {
     @Column(name = "CREATED_AT")
     LocalDateTime createdAt;
 
-    @Column(name = "PUSHED_TO_KAFKA") //TODO: можно убрать из сериализации при отправке в кафку
-    Boolean pushedToKafka;
-
     @Column(name = "LIST_NAME_1")
     String listName1;
 
@@ -40,5 +37,6 @@ public class ListsInfoUpdateMessage {
     @Column(name = "NEW_LIST_NAME")
     String newListName;
 
-
+    @Column(name = "USER_ID")
+    String userId;
 }

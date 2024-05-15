@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
@@ -42,9 +43,10 @@ public class RecipientsSaverServiceImpl implements RecipientsSaverService {
     RecipientRepository recipientRepository;
     RecipientListNameRepository recipientListNameRepository;
     KafkaTemplate<String, ListsInfoUpdateMessage> kafkaTemplate;
-    LIUMessageRepository LIUMessageRepository;
-    static String LIU_TOPIC_NAME = "recipients-lists-updates";
-
+    LIUMessageRepository lIUMessageRepository;
+//    static String LIU_TOPIC_NAME = "recipients-lists-updates";
+    @Value(value = "${spring.kafka.liu-message.topic-name}")
+    static String LIU_MESSAGE_KAFKA_TOPIC_NAME;
 
     @SneakyThrows
     @Transactional
@@ -80,9 +82,10 @@ public class RecipientsSaverServiceImpl implements RecipientsSaverService {
         ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
                 .setCreatedAt(LocalDateTime.now())
                 .setEventType(ListInfoUpdateEventType.CREATION)
-                .setNewListName(recipientsListName);
-        LIUMessage = LIUMessageRepository.save(LIUMessage);
-        sendMessageAndSetStatus(LIUMessage, LIU_TOPIC_NAME);
+                .setNewListName(recipientsListName)
+                .setUserId(currentUserId);
+//        LIUMessage = lIUMessageRepository.save(LIUMessage);
+        sendMessageAndSetStatus(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
         return new RecipientListResponseDto(recipientListWithId.getId(),
                 recipientsListName, recipientListWithId.getRecipientList().size());
     }
@@ -94,11 +97,15 @@ public class RecipientsSaverServiceImpl implements RecipientsSaverService {
             if (ex == null) {
                 System.out.println("Sent message=[" + message +
                         "] with offset=[" + result.getRecordMetadata().offset() + "]");
-                setLIUMessageStatus(message, Boolean.TRUE);
+//                setLIUMessageStatus(message, Boolean.TRUE);
+//                lIUMessageRepository.save(message.setPushedToKafka(Boolean.TRUE));
+
             } else {
                 System.out.println("Unable to send message=[" +
                         message + "] due to : " + ex.getMessage());
-                setLIUMessageStatus(message, Boolean.FALSE);
+//                setLIUMessageStatus(message, Boolean.FALSE);
+                lIUMessageRepository.save(message);
+
             }
         });
     }
@@ -107,20 +114,6 @@ public class RecipientsSaverServiceImpl implements RecipientsSaverService {
         иначе бывает что при сеттинге статуса пишем первые а основной метод дублирует строку
         но уже с новым id
     */
-
-    private void setLIUMessageStatus(ListsInfoUpdateMessage message, boolean status) {
-        boolean check = Boolean.FALSE;
-        while (!check) {
-            check = LIUMessageRepository.findById(message.getId()).isPresent();
-            try {
-                Thread.sleep(5000L);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        LIUMessageRepository.save(message.setPushedToKafka(status));
-    }
-
     //TODO: сделать парсер универсальным, вынести в бин, не создавать кучу объектов
     //TODO: подумать насчет отказа от RecipientDto
     private List<RecipientDto> parseCsv(MultipartFile file) throws IOException {

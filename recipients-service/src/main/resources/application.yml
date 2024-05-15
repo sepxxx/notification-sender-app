@@ -18,6 +18,9 @@ spring:
 #    show-sql: true
   kafka:
     bootstrap-servers: localhost:9092
+    liu-message:
+      topic-name: recipients-lists-updates
+
 
 server:
     port: 8080
