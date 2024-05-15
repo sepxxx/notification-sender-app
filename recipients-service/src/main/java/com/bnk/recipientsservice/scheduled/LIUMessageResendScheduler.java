@@ -25,7 +25,7 @@ public class LIUMessageResendScheduler {
     final LIUMessageRepository liuMessageRepository;
 
     final KafkaTemplate<String, ListsInfoUpdateMessage> kafkaTemplate;
-    @Scheduled(fixedDelay = 3000)
+//    @Scheduled(fixedDelay = 3000)
     public void scheduleFixedDelayTaskToResendLIUMessages() {
         Optional.ofNullable(liuMessageRepository.findAll().get(0))
                 .ifPresent(

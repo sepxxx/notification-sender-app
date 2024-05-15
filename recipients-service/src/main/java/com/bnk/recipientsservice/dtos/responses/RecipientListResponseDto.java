@@ -13,5 +13,5 @@ import lombok.experimental.FieldDefaults;
 public class RecipientListResponseDto {
     Long id;
     String name;
-    int total;
+    Integer total;
 }

@@ -26,14 +26,15 @@ public class Recipient {
     String tg;
     @Column(name="TOKEN")
     String token;
-//    @ManyToOne
-//    RecipientList recipientListName;
+    @ManyToOne
+    RecipientList recipientList;
 
-    public Recipient(String lastname, String email, String tg, String token) {
+    public Recipient(String lastname, String email, String tg, String token, RecipientList recipientList) {
         this.lastname = lastname;
         this.email = email;
         this.tg = tg;
         this.token = token;
+        this.recipientList = recipientList;
     }
 
     @Override

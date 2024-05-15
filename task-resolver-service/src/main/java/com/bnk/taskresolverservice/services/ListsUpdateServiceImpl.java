@@ -17,16 +17,18 @@ import java.util.List;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class ListsUpdateServiceImpl {
+
     RecipientListNameRepository recipientListNameRepository;
 
-    public void processLUIMessage(ListsInfoUpdateMessage message) {
-        if (message.getEventType().equals(ListInfoUpdateEventType.CREATION)) {
 
-        }
-    }
+//    public void processLUIMessage(ListsInfoUpdateMessage message) {
+//        if (message.getEventType().equals(ListInfoUpdateEventType.CREATION)) {
+//
+//            getOrCreateAndAppendRecipientList(message.getNewListName());
+//        }
+//    }
 
-    @Transactional
-    public void getOrCreateAndAppendRecipientList(List<Recipient> appendingRecipientList,
+    private void getOrCreateAndAppendRecipientList(List<Recipient> appendingRecipientList,
                                           String listName, String currentUserId) {
         RecipientList recipientListWithId =
                 recipientListNameRepository.findByNameAndUserId(listName, currentUserId)

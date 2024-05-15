@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>2160</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2209</IntrospectionStateNumber>
       <ServerVersion>16.0</ServerVersion>
       <StartupTime>1715433549</StartupTime>
       <TimeZones>true ACDT
@@ -814,7 +814,7 @@ false Zulu
 14697||10|C|G
 14697||-9223372036854775808|U|G
 14697||10|U|G</Grants>
-      <IntrospectionStateNumber>2160</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2209</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4251,264 +4251,290 @@ false Zulu
     <schema id="268" parent="5" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>2160</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2024-05-15.12:10:29.532</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-05-15.09:10:30</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>2209</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2024-05-15.14:52:24.202</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-05-15.11:52:25</LocalIntrospectionTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
     <sequence id="269" parent="268" name="lists_info_updates_seq">
       <DasType>bigint|0s</DasType>
-      <ObjectId>17390</ObjectId>
+      <ObjectId>17436</ObjectId>
       <SequenceIdentity>1(1)+50</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>2154</StateNumber>
+      <StateNumber>2194</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="270" parent="268" name="recipient_lists_seq">
       <DasType>bigint|0s</DasType>
-      <ObjectId>17391</ObjectId>
-      <SequenceIdentity>1(51)+50</SequenceIdentity>
+      <ObjectId>17437</ObjectId>
+      <SequenceIdentity>1(101)+50</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>2155</StateNumber>
+      <StateNumber>2195</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="271" parent="268" name="recipients_seq">
       <DasType>bigint|0s</DasType>
-      <ObjectId>17392</ObjectId>
-      <SequenceIdentity>1(151)+50</SequenceIdentity>
+      <ObjectId>17438</ObjectId>
+      <SequenceIdentity>1(251)+50</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>2156</StateNumber>
+      <StateNumber>2196</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <table id="272" parent="268" name="lists_info_updates">
-      <ObjectId>17361</ObjectId>
-      <StateNumber>2148</StateNumber>
+      <ObjectId>17407</ObjectId>
+      <StateNumber>2188</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="273" parent="268" name="recipient_lists">
-      <ObjectId>17369</ObjectId>
-      <StateNumber>2158</StateNumber>
+      <ObjectId>17415</ObjectId>
+      <StateNumber>2197</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="274" parent="268" name="recipients">
-      <ObjectId>17376</ObjectId>
-      <StateNumber>2157</StateNumber>
+      <ObjectId>17422</ObjectId>
+      <StateNumber>2203</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="275" parent="268" name="recipients_recipients_lists">
-      <ObjectId>17383</ObjectId>
-      <StateNumber>2157</StateNumber>
+      <ObjectId>17429</ObjectId>
+      <StateNumber>2198</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
     <check id="276" parent="272" name="lists_info_updates_event_type_check">
       <ColNames>event_type</ColNames>
-      <ObjectId>17364</ObjectId>
+      <ObjectId>17410</ObjectId>
       <Predicate>(event_type)::text = ANY ((ARRAY[&apos;CREATION&apos;::character varying, &apos;EXTENSION&apos;::character varying, &apos;UNION&apos;::character varying, &apos;DELETION&apos;::character varying])::text[])</Predicate>
-      <StateNumber>2148</StateNumber>
+      <StateNumber>2188</StateNumber>
     </check>
     <column id="277" parent="272" name="id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2148</StateNumber>
+      <StateNumber>2188</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="278" parent="272" name="created_at">
       <DasType>timestamp(6)|0s</DasType>
       <Position>2</Position>
-      <StateNumber>2148</StateNumber>
+      <StateNumber>2188</StateNumber>
       <TypeId>1114</TypeId>
     </column>
     <column id="279" parent="272" name="event_type">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>2148</StateNumber>
+      <StateNumber>2188</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="280" parent="272" name="list_name_1">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
-      <StateNumber>2148</StateNumber>
+      <StateNumber>2188</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="281" parent="272" name="list_name_2">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
-      <StateNumber>2148</StateNumber>
+      <StateNumber>2188</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="282" parent="272" name="new_list_name">
       <DasType>varchar(255)|0s</DasType>
       <Position>6</Position>
-      <StateNumber>2148</StateNumber>
+      <StateNumber>2188</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="283" parent="272" name="user_id">
       <DasType>varchar(255)|0s</DasType>
       <Position>7</Position>
-      <StateNumber>2148</StateNumber>
+      <StateNumber>2188</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="284" parent="272" name="lists_info_updates_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17367</ObjectId>
+      <ObjectId>17413</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2148</StateNumber>
+      <StateNumber>2188</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="285" parent="272" name="lists_info_updates_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17368</ObjectId>
+      <ObjectId>17414</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2148</StateNumber>
-      <UnderlyingIndexId>17367</UnderlyingIndexId>
+      <StateNumber>2188</StateNumber>
+      <UnderlyingIndexId>17413</UnderlyingIndexId>
     </key>
     <column id="286" parent="273" name="id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2149</StateNumber>
+      <StateNumber>2189</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="287" parent="273" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
-      <StateNumber>2149</StateNumber>
+      <StateNumber>2189</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="288" parent="273" name="user_id">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>2149</StateNumber>
+      <StateNumber>2189</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="289" parent="273" name="recipient_lists_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17374</ObjectId>
+      <ObjectId>17420</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2149</StateNumber>
+      <StateNumber>2189</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="290" parent="273" name="recipient_lists_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17375</ObjectId>
+      <ObjectId>17421</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2149</StateNumber>
-      <UnderlyingIndexId>17374</UnderlyingIndexId>
+      <StateNumber>2189</StateNumber>
+      <UnderlyingIndexId>17420</UnderlyingIndexId>
     </key>
     <column id="291" parent="274" name="id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2150</StateNumber>
+      <StateNumber>2190</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="292" parent="274" name="email">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
-      <StateNumber>2150</StateNumber>
+      <StateNumber>2190</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="293" parent="274" name="lastname">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
-      <StateNumber>2150</StateNumber>
+      <StateNumber>2190</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="294" parent="274" name="tg">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
-      <StateNumber>2150</StateNumber>
+      <StateNumber>2190</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="295" parent="274" name="token">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
-      <StateNumber>2150</StateNumber>
+      <StateNumber>2190</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="296" parent="274" name="recipients_pkey">
+    <column id="296" parent="274" name="recipient_list_name_id">
+      <DasType>bigint|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>2190</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="297" parent="274" name="recipient_list_id">
+      <DasType>bigint|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>2203</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="298" parent="274" name="fkgd84x19yqxyiu4g8ld165ax2y">
+      <ColNames>recipient_list_name_id</ColNames>
+      <ObjectId>17439</ObjectId>
+      <StateNumber>2197</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>17415</RefTableId>
+    </foreign-key>
+    <foreign-key id="299" parent="274" name="fkpfboweuxxu6otkp254do03ukd">
+      <ColNames>recipient_list_id</ColNames>
+      <ObjectId>17455</ObjectId>
+      <StateNumber>2204</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>17415</RefTableId>
+    </foreign-key>
+    <index id="300" parent="274" name="recipients_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17381</ObjectId>
+      <ObjectId>17427</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2150</StateNumber>
+      <StateNumber>2190</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="297" parent="274" name="recipients_pkey">
+    <key id="301" parent="274" name="recipients_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17382</ObjectId>
+      <ObjectId>17428</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2150</StateNumber>
-      <UnderlyingIndexId>17381</UnderlyingIndexId>
+      <StateNumber>2190</StateNumber>
+      <UnderlyingIndexId>17427</UnderlyingIndexId>
     </key>
-    <column id="298" parent="275" name="recipient_list_id">
+    <column id="302" parent="275" name="recipient_list_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>2151</StateNumber>
+      <StateNumber>2191</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="299" parent="275" name="recipient_id">
+    <column id="303" parent="275" name="recipient_id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>2151</StateNumber>
+      <StateNumber>2191</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <foreign-key id="300" parent="275" name="fk8qcu8n9lbk19mx66o3pye84xx">
+    <foreign-key id="304" parent="275" name="fk8qcu8n9lbk19mx66o3pye84xx">
       <ColNames>recipient_list_id</ColNames>
-      <ObjectId>17398</ObjectId>
-      <StateNumber>2158</StateNumber>
+      <ObjectId>17449</ObjectId>
+      <StateNumber>2199</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>17369</RefTableId>
+      <RefTableId>17415</RefTableId>
     </foreign-key>
-    <foreign-key id="301" parent="275" name="fknagh2kqmnum6hwlou4qq70h5i">
+    <foreign-key id="305" parent="275" name="fknagh2kqmnum6hwlou4qq70h5i">
       <ColNames>recipient_id</ColNames>
-      <ObjectId>17393</ObjectId>
-      <StateNumber>2157</StateNumber>
+      <ObjectId>17444</ObjectId>
+      <StateNumber>2198</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>17376</RefTableId>
+      <RefTableId>17422</RefTableId>
     </foreign-key>
-    <index id="302" parent="275" name="recipients_recipients_lists_pkey">
+    <index id="306" parent="275" name="recipients_recipients_lists_pkey">
       <ColNames>recipient_list_id
 recipient_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17386</ObjectId>
+      <ObjectId>17432</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2151</StateNumber>
+      <StateNumber>2191</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="303" parent="275" name="uk_jbrcxswqwug26qhn3nk7sd0an">
+    <index id="307" parent="275" name="uk_jbrcxswqwug26qhn3nk7sd0an">
       <ColNames>recipient_id</ColNames>
-      <ObjectId>17388</ObjectId>
-      <StateNumber>2153</StateNumber>
+      <ObjectId>17434</ObjectId>
+      <StateNumber>2193</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="304" parent="275" name="recipients_recipients_lists_pkey">
+    <key id="308" parent="275" name="recipients_recipients_lists_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>17387</ObjectId>
+      <ObjectId>17433</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>2151</StateNumber>
-      <UnderlyingIndexId>17386</UnderlyingIndexId>
+      <StateNumber>2191</StateNumber>
+      <UnderlyingIndexId>17432</UnderlyingIndexId>
     </key>
-    <key id="305" parent="275" name="uk_jbrcxswqwug26qhn3nk7sd0an">
-      <ObjectId>17389</ObjectId>
-      <StateNumber>2153</StateNumber>
-      <UnderlyingIndexId>17388</UnderlyingIndexId>
+    <key id="309" parent="275" name="uk_jbrcxswqwug26qhn3nk7sd0an">
+      <ObjectId>17435</ObjectId>
+      <StateNumber>2193</StateNumber>
+      <UnderlyingIndexId>17434</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

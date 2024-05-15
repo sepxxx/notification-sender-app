@@ -11,6 +11,5 @@ public class RecipientsListsUpdatesListener {
             groupId = "foo", containerFactory = "LIUMessageKafkaListenerContainerFactory")
     public void listenGroupFoo(ListsInfoUpdateMessage message) {
         System.out.println("Received Message: " + message);
-
     }
 }
