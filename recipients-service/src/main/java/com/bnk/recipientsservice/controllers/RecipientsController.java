@@ -31,12 +31,16 @@ public class RecipientsController {
     }
 
     @GetMapping("/{listName}/recipients/")
-    public Page<RecipientDto> getRecipientPageByListName(@PathVariable String listName,
+//    (defaultValue = "10")
+    public ResponseEntity<Page<RecipientDto>> getRecipientPageByListName(@PathVariable String listName,
                                                          @RequestParam("sub") String userId,
-                                                         @RequestParam("pageNumber") Integer pageNumber,
-                                                         @RequestParam("pageSize") Integer pageSize) {
-        return  recipientsService
+                                                         @RequestParam Integer pageNumber,
+                                                         @RequestParam Integer pageSize) {
+        return  new ResponseEntity<>(
+                recipientsService
                 .getRecipientsPageByListNameAndUserId(listName, userId,
-                        PageRequest.of(pageNumber, pageSize));
+                        PageRequest.of(pageNumber, pageSize)),
+                HttpStatus.OK
+        );
     }
 }

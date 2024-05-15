@@ -22,6 +22,7 @@ public class RecipientList {
     @Column(name = "NAME")
     String name;
     //TODO:почитать о влиянии jointable на производительность
+    //TODO: проверить lazy
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "recipients_recipients_lists",
             joinColumns = @JoinColumn(name = "RECIPIENT_LIST_ID"),
