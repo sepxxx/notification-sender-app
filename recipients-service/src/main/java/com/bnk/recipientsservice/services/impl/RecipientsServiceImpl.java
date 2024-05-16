@@ -82,21 +82,14 @@ public class RecipientsServiceImpl implements RecipientsService {
 
                             ).collect(Collectors.toSet())
                 );
-
-
-        //TODO: сейчас реализуем только создание нового списка
-        //нужен еще механизм как для объединения списков только для дополнения текущего
-        //или можно убрать эту логику и порефачить текущий метод для использования в функционале объединения
-        recipientListWithId.appendRecipientList(recipientsWithIds);
         ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
                 .setCreatedAt(LocalDateTime.now())
                 .setEventType(ListInfoUpdateEventType.CREATION)
                 .setNewListName(recipientsListName)
                 .setUserId(currentUserId);
-//        LIUMessage = lIUMessageRepository.save(LIUMessage);
-        sendMessageAndSetStatus(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
+        sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
         return new RecipientListResponseDto(recipientListWithId.getId(),
-                recipientsListName, recipientListWithId.getRecipientList().size());
+                recipientsListName, recipientsWithIds.size());
     }
 
     public Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest) {
@@ -113,30 +106,21 @@ public class RecipientsServiceImpl implements RecipientsService {
                         )
                 );
     }
-//    @Transactional
-    private void sendMessageAndSetStatus(ListsInfoUpdateMessage message, String topicName) {
+
+    private void sendLUIMessage(ListsInfoUpdateMessage message, String topicName) {
         CompletableFuture<SendResult<String, ListsInfoUpdateMessage>> future = kafkaTemplate.send(topicName, message);
         future.whenComplete((result, ex) -> {
             if (ex == null) {
                 System.out.println("Sent message=[" + message +
                         "] with offset=[" + result.getRecordMetadata().offset() + "]");
-//                setLIUMessageStatus(message, Boolean.TRUE);
-//                lIUMessageRepository.save(message.setPushedToKafka(Boolean.TRUE));
-
             } else {
                 System.out.println("Unable to send message=[" +
                         message + "] due to : " + ex.getMessage());
-//                setLIUMessageStatus(message, Boolean.FALSE);
                 lIUMessageRepository.save(message);
 
             }
         });
     }
-    /*
-        вынуждены сначала проверить записал ли основной поток сообщение в бд
-        иначе бывает что при сеттинге статуса пишем первые а основной метод дублирует строку
-        но уже с новым id
-    */
     //TODO: сделать парсер универсальным, вынести в бин, не создавать кучу объектов
     //TODO: подумать насчет отказа от RecipientDto
     private List<RecipientDto> parseCsv(MultipartFile file) throws IOException {

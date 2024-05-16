@@ -18,13 +18,13 @@ public class Recipient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
-    @Column(name="LASTNAME")
+    @Column
     String lastname;
-    @Column(name="EMAIL")
+    @Column
     String email;
-    @Column(name="TG")
+    @Column
     String tg;
-    @Column(name="TOKEN")
+    @Column
     String token;
     @ManyToOne
     RecipientList recipientList;

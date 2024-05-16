@@ -4,6 +4,7 @@ import com.bnk.recipientsservice.entities.RecipientList;
 import com.bnk.recipientsservice.repositories.LIUMessageRepository;
 import com.bnk.recipientsservice.repositories.RecipientListNameRepository;
 import com.bnk.recipientsservice.repositories.RecipientRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,15 +22,17 @@ class RecipientsServiceApplicationTests {
     @Autowired
     RecipientListNameRepository recipientListNameRepository;
     @Test
+    @Transactional
     void contextLoads() {
 //        System.out.println(liuMessageRepository.findById(352L));
         RecipientList recipientList = recipientListNameRepository
-                .findByNameAndUserId("testListName1",
-                        "testUserId1"
+                .findByNameAndUserId("testListName4",
+                        "testUserId4"
                         ).get();
-        System.out.println(recipientRepository.findAllByRecipientList(
-                recipientList, PageRequest.of(0, 2)
-        ));
+//        System.out.println(recipientRepository.findAllByRecipientList(
+//                recipientList, PageRequest.of(0, 2)
+//        ));
+        System.out.println(recipientList.getRecipientList().size());
     }
 
 }

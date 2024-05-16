@@ -20,23 +20,24 @@ public class RecipientList {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
-    @Column(name = "NAME")
+    @Column
     String name;
     //TODO:почитать о влиянии jointable на производительность
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "recipients_recipients_lists",
-            joinColumns = @JoinColumn(name = "RECIPIENT_LIST_ID"),
-            inverseJoinColumns = @JoinColumn(name = "RECIPIENT_ID"))
-    Set<Recipient> recipientList;
-    @Column(name = "USER_ID")
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "recipients_recipients_lists",
+//            joinColumns = @JoinColumn(name = "RECIPIENT_LIST_ID"),
+//            inverseJoinColumns = @JoinColumn(name = "RECIPIENT_ID"))
+    @OneToMany(mappedBy = "recipientList", cascade = CascadeType.ALL)
+    Set<Recipient> recipientList = new HashSet<>();
+    @Column
     String userId;
 
-    public void appendRecipientList(List<Recipient> appendingRecipientList) {
-        if (recipientList == null) {
-            recipientList = new HashSet<>();
-        }
-        recipientList.addAll(appendingRecipientList);
-    }
+//    public void appendRecipientList(List<Recipient> appendingRecipientList) {
+//        if (recipientList == null) {
+//            recipientList = new HashSet<>();
+//        }
+//        recipientList.addAll(appendingRecipientList);
+//    }
 
     public RecipientList(String name) {
         this.name = name;
