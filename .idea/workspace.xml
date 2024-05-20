@@ -4,30 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="теперь RS и TRS не сохраняют дубликаты получателей">
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/dtos/requests/RecipientListRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/mappers/RecipientRecipientDtoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/parsers/CsvParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/parsers/CsvParserImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="рефакторинг RecipientsServiceImpl.java">
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/ErrorMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/ExceptionApiHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/RecipientListAlreadyExistsException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/configs/KafkaProducerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/configs/KafkaProducerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/RecipientsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/RecipientsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/ResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/ResourceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/ListsInfoUpdateMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/ListsInfoUpdateMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/Recipient.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/Recipient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/repositories/RecipientNameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/repositories/RecipientListRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/RecipientsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/RecipientsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/mappers/RecipientRecipientDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/mappers/RecipientRecipientDtoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/parsers/CsvParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/parsers/CsvParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/parsers/CsvParserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/parsers/CsvParserImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/test/java/com/bnk/recipientsservice/RecipientsServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/test/java/com/bnk/recipientsservice/RecipientsServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/KafkaConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/KafkaConsumerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/kafka/listeners/RecipientsListsUpdatesListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/kafka/listeners/RecipientsListsUpdatesListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/ListsUpdateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/ListsUpdateServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +243,7 @@
       <workItem from="1715424538016" duration="5617000" />
       <workItem from="1715436157891" duration="56511000" />
       <workItem from="1716013825401" duration="10625000" />
-      <workItem from="1716195143473" duration="7257000" />
+      <workItem from="1716195143473" duration="11001000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />
@@ -362,7 +349,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715873514444</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="рефакторинг RecipientsServiceImpl.java">
+      <option name="closed" value="true" />
+      <created>1716211877677</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716211877677</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,6 +392,7 @@
     <MESSAGE value="TRS читает сообщения о создании списков и по забирает получателей у RS" />
     <MESSAGE value="переделал persistance в RS" />
     <MESSAGE value="теперь RS и TRS не сохраняют дубликаты получателей" />
-    <option name="LAST_COMMIT_MESSAGE" value="теперь RS и TRS не сохраняют дубликаты получателей" />
+    <MESSAGE value="рефакторинг RecipientsServiceImpl.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="рефакторинг RecipientsServiceImpl.java" />
   </component>
 </project>

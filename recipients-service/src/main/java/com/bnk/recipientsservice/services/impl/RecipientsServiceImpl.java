@@ -4,20 +4,16 @@ import com.bnk.recipientsservice.dtos.RecipientDto;
 import com.bnk.recipientsservice.dtos.responses.RecipientListResponseDto;
 import com.bnk.recipientsservice.entities.ListInfoUpdateEventType;
 import com.bnk.recipientsservice.entities.ListsInfoUpdateMessage;
-import com.bnk.recipientsservice.entities.Recipient;
 import com.bnk.recipientsservice.entities.RecipientList;
+import com.bnk.recipientsservice.exceptions.RecipientListAlreadyExistsException;
 import com.bnk.recipientsservice.mappers.RecipientRecipientDtoMapper;
 import com.bnk.recipientsservice.repositories.LIUMessageRepository;
 import com.bnk.recipientsservice.repositories.RecipientListRepository;
 import com.bnk.recipientsservice.repositories.RecipientRepository;
 import com.bnk.recipientsservice.services.RecipientsService;
-import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,11 +22,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -87,7 +79,7 @@ public class RecipientsServiceImpl implements RecipientsService {
     public RecipientListResponseDto saveRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
                                                    String currentUserId) {
         recipientListRepository.findByNameAndUserId(recipientsListName, currentUserId) //TODO: переделать проверку
-                        .ifPresent(v->{throw new RuntimeException();});
+                        .ifPresent(v->{throw new RecipientListAlreadyExistsException("такой список уже существует");});
         RecipientList recipientListWithId = recipientListRepository.save(new RecipientList(recipientsListName, currentUserId));
         fillRecipientListAndSendLUIMessage(recipientListWithId, recipientDtosWithoutIds, ListInfoUpdateEventType.CREATION,
                 recipientsListName, currentUserId);
@@ -109,7 +101,7 @@ public class RecipientsServiceImpl implements RecipientsService {
 
     public Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest) {
         RecipientList recipientList = recipientListRepository.findByNameAndUserId(listName, userId)
-                .orElseThrow(() -> new RuntimeException("Recipient list not found"));
+                .orElseThrow(() -> new NotFoundException("Recipient list not found"));
         //TODO: разобраться c exceptions кастомными
         return recipientRepository
                 .findAllByRecipientList(recipientList, pageRequest)
@@ -122,14 +114,10 @@ public class RecipientsServiceImpl implements RecipientsService {
                 .addAll(
                         recipientDtosWithoutIds
                                 .stream()
-                                .map(recipientDto ->
-                                        new Recipient(
-                                                recipientDto.getLastname(), recipientDto.getEmail(),
-                                                recipientDto.getTg(), recipientDto.getToken(),
-                                                recipientListWithId
-                                        ))
+                                .map(dto->recipientRecipientDtoMapper.recipientDtoToRecipient(dto, recipientListWithId))
                                 .collect(Collectors.toSet())
                 );
+
         ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
                 .setCreatedAt(LocalDateTime.now())
                 .setEventType(eventType)

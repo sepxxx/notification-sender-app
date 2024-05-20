@@ -35,4 +35,10 @@ public class ResourceController {
                 , HttpStatus.OK);
     }
 
+    @PostMapping(value = "/testEnum2")
+    public ResponseEntity<ListInfoUpdateEventType> helloUser(@RequestParam ListInfoUpdateEventType eventType){
+        return new ResponseEntity<>(eventType
+                , HttpStatus.OK);
+    }
+
 }

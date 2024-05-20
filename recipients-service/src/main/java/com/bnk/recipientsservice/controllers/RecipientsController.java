@@ -31,24 +31,25 @@ public class RecipientsController {
     CsvParser csvParser;
 
     @PostMapping("/upload")
-    public ResponseEntity<RecipientListResponseDto> saveOrExtendRecipientList(@RequestParam("file") MultipartFile file,
-                                                              @RequestParam("sub") String userId, @RequestBody RecipientListRequestDto recipientListRequestDto) {
+    public ResponseEntity<RecipientListResponseDto> saveRecipientList(@RequestParam("file") MultipartFile file,
+                                                              @RequestParam("sub") String userId,
+                                                                      @RequestParam("listName") String listName) {
         log.info("uploadCSV: file: {} recipientsListName: {} currentUserId:{}",
-                file.getOriginalFilename(), recipientListRequestDto.getListName(), userId);
-        try {
-            List<RecipientDto> recipientDtoList = csvParser.parseRecipients(file);
-            return switch (recipientListRequestDto.getEventType()) {
-                case CREATION ->
-                        new ResponseEntity<>(recipientsService.saveRecipientList(recipientDtoList, recipientListRequestDto.getListName(), userId),
-                                HttpStatus.CREATED);
-                case EXTENSION ->
-                        new ResponseEntity<>(recipientsService.extendRecipientList(recipientDtoList, recipientListRequestDto.getListName(), userId),
-                                HttpStatus.CREATED);
-                default -> throw new IllegalArgumentException("Unsupported event type");
-            };
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+                file.getOriginalFilename(), listName, userId);
+        List<RecipientDto> recipientDtoList = csvParser.parseRecipients(file);
+        return new ResponseEntity<>(recipientsService.saveRecipientList(recipientDtoList, listName, userId),
+                HttpStatus.CREATED);
+    }
+
+    @PutMapping("/upload")
+    public ResponseEntity<RecipientListResponseDto> extendRecipientList(@RequestParam("file") MultipartFile file,
+                                                                              @RequestParam("sub") String userId,
+                                                                        @RequestParam("listName") String listName) {
+        log.info("uploadCSV: file: {} recipientsListName: {} currentUserId:{}",
+                file.getOriginalFilename(), listName, userId);
+        List<RecipientDto> recipientDtoList = csvParser.parseRecipients(file);
+        return new ResponseEntity<>(recipientsService.extendRecipientList(recipientDtoList, listName, userId),
+                HttpStatus.OK);
     }
 
     @GetMapping("/{listName}/recipients/")
