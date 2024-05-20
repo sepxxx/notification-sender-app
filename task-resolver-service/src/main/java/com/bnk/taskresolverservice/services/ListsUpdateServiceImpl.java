@@ -32,6 +32,12 @@ public class ListsUpdateServiceImpl {
     //мб ситуация пользователь создал список и тут же его удалил
     //а TRS будет пытаться затянуть его себе
     //КОРОЧЕ ГОВОРЯ ОБДУМАТЬ
+
+    /* создание:
+       создание списка
+       опрос RS и дополнение
+    *
+    */
     @Transactional
     public void processLUIMessage(ListsInfoUpdateMessage message) {
         if (message.getEventType().equals(ListInfoUpdateEventType.CREATION)) {

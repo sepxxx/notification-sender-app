@@ -22,21 +22,21 @@ public class ListsInfoUpdateMessage {
     @EqualsAndHashCode.Include
     Long id;
     @Enumerated(EnumType.STRING)
-    @Column(name = "EVENT_TYPE")
+    @Column
     ListInfoUpdateEventType eventType;
 
-    @Column(name = "CREATED_AT")
+    @Column
     LocalDateTime createdAt;
 
-    @Column(name = "LIST_NAME_1")
+    @Column
     String listName1;
 
-    @Column(name = "LIST_NAME_2")
+    @Column
     String listName2;
 
-    @Column(name = "NEW_LIST_NAME")
+    @Column
     String newListName;
 
-    @Column(name = "USER_ID")
+    @Column
     String userId;
 }

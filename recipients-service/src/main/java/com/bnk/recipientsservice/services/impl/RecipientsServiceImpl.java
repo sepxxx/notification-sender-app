@@ -6,8 +6,9 @@ import com.bnk.recipientsservice.entities.ListInfoUpdateEventType;
 import com.bnk.recipientsservice.entities.ListsInfoUpdateMessage;
 import com.bnk.recipientsservice.entities.Recipient;
 import com.bnk.recipientsservice.entities.RecipientList;
+import com.bnk.recipientsservice.mappers.RecipientRecipientDtoMapper;
 import com.bnk.recipientsservice.repositories.LIUMessageRepository;
-import com.bnk.recipientsservice.repositories.RecipientNameRepository;
+import com.bnk.recipientsservice.repositories.RecipientListRepository;
 import com.bnk.recipientsservice.repositories.RecipientRepository;
 import com.bnk.recipientsservice.services.RecipientsService;
 import com.fasterxml.jackson.databind.MappingIterator;
@@ -42,66 +43,100 @@ import java.util.stream.Collectors;
 public class RecipientsServiceImpl implements RecipientsService {
 
     final RecipientRepository recipientRepository;
-    final RecipientNameRepository recipientNameRepository;
+    final RecipientListRepository recipientListRepository;
     final KafkaTemplate<String, ListsInfoUpdateMessage> kafkaTemplate;
     final LIUMessageRepository lIUMessageRepository;
-//    static String LIU_TOPIC_NAME = "recipients-lists-updates";
+    final RecipientRecipientDtoMapper recipientRecipientDtoMapper;
     @Value(value = "${spring.kafka.liu-message.topic-name}")
     String LIU_MESSAGE_KAFKA_TOPIC_NAME;
-
-    @SneakyThrows
+    /* разные кейсы со списками
+    * сохранение: файл + название + создатель
+    * удаление: название + создатель для проверки
+    * объединение: название1 + название2 + название новое + создатель
+    * дополнение: файл + название + создатель
+    *
+    * сохранение:
+    * создание списка
+    * добавление получателей
+    * отправка сообщения
+    *
+    * объединение:
+    * вытягивание списков (включает проверку на принадлежность)
+    * создание нового списка
+    * добавление получателей
+    * отправка сообщения
+    *
+    * дополнение:
+    * вытягивание списка
+    * добавление получателей
+    * отправка сообщения
+    *
+    * обдумать кейс что если такого списка нет для дополнения
+    *
+    * обдумать как в 1 эндпоинте разделять сохранение и расширение
+    * а нужно ли такое деление в целом RS?
+    * как будто нужно = что если пытаемся создать список который уже есть - тут нужно кинуть exception
+    * а для чего TRS знать о том что это расширение а не создание?
+    * если доверяем RS то в принципе разницы не будет = тк уже проверили есть ли такой список на самом деле
+    */
+    //TODO: можно сделать оптимизацию:
+    //не искать список, а как предлагает vladmihaelca искать прокси getReferenceByID
+    //для этого с фронта нужно будет ходить не с названием списка а с его ID
+    //но тогда нужно будет проверять принадлежит ли список текущему юзеру
     @Transactional
-    public RecipientListResponseDto saveRecipients(MultipartFile file, String recipientsListName,
+    public RecipientListResponseDto saveRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
                                                    String currentUserId) {
-        log.info("uploadCSV: file: {} recipientsListName: {} currentUserId:{}",
-                file.getOriginalFilename(), recipientsListName, currentUserId);
-
-        List<RecipientDto> recipientDtosWithoutIds = parseCsv(file);
-
+        recipientListRepository.findByNameAndUserId(recipientsListName, currentUserId) //TODO: переделать проверку
+                        .ifPresent(v->{throw new RuntimeException();});
+        RecipientList recipientListWithId = recipientListRepository.save(new RecipientList(recipientsListName, currentUserId));
+        fillRecipientListAndSendLUIMessage(recipientListWithId, recipientDtosWithoutIds, ListInfoUpdateEventType.CREATION,
+                recipientsListName, currentUserId);
+        return new RecipientListResponseDto(recipientListWithId.getId(),
+                recipientsListName, recipientListWithId.getRecipientList().size());
+    }
+    @Transactional
+    public RecipientListResponseDto extendRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
+                                                                      String currentUserId) {
         RecipientList recipientListWithId =
-                recipientNameRepository.findByNameAndUserId(recipientsListName, currentUserId)
-                        .orElseGet(() -> recipientNameRepository.save(
-                                new RecipientList(recipientsListName, currentUserId))
-                        );
-        recipientListWithId.getRecipientList().addAll(
-                recipientDtosWithoutIds
-                        .stream()
-                        .map(recipientDto ->
-                                new Recipient(
-                                        recipientDto.getLastname(),
-                                        recipientDto.getEmail(),
-                                        recipientDto.getTg(),
-                                        recipientDto.getToken(),
-                                        recipientListWithId
-                                )
-
-                        ).collect(Collectors.toSet())
-        );
-        ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
-                .setCreatedAt(LocalDateTime.now())
-                .setEventType(ListInfoUpdateEventType.CREATION)
-                .setNewListName(recipientsListName)
-                .setUserId(currentUserId);
-        sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
+                recipientListRepository
+                        .findByNameAndUserId(recipientsListName, currentUserId)
+                        .orElseThrow();
+        fillRecipientListAndSendLUIMessage(recipientListWithId, recipientDtosWithoutIds, ListInfoUpdateEventType.EXTENSION,
+                recipientsListName, currentUserId);
         return new RecipientListResponseDto(recipientListWithId.getId(),
                 recipientsListName, recipientListWithId.getRecipientList().size());
     }
 
     public Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest) {
-        RecipientList recipientList = recipientNameRepository.findByNameAndUserId(listName, userId)
-                .orElseThrow(() -> new RuntimeException("Recipient list not found")); //TODO: разобраться c exceptions кастомными
+        RecipientList recipientList = recipientListRepository.findByNameAndUserId(listName, userId)
+                .orElseThrow(() -> new RuntimeException("Recipient list not found"));
+        //TODO: разобраться c exceptions кастомными
         return recipientRepository
                 .findAllByRecipientList(recipientList, pageRequest)
-                .map(
-                        recipient -> new RecipientDto(
-                                recipient.getLastname(),
-                                recipient.getTg(),
-                                recipient.getEmail(),
-                                recipient.getToken()
-                        )
-                );
+                .map(recipientRecipientDtoMapper::recipientToRecipientDto);
     }
 
+    private void fillRecipientListAndSendLUIMessage(RecipientList recipientListWithId, List<RecipientDto> recipientDtosWithoutIds,
+                                                    ListInfoUpdateEventType eventType, String recipientListName, String currentUserId) {
+        recipientListWithId.getRecipientList()
+                .addAll(
+                        recipientDtosWithoutIds
+                                .stream()
+                                .map(recipientDto ->
+                                        new Recipient(
+                                                recipientDto.getLastname(), recipientDto.getEmail(),
+                                                recipientDto.getTg(), recipientDto.getToken(),
+                                                recipientListWithId
+                                        ))
+                                .collect(Collectors.toSet())
+                );
+        ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
+                .setCreatedAt(LocalDateTime.now())
+                .setEventType(eventType)
+                .setNewListName(recipientListName)
+                .setUserId(currentUserId);
+        sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
+    }
     private void sendLUIMessage(ListsInfoUpdateMessage message, String topicName) {
         CompletableFuture<SendResult<String, ListsInfoUpdateMessage>> future = kafkaTemplate.send(topicName, message);
         future.whenComplete((result, ex) -> {
@@ -116,18 +151,5 @@ public class RecipientsServiceImpl implements RecipientsService {
             }
         });
     }
-    //TODO: сделать парсер универсальным, вынести в бин, не создавать кучу объектов
-    //TODO: подумать насчет отказа от RecipientDto
-    private List<RecipientDto> parseCsv(MultipartFile file) throws IOException {
-        CsvMapper csvMapper = new CsvMapper();
-        CsvSchema csvSchema = csvMapper.schemaFor(RecipientDto.class)
-                .withColumnSeparator(',').withSkipFirstDataRow(true);
-        Reader myReader = new InputStreamReader(file.getInputStream());
 
-        MappingIterator<RecipientDto> iterator = csvMapper
-                .readerFor(RecipientDto.class)
-                .with(csvSchema)
-                .readValues(myReader);
-        return iterator.readAll();
-    }
 }

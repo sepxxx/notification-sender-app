@@ -18,6 +18,5 @@ public class RecipientsListsUpdatesListener {
     public void listenGroupFoo(ListsInfoUpdateMessage message) {
         System.out.println("Received Message: " + message);
         listsUpdateService.processLUIMessage(message);
-
     }
 }

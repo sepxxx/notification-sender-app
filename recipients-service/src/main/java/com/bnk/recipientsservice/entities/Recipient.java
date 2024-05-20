@@ -14,6 +14,7 @@ import java.util.Set;
 @Getter
 @Table(name="recipients")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class Recipient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -26,6 +27,7 @@ public class Recipient {
     String tg;
     @Column
     String token;
+//    @ManyToOne(fetch = FetchType.LAZY)
     @ManyToOne
     RecipientList recipientList;
 

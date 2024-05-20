@@ -1,8 +1,11 @@
 package com.bnk.recipientsservice;
 
-import com.bnk.recipientsservice.entities.RecipientList;
+import com.bnk.recipientsservice.dtos.RecipientDto;
+import com.bnk.recipientsservice.entities.Recipient;
+
+import com.bnk.recipientsservice.mappers.RecipientRecipientDtoMapper;
 import com.bnk.recipientsservice.repositories.LIUMessageRepository;
-import com.bnk.recipientsservice.repositories.RecipientNameRepository;
+import com.bnk.recipientsservice.repositories.RecipientListRepository;
 import com.bnk.recipientsservice.repositories.RecipientRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -19,19 +22,23 @@ class RecipientsServiceApplicationTests {
     RecipientRepository recipientRepository;
 
     @Autowired
-    RecipientNameRepository recipientNameRepository;
+    RecipientListRepository recipientListRepository;
+
+    @Autowired
+    RecipientRecipientDtoMapper recipientRecipientDtoMapper;
     @Test
     @Transactional
     void contextLoads() {
-//        System.out.println(liuMessageRepository.findById(352L));
-        RecipientList recipientList = recipientNameRepository
-                .findByNameAndUserId("testListName4",
-                        "testUserId4"
-                        ).get();
-//        System.out.println(recipientRepository.findAllByRecipientList(
-//                recipientList, PageRequest.of(0, 2)
-//        ));
-        System.out.println(recipientList.getRecipientList().size());
+//        recipientRepository.findById(402L).ifPresent(
+//                r -> System.out.println(r)
+//        );
+//        Recipient r = recipientRecipientDtoMapper.recipientDtoToRecipient(
+//                new RecipientDto("1", "2", "3", "4")
+//        );
+        RecipientDto r = recipientRecipientDtoMapper.recipientToRecipientDto(
+                new Recipient(1L, "1", "2", "3", "4", null)
+        );
+        System.out.println(r);
     }
 
 }
