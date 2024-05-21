@@ -6,6 +6,7 @@ import com.bnk.recipientsservice.entities.ListInfoUpdateEventType;
 import com.bnk.recipientsservice.entities.ListsInfoUpdateMessage;
 import com.bnk.recipientsservice.entities.RecipientList;
 import com.bnk.recipientsservice.exceptions.RecipientListAlreadyExistsException;
+import com.bnk.recipientsservice.exceptions.RecipientListNotFoundException;
 import com.bnk.recipientsservice.mappers.RecipientRecipientDtoMapper;
 import com.bnk.recipientsservice.repositories.LIUMessageRepository;
 import com.bnk.recipientsservice.repositories.RecipientListRepository;
@@ -68,7 +69,12 @@ public class RecipientsServiceImpl implements RecipientsService {
     * обдумать как в 1 эндпоинте разделять сохранение и расширение
     * а нужно ли такое деление в целом RS?
     * как будто нужно = что если пытаемся создать список который уже есть - тут нужно кинуть exception
-    * а для чего TRS знать о том что это расширение а не создание?
+    *
+    *
+    * а для чего TRS знать о том что это расширение а не создание? - чтобы просить только недостающие элементы
+    * хотя и при создании можно проверить сколько уже у себя есть, а потом добирать (хотя если знаем что создание м
+    * можем не делать лишнее действие)
+    *
     * если доверяем RS то в принципе разницы не будет = тк уже проверили есть ли такой список на самом деле
     */
     //TODO: можно сделать оптимизацию:
@@ -79,9 +85,13 @@ public class RecipientsServiceImpl implements RecipientsService {
     public RecipientListResponseDto saveRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
                                                    String currentUserId) {
         recipientListRepository.findByNameAndUserId(recipientsListName, currentUserId) //TODO: переделать проверку
-                        .ifPresent(v->{throw new RecipientListAlreadyExistsException("такой список уже существует");});
-        RecipientList recipientListWithId = recipientListRepository.save(new RecipientList(recipientsListName, currentUserId));
-        fillRecipientListAndSendLUIMessage(recipientListWithId, recipientDtosWithoutIds, ListInfoUpdateEventType.CREATION,
+                        .ifPresent(v->{throw new RecipientListAlreadyExistsException(recipientsListName, currentUserId);});
+        RecipientList recipientList = new RecipientList(recipientsListName, currentUserId);
+        recipientDtosWithoutIds.stream()
+                .map(recipientRecipientDtoMapper::recipientDtoToRecipient)
+                .forEach(recipientList::addRecipient);
+        RecipientList recipientListWithId = recipientListRepository.save(recipientList);
+        fillRecipientListFromDtosAndSendLUIMessage(recipientListWithId, recipientDtosWithoutIds, ListInfoUpdateEventType.CREATION,
                 recipientsListName, currentUserId);
         return new RecipientListResponseDto(recipientListWithId.getId(),
                 recipientsListName, recipientListWithId.getRecipientList().size());
@@ -89,34 +99,55 @@ public class RecipientsServiceImpl implements RecipientsService {
     @Transactional
     public RecipientListResponseDto extendRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
                                                                       String currentUserId) {
-        RecipientList recipientListWithId =
-                recipientListRepository
-                        .findByNameAndUserId(recipientsListName, currentUserId)
-                        .orElseThrow();
-        fillRecipientListAndSendLUIMessage(recipientListWithId, recipientDtosWithoutIds, ListInfoUpdateEventType.EXTENSION,
+        RecipientList recipientListWithId = recipientListRepository.findByNameAndUserId(recipientsListName, currentUserId)
+                        .orElseThrow(() -> new RecipientListNotFoundException(recipientsListName, currentUserId));
+        fillRecipientListFromDtosAndSendLUIMessage(recipientListWithId, recipientDtosWithoutIds, ListInfoUpdateEventType.EXTENSION,
                 recipientsListName, currentUserId);
         return new RecipientListResponseDto(recipientListWithId.getId(),
                 recipientsListName, recipientListWithId.getRecipientList().size());
     }
 
+    @Transactional
+    public RecipientListResponseDto uniteRecipientLists(String recipientsListName1, String recipientsListName2,
+                                                        String recipientsListNameNew, String currentUserId) {
+        RecipientList recipientListWithId1 = recipientListRepository.findByNameAndUserId(recipientsListName1, currentUserId)
+                .orElseThrow(() -> new RecipientListNotFoundException(recipientsListName1, currentUserId));
+        RecipientList recipientListWithId2 = recipientListRepository.findByNameAndUserId(recipientsListName2, currentUserId)
+                .orElseThrow(() -> new RecipientListNotFoundException(recipientsListName2, currentUserId));
+
+        recipientListWithId1.getRecipientList().addAll(recipientListWithId2.getRecipientList());
+        recipientListWithId1.setName(recipientsListNameNew);
+        recipientListRepository.delete(recipientListWithId2);
+
+        ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
+                .setCreatedAt(LocalDateTime.now())
+                .setEventType(ListInfoUpdateEventType.UNION)
+                .setListName1(recipientsListName1)
+                .setListName2(recipientsListName2)
+                .setNewListName(recipientListWithId1.getName())
+                .setUserId(currentUserId);
+        sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
+        
+        return new RecipientListResponseDto(recipientListWithId1.getId(),
+                recipientListWithId1.getName(), recipientListWithId1.getRecipientList().size());
+    }
+
     public Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest) {
         RecipientList recipientList = recipientListRepository.findByNameAndUserId(listName, userId)
-                .orElseThrow(() -> new NotFoundException("Recipient list not found"));
-        //TODO: разобраться c exceptions кастомными
+                .orElseThrow(() -> new RecipientListNotFoundException(listName, userId));
         return recipientRepository
                 .findAllByRecipientList(recipientList, pageRequest)
                 .map(recipientRecipientDtoMapper::recipientToRecipientDto);
     }
-
-    private void fillRecipientListAndSendLUIMessage(RecipientList recipientListWithId, List<RecipientDto> recipientDtosWithoutIds,
+    private void fillRecipientListFromDtosAndSendLUIMessage(RecipientList recipientListWithId, List<RecipientDto> recipientDtosWithoutIds,
                                                     ListInfoUpdateEventType eventType, String recipientListName, String currentUserId) {
-        recipientListWithId.getRecipientList()
-                .addAll(
-                        recipientDtosWithoutIds
-                                .stream()
-                                .map(dto->recipientRecipientDtoMapper.recipientDtoToRecipient(dto, recipientListWithId))
-                                .collect(Collectors.toSet())
-                );
+//        recipientListWithId.getRecipientList()
+//                .addAll(
+//                        recipientDtosWithoutIds
+//                                .stream()
+//                                .map(dto->recipientRecipientDtoMapper.recipientDtoToRecipient(dto, recipientListWithId))
+//                                .collect(Collectors.toSet())
+//                );
 
         ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
                 .setCreatedAt(LocalDateTime.now())
@@ -128,7 +159,7 @@ public class RecipientsServiceImpl implements RecipientsService {
     private void sendLUIMessage(ListsInfoUpdateMessage message, String topicName) {
         CompletableFuture<SendResult<String, ListsInfoUpdateMessage>> future = kafkaTemplate.send(topicName, message);
         future.whenComplete((result, ex) -> {
-            if (ex == null) {
+            if (ex == null) { //TODO: логирование
                 System.out.println("Sent message=[" + message +
                         "] with offset=[" + result.getRecordMetadata().offset() + "]");
             } else {

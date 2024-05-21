@@ -2,6 +2,7 @@ package com.bnk.recipientsservice.controllers;
 
 import com.bnk.recipientsservice.dtos.RecipientDto;
 import com.bnk.recipientsservice.dtos.requests.RecipientListRequestDto;
+import com.bnk.recipientsservice.dtos.requests.RecipientListUnionRequestDto;
 import com.bnk.recipientsservice.dtos.responses.RecipientListResponseDto;
 import com.bnk.recipientsservice.entities.ListInfoUpdateEventType;
 import com.bnk.recipientsservice.entities.Recipient;
@@ -31,9 +32,9 @@ public class RecipientsController {
     CsvParser csvParser;
 
     @PostMapping("/upload")
-    public ResponseEntity<RecipientListResponseDto> saveRecipientList(@RequestParam("file") MultipartFile file,
+    public ResponseEntity<RecipientListResponseDto> saveRecipientList(@RequestParam MultipartFile file,
                                                               @RequestParam("sub") String userId,
-                                                                      @RequestParam("listName") String listName) {
+                                                                      @RequestParam String listName) {
         log.info("uploadCSV: file: {} recipientsListName: {} currentUserId:{}",
                 file.getOriginalFilename(), listName, userId);
         List<RecipientDto> recipientDtoList = csvParser.parseRecipients(file);
@@ -42,13 +43,19 @@ public class RecipientsController {
     }
 
     @PutMapping("/upload")
-    public ResponseEntity<RecipientListResponseDto> extendRecipientList(@RequestParam("file") MultipartFile file,
+    public ResponseEntity<RecipientListResponseDto> extendRecipientList(@RequestParam MultipartFile file,
                                                                               @RequestParam("sub") String userId,
-                                                                        @RequestParam("listName") String listName) {
+                                                                        @RequestParam String listName) {
         log.info("uploadCSV: file: {} recipientsListName: {} currentUserId:{}",
                 file.getOriginalFilename(), listName, userId);
         List<RecipientDto> recipientDtoList = csvParser.parseRecipients(file);
         return new ResponseEntity<>(recipientsService.extendRecipientList(recipientDtoList, listName, userId),
+                HttpStatus.OK);
+    }
+
+    @PutMapping("/union")
+    public ResponseEntity<RecipientListResponseDto> unionRecipientLists(@RequestHeader("sub") String userId, @RequestBody RecipientListUnionRequestDto dto) {
+        return new ResponseEntity<>(recipientsService.uniteRecipientLists(dto.getListName1(), dto.getListName2(), dto.getListNameNew(), userId),
                 HttpStatus.OK);
     }
 

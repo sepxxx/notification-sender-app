@@ -1,5 +1,6 @@
 package com.bnk.recipientsservice.exceptions;
 
+import com.bnk.recipientsservice.exceptions.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -15,8 +16,8 @@ public class ExceptionApiHandler {
                 .body(new ErrorMessage(exception.getMessage()));
     }
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ErrorMessage> notFoundException(NotFoundException exception) {
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ResponseEntity<ErrorMessage> notFoundException(ObjectNotFoundException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(new ErrorMessage(exception.getMessage()));

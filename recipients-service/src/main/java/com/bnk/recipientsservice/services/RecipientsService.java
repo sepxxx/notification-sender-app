@@ -12,7 +12,9 @@ import java.util.List;
 public interface RecipientsService {
     RecipientListResponseDto saveRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
                                                                String currentUserId);
-    public RecipientListResponseDto extendRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
+    RecipientListResponseDto extendRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
                                                         String currentUserId);
+    RecipientListResponseDto uniteRecipientLists(String recipientsListName1, String recipientsListName2,
+                                                        String recipientsListNameNew, String currentUserId);
     Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest);
 }

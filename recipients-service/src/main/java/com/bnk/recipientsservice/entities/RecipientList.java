@@ -23,21 +23,24 @@ public class RecipientList {
     @Column
     String name;
     //TODO:почитать о влиянии jointable на производительность
-//    @OneToMany(fetch = FetchType.LAZY)
+//    @OneToMany(cascade = CascadeType.ALL)
 //    @JoinTable(name = "recipients_recipients_lists",
-//            joinColumns = @JoinColumn(name = "RECIPIENT_LIST_ID"),
-//            inverseJoinColumns = @JoinColumn(name = "RECIPIENT_ID"))
+//            joinColumns = @JoinColumn(name = "recipient_list_id"),
+//            inverseJoinColumns = @JoinColumn(name = "recipient_id"))
     @OneToMany(mappedBy = "recipientList", cascade = CascadeType.ALL)
     Set<Recipient> recipientList = new HashSet<>();
     @Column
     String userId;
 
-//    public void appendRecipientList(List<Recipient> appendingRecipientList) {
-//        if (recipientList == null) {
-//            recipientList = new HashSet<>();
-//        }
-//        recipientList.addAll(appendingRecipientList);
-//    }
+    public void addRecipient(Recipient recipient) {
+        recipientList.add(recipient);
+        recipient.setRecipientList(this);
+    }
+
+    public void removeRecipient(Recipient recipient) {
+        recipientList.remove(recipient);
+        recipient.setRecipientList(null);
+    }
 
     public RecipientList(String name) {
         this.name = name;
