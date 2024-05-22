@@ -1,4 +1,4 @@
-package com.bnk.taskresolverservice.clients;
+package com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

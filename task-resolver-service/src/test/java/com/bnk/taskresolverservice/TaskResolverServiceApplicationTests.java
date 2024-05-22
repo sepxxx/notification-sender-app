@@ -1,13 +1,11 @@
 package com.bnk.taskresolverservice;
 
-import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient;
+import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientsSaverServiceRestClient;
 import com.bnk.taskresolverservice.dtos.RecipientDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-
-import java.util.stream.Collectors;
 
 @SpringBootTest
 class TaskResolverServiceApplicationTests {

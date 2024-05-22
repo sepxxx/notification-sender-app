@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.HashSet;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +13,7 @@ import java.util.Objects;
 @Getter
 @Table(name="recipients")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
 public class Recipient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -26,6 +26,7 @@ public class Recipient {
     String tg;
     @Column
     String token;
+//    @ManyToOne(fetch = FetchType.LAZY)
     @ManyToOne
     RecipientList recipientList;
 

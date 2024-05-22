@@ -16,6 +16,6 @@ public class ListsInfoUpdateMessage {
     LocalDateTime createdAt;
     String listName1;
     String listName2;
-    String newListName;
+    String listName;
     String userId;
 }
