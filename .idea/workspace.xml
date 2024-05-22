@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="контроллер RS переработан">
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/dtos/requests/RecipientListUnionRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/ObjectNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/RecipientListNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="работа с entity в процессе рефакторинга">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/RecipientsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/RecipientsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/dtos/requests/RecipientListRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/dtos/requests/RecipientListRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/RecipientList.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/RecipientList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/ErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/ErrorMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/ExceptionApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/ExceptionApiHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/RecipientListAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/exceptions/RecipientListAlreadyExistsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/mappers/RecipientRecipientDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/mappers/RecipientRecipientDtoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/ListsInfoUpdateMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/entities/ListsInfoUpdateMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/repositories/RecipientListRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/repositories/RecipientListRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/RecipientsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/RecipientsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/test/java/com/bnk/recipientsservice/RecipientsServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/test/java/com/bnk/recipientsservice/RecipientsServiceApplicationTests.java" afterDir="false" />
@@ -127,7 +119,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.RecipientsServiceApplicationTests.contextLoads">
+  <component name="RunManager" selected="Spring Boot.RecipientsServiceApplication">
     <configuration name="RecipientsServiceApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="recipients-service" />
       <extension name="coverage">
@@ -154,6 +146,22 @@
       <option name="PACKAGE_NAME" value="com.bnk.recipientsservice" />
       <option name="MAIN_CLASS_NAME" value="com.bnk.recipientsservice.RecipientsServiceApplicationTests" />
       <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RecipientsServiceApplicationTests.contextLoads2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="recipients-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bnk.recipientsservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bnk.recipientsservice" />
+      <option name="MAIN_CLASS_NAME" value="com.bnk.recipientsservice.RecipientsServiceApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -222,6 +230,7 @@
     </configuration>
     <list>
       <item itemvalue="Java Scratch.Scratch" />
+      <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads2" />
       <item itemvalue="JUnit.RecipientsServiceApplicationTests" />
       <item itemvalue="JUnit.TaskResolverServiceApplicationTests.contextLoads" />
       <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads" />
@@ -233,6 +242,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads2" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests" />
         <item itemvalue="JUnit.TaskResolverServiceApplicationTests.contextLoads" />
@@ -253,7 +263,7 @@
       <workItem from="1715424538016" duration="5617000" />
       <workItem from="1715436157891" duration="56511000" />
       <workItem from="1716013825401" duration="10625000" />
-      <workItem from="1716195143473" duration="21950000" />
+      <workItem from="1716195143473" duration="29604000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />
@@ -375,7 +385,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716220925684</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="работа с entity в процессе рефакторинга">
+      <option name="closed" value="true" />
+      <created>1716305968671</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1716305968671</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,6 +430,7 @@
     <MESSAGE value="теперь RS и TRS не сохраняют дубликаты получателей" />
     <MESSAGE value="рефакторинг RecipientsServiceImpl.java" />
     <MESSAGE value="контроллер RS переработан" />
-    <option name="LAST_COMMIT_MESSAGE" value="контроллер RS переработан" />
+    <MESSAGE value="работа с entity в процессе рефакторинга" />
+    <option name="LAST_COMMIT_MESSAGE" value="работа с entity в процессе рефакторинга" />
   </component>
 </project>

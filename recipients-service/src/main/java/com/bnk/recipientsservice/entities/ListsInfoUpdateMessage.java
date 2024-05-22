@@ -29,13 +29,13 @@ public class ListsInfoUpdateMessage {
     LocalDateTime createdAt;
 
     @Column
+    String listName;
+
+    @Column
     String listName1;
 
     @Column
     String listName2;
-
-    @Column
-    String newListName;
 
     @Column
     String userId;

@@ -17,4 +17,5 @@ public interface RecipientsService {
     RecipientListResponseDto uniteRecipientLists(String recipientsListName1, String recipientsListName2,
                                                         String recipientsListNameNew, String currentUserId);
     Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest);
+    RecipientListResponseDto deleteRecipientList(String recipientsListName, String currentUserId);
 }

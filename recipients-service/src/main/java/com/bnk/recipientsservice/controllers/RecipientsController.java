@@ -1,13 +1,9 @@
 package com.bnk.recipientsservice.controllers;
 
 import com.bnk.recipientsservice.dtos.RecipientDto;
-import com.bnk.recipientsservice.dtos.requests.RecipientListRequestDto;
 import com.bnk.recipientsservice.dtos.requests.RecipientListUnionRequestDto;
 import com.bnk.recipientsservice.dtos.responses.RecipientListResponseDto;
-import com.bnk.recipientsservice.entities.ListInfoUpdateEventType;
-import com.bnk.recipientsservice.entities.Recipient;
 import com.bnk.recipientsservice.parsers.CsvParser;
-import com.bnk.recipientsservice.parsers.CsvParserImpl;
 import com.bnk.recipientsservice.services.RecipientsService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -20,13 +16,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Slf4j
+
+//TODO: 1) разобраться с параметрами методов
+//      2) оформить нормально апи
 public class RecipientsController {
     RecipientsService recipientsService;
     CsvParser csvParser;
@@ -57,6 +55,11 @@ public class RecipientsController {
     public ResponseEntity<RecipientListResponseDto> unionRecipientLists(@RequestHeader("sub") String userId, @RequestBody RecipientListUnionRequestDto dto) {
         return new ResponseEntity<>(recipientsService.uniteRecipientLists(dto.getListName1(), dto.getListName2(), dto.getListNameNew(), userId),
                 HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{listName}")
+    public ResponseEntity<RecipientListResponseDto> deleteRecipientList(@RequestHeader("sub") String userId, @PathVariable String listName) {
+        return new ResponseEntity<>(recipientsService.deleteRecipientList(listName, userId), HttpStatus.OK);
     }
 
     @GetMapping("/{listName}/recipients/")

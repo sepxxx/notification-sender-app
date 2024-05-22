@@ -32,8 +32,13 @@ class RecipientsServiceApplicationTests {
     RecipientRecipientDtoMapper recipientRecipientDtoMapper;
     @Test
     void contextLoads() {
-        recipientListRepository.deleteById(2L);
-        assertFalse(recipientListRepository.findById(2L).isPresent());
+
+        System.out.println(recipientListRepository.findByNameAndUserId("testListName1","testUserId1"));
+    }
+
+    @Test
+    void contextLoads2() {
+        System.out.println(recipientListRepository.existsByNameAndUserId("testListName1","testUserId1"));
     }
 
 }

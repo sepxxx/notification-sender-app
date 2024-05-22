@@ -12,7 +12,6 @@ import com.bnk.recipientsservice.repositories.LIUMessageRepository;
 import com.bnk.recipientsservice.repositories.RecipientListRepository;
 import com.bnk.recipientsservice.repositories.RecipientRepository;
 import com.bnk.recipientsservice.services.RecipientsService;
-import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -23,15 +22,16 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Transactional(readOnly = true)
 @Slf4j
 public class RecipientsServiceImpl implements RecipientsService {
 
@@ -84,15 +84,21 @@ public class RecipientsServiceImpl implements RecipientsService {
     @Transactional
     public RecipientListResponseDto saveRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
                                                    String currentUserId) {
-        recipientListRepository.findByNameAndUserId(recipientsListName, currentUserId) //TODO: переделать проверку
-                        .ifPresent(v->{throw new RecipientListAlreadyExistsException(recipientsListName, currentUserId);});
+        if (recipientListRepository.existsByNameAndUserId(recipientsListName, currentUserId))
+            throw new RecipientListAlreadyExistsException(recipientsListName, currentUserId);
         RecipientList recipientList = new RecipientList(recipientsListName, currentUserId);
         recipientDtosWithoutIds.stream()
                 .map(recipientRecipientDtoMapper::recipientDtoToRecipient)
                 .forEach(recipientList::addRecipient);
         RecipientList recipientListWithId = recipientListRepository.save(recipientList);
-        fillRecipientListFromDtosAndSendLUIMessage(recipientListWithId, recipientDtosWithoutIds, ListInfoUpdateEventType.CREATION,
-                recipientsListName, currentUserId);
+
+        ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
+                .setCreatedAt(LocalDateTime.now())
+                .setEventType(ListInfoUpdateEventType.CREATION)
+                .setListName(recipientListWithId.getName())
+                .setUserId(currentUserId);
+        sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
+
         return new RecipientListResponseDto(recipientListWithId.getId(),
                 recipientsListName, recipientListWithId.getRecipientList().size());
     }
@@ -101,10 +107,19 @@ public class RecipientsServiceImpl implements RecipientsService {
                                                                       String currentUserId) {
         RecipientList recipientListWithId = recipientListRepository.findByNameAndUserId(recipientsListName, currentUserId)
                         .orElseThrow(() -> new RecipientListNotFoundException(recipientsListName, currentUserId));
-        fillRecipientListFromDtosAndSendLUIMessage(recipientListWithId, recipientDtosWithoutIds, ListInfoUpdateEventType.EXTENSION,
-                recipientsListName, currentUserId);
+
+        recipientDtosWithoutIds.stream()
+                .map(recipientRecipientDtoMapper::recipientDtoToRecipient)
+                .forEach(recipientListWithId::addRecipient);
+
+        ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
+                .setCreatedAt(LocalDateTime.now())
+                .setEventType(ListInfoUpdateEventType.EXTENSION)
+                .setListName(recipientsListName)
+                .setUserId(currentUserId);
+        sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
         return new RecipientListResponseDto(recipientListWithId.getId(),
-                recipientsListName, recipientListWithId.getRecipientList().size());
+                recipientListWithId.getName(), recipientListWithId.getRecipientList().size());
     }
 
     @Transactional
@@ -124,7 +139,7 @@ public class RecipientsServiceImpl implements RecipientsService {
                 .setEventType(ListInfoUpdateEventType.UNION)
                 .setListName1(recipientsListName1)
                 .setListName2(recipientsListName2)
-                .setNewListName(recipientListWithId1.getName())
+                .setListName(recipientListWithId1.getName())
                 .setUserId(currentUserId);
         sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
         
@@ -132,29 +147,29 @@ public class RecipientsServiceImpl implements RecipientsService {
                 recipientListWithId1.getName(), recipientListWithId1.getRecipientList().size());
     }
 
+    @Transactional
+    public RecipientListResponseDto deleteRecipientList(String recipientsListName, String currentUserId) {
+
+
+        recipientListRepository.deleteByNameAndUserId(recipientsListName, currentUserId);
+
+        ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
+                .setCreatedAt(LocalDateTime.now())
+                .setEventType(ListInfoUpdateEventType.DELETION)
+                .setListName(recipientsListName)
+                .setUserId(currentUserId);
+        sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
+
+        return new RecipientListResponseDto(null, recipientsListName, 0);
+    }
+
+
     public Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest) {
         RecipientList recipientList = recipientListRepository.findByNameAndUserId(listName, userId)
                 .orElseThrow(() -> new RecipientListNotFoundException(listName, userId));
         return recipientRepository
                 .findAllByRecipientList(recipientList, pageRequest)
                 .map(recipientRecipientDtoMapper::recipientToRecipientDto);
-    }
-    private void fillRecipientListFromDtosAndSendLUIMessage(RecipientList recipientListWithId, List<RecipientDto> recipientDtosWithoutIds,
-                                                    ListInfoUpdateEventType eventType, String recipientListName, String currentUserId) {
-//        recipientListWithId.getRecipientList()
-//                .addAll(
-//                        recipientDtosWithoutIds
-//                                .stream()
-//                                .map(dto->recipientRecipientDtoMapper.recipientDtoToRecipient(dto, recipientListWithId))
-//                                .collect(Collectors.toSet())
-//                );
-
-        ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
-                .setCreatedAt(LocalDateTime.now())
-                .setEventType(eventType)
-                .setNewListName(recipientListName)
-                .setUserId(currentUserId);
-        sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
     }
     private void sendLUIMessage(ListsInfoUpdateMessage message, String topicName) {
         CompletableFuture<SendResult<String, ListsInfoUpdateMessage>> future = kafkaTemplate.send(topicName, message);
