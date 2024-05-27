@@ -171,6 +171,8 @@ public class RecipientsServiceImpl implements RecipientsService {
                 .findAllByRecipientList(recipientList, pageRequest)
                 .map(recipientRecipientDtoMapper::recipientToRecipientDto);
     }
+
+    //TODO: вынос?
     private void sendLUIMessage(ListsInfoUpdateMessage message, String topicName) {
         CompletableFuture<SendResult<String, ListsInfoUpdateMessage>> future = kafkaTemplate.send(topicName, message);
         future.whenComplete((result, ex) -> {

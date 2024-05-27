@@ -1,9 +1,9 @@
 package com.bnk.taskresolverservice.handlers;
 
 
-import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientsSaverServiceRestClient;
+import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientSaverServiceRestClient;
 import com.bnk.taskresolverservice.dtos.ListInfoUpdateEventType;
-import com.bnk.taskresolverservice.dtos.ListsInfoUpdateMessage;
+import com.bnk.taskresolverservice.dtos.ListInfoUpdateMessage;
 import com.bnk.taskresolverservice.repositories.RecipientListRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -13,20 +13,20 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class lUIMessageExtensionHandler implements lUIMessageHandler{
+public class LuiMessageUnionHandler implements LuiMessageHandler {
 
     RecipientListRepository recipientListRepository;
-    RecipientsSaverServiceRestClient recipientsSaverServiceRestClient;
+    RecipientSaverServiceRestClient recipientSaverServiceRestClient;
     static Integer REQUEST_PAGE_SIZE = 10;
     @Override
-    public Boolean canHandle(ListsInfoUpdateMessage message) {
-        return ListInfoUpdateEventType.EXTENSION.equals(message.getEventType());
+    public Boolean canHandle(ListInfoUpdateMessage message) {
+        return ListInfoUpdateEventType.UNION.equals(message.getEventType());
     }
 
     @Override
-    public void handle(ListsInfoUpdateMessage message) {
+    public void handle(ListInfoUpdateMessage message) {
         String listName = message.getListName();
         String userId = message.getUserId();
-        System.out.println("EXTENSION EXTENSION EXTENSION EXTENSION EXTENSION");
+        System.out.println("UNION UNION UNION UNION UNION ");
     }
 }

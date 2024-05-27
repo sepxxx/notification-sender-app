@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
-public class ListsInfoUpdateMessage {
+public class ListInfoUpdateMessage {
     Long id;
     ListInfoUpdateEventType eventType;
     LocalDateTime createdAt;

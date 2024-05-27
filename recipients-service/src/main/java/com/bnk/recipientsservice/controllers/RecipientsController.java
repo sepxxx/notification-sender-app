@@ -41,38 +41,33 @@ public class RecipientsController {
     }
 
     @PutMapping("/upload")
-    public ResponseEntity<RecipientListResponseDto> extendRecipientList(@RequestParam MultipartFile file,
+    public RecipientListResponseDto extendRecipientList(@RequestParam MultipartFile file,
                                                                               @RequestParam("sub") String userId,
                                                                         @RequestParam String listName) {
         log.info("uploadCSV: file: {} recipientsListName: {} currentUserId:{}",
                 file.getOriginalFilename(), listName, userId);
         List<RecipientDto> recipientDtoList = csvParser.parseRecipients(file);
-        return new ResponseEntity<>(recipientsService.extendRecipientList(recipientDtoList, listName, userId),
-                HttpStatus.OK);
+        return recipientsService.extendRecipientList(recipientDtoList, listName, userId);
     }
 
     @PutMapping("/union")
-    public ResponseEntity<RecipientListResponseDto> unionRecipientLists(@RequestHeader("sub") String userId, @RequestBody RecipientListUnionRequestDto dto) {
-        return new ResponseEntity<>(recipientsService.uniteRecipientLists(dto.getListName1(), dto.getListName2(), dto.getListNameNew(), userId),
-                HttpStatus.OK);
+    public RecipientListResponseDto unionRecipientLists(@RequestHeader("sub") String userId, @RequestBody RecipientListUnionRequestDto dto) {
+        return recipientsService.uniteRecipientLists(dto.getListName1(), dto.getListName2(), dto.getListNameNew(), userId);
     }
 
     @DeleteMapping("/{listName}")
-    public ResponseEntity<RecipientListResponseDto> deleteRecipientList(@RequestHeader("sub") String userId, @PathVariable String listName) {
-        return new ResponseEntity<>(recipientsService.deleteRecipientList(listName, userId), HttpStatus.OK);
+    public RecipientListResponseDto deleteRecipientList(@RequestHeader("sub") String userId, @PathVariable String listName) {
+        return recipientsService.deleteRecipientList(listName, userId);
     }
 
     @GetMapping("/{listName}/recipients/")
 //    (defaultValue = "10")
-    public ResponseEntity<Page<RecipientDto>> getRecipientPageByListName(@PathVariable String listName,
+    public Page<RecipientDto> getRecipientPageByListName(@PathVariable String listName,
                                                          @RequestParam("sub") String userId,
                                                          @RequestParam Integer pageNumber,
                                                          @RequestParam Integer pageSize) {
-        return new ResponseEntity<>(
-                recipientsService
+        return recipientsService
                 .getRecipientsPageByListNameAndUserId(listName, userId,
-                        PageRequest.of(pageNumber, pageSize)),
-                HttpStatus.OK
-        );
+                        PageRequest.of(pageNumber, pageSize));
     }
 }

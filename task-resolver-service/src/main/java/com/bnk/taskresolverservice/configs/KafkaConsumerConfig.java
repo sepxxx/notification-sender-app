@@ -1,6 +1,6 @@
 package com.bnk.taskresolverservice.configs;
 
-import com.bnk.taskresolverservice.dtos.ListsInfoUpdateMessage;
+import com.bnk.taskresolverservice.dtos.ListInfoUpdateMessage;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +21,7 @@ public class KafkaConsumerConfig {
     private String bootstrapAddress;
 
     @Bean
-    public ConsumerFactory<String, ListsInfoUpdateMessage> LIUMessageConsumerFactory() {
+    public ConsumerFactory<String, ListInfoUpdateMessage> LIUMessageConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -35,15 +35,15 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(
                 props,
                 new StringDeserializer(),
-                new JsonDeserializer<>(ListsInfoUpdateMessage.class, false)
+                new JsonDeserializer<>(ListInfoUpdateMessage.class, false)
         );
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, ListsInfoUpdateMessage>
+    public ConcurrentKafkaListenerContainerFactory<String, ListInfoUpdateMessage>
     LIUMessageKafkaListenerContainerFactory() {
 
-        ConcurrentKafkaListenerContainerFactory<String, ListsInfoUpdateMessage> factory =
+        ConcurrentKafkaListenerContainerFactory<String, ListInfoUpdateMessage> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(LIUMessageConsumerFactory());
         return factory;

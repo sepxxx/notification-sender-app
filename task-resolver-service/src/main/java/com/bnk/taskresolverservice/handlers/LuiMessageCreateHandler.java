@@ -1,9 +1,9 @@
 package com.bnk.taskresolverservice.handlers;
 
 
-import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientsSaverServiceRestClient;
+import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientSaverServiceRestClient;
 import com.bnk.taskresolverservice.dtos.ListInfoUpdateEventType;
-import com.bnk.taskresolverservice.dtos.ListsInfoUpdateMessage;
+import com.bnk.taskresolverservice.dtos.ListInfoUpdateMessage;
 import com.bnk.taskresolverservice.dtos.RecipientDto;
 import com.bnk.taskresolverservice.entities.Recipient;
 import com.bnk.taskresolverservice.entities.RecipientList;
@@ -11,9 +11,12 @@ import com.bnk.taskresolverservice.repositories.RecipientListRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientResponseException;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 
 
 //TODO: а мб тут рубильник какой-то сделать с проверкой существования списка?
@@ -26,22 +29,25 @@ import org.springframework.web.client.RestClientResponseException;
    опрос RS и дополнение
 *
 */
-//TODO: добавить маппер
+
 @Component
 @AllArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-public class lUIMessageCreateHandler implements lUIMessageHandler{
+@Slf4j
+public class LuiMessageCreateHandler implements LuiMessageHandler {
 
     RecipientListRepository recipientListRepository;
-    RecipientsSaverServiceRestClient recipientsSaverServiceRestClient;
-    static Integer REQUEST_PAGE_SIZE = 10;
+    RecipientSaverServiceRestClient recipientSaverServiceRestClient;
+    static Integer REQUEST_PAGE_SIZE = 10; //TODO: вынос в properties
     @Override
-    public Boolean canHandle(ListsInfoUpdateMessage message) {
+    public Boolean canHandle(ListInfoUpdateMessage message) {
         return ListInfoUpdateEventType.CREATION.equals(message.getEventType());
     }
-
+    //TODO: ситуация когда consumer упал но к тому времени уже создал список
     @Override
-    public void handle(ListsInfoUpdateMessage message) {
+    @Transactional
+    //TODO: pool interval - время за которое должен обработать
+    public void handle(ListInfoUpdateMessage message) {
         String listName = message.getListName();
         String userId = message.getUserId();
         System.out.println("CREATION CREATION CREATION CREATION CREATION");
@@ -51,7 +57,7 @@ public class lUIMessageCreateHandler implements lUIMessageHandler{
         int pageNumber = 0;
         while(!lastPage) {
             try {
-                Page<RecipientDto> recipientDtoPage = recipientsSaverServiceRestClient
+                Page<RecipientDto> recipientDtoPage = recipientSaverServiceRestClient
                         .getRecipientsPageByListNameAndUserId(
                                 listName, userId, pageNumber++, REQUEST_PAGE_SIZE
                         );
@@ -64,11 +70,13 @@ public class lUIMessageCreateHandler implements lUIMessageHandler{
                                 dto.getEmail(),
                                 dto.getTg(),
                                 dto.getToken(),
-                                recipientListWithId))
+                                recipientListWithId))//TODO: добавить маппер
                         .forEach(recipientListWithId::addRecipient);
-            } catch (RestClientResponseException ex) {
-                //TODO: было бы неплохо логировать откидываемые сообщения
+            } catch (HttpClientErrorException ex) {
+                log.error("HttpClientErrorException statusCode:{}, message:{}", ex.getStatusCode(), message);
                 break;
+            } catch (HttpServerErrorException ex) {
+                log.error("HttpServerErrorException statusCode:{}, message:{}", ex.getStatusCode(), message);
             }
         }
     }

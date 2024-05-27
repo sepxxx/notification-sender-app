@@ -17,11 +17,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 @Slf4j
-public class RecipientsSaverServiceRestClient {
+public class RecipientSaverServiceRestClient {
     final RestTemplate restTemplate;
 
 //    @Value(value="${recipients-service.url}")
-    String recipientsServiceRootUrl = "http://localhost:8080";
+    String recipientsServiceRootUrl = "http://localhost:8080"; //TODO: вынос + гибкость
 
     public Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId,
                                                                    Integer pageNumber, Integer pageSize) {
@@ -38,10 +38,6 @@ public class RecipientsSaverServiceRestClient {
                         new ParameterizedTypeReference<CustomPageImpl<RecipientDto>>() {
                         });
         return responseEntity.getBody();
-
-//        return restTemplate.getForObject("http://localhost:8080/{listName}/recipients/?" +
-//                        "pageNumber={pageNumber}&pageSize={pageSize}&sub={userId}",
-//                Page.class, listName, pageNumber, pageSize, userId);
     }
 
 }

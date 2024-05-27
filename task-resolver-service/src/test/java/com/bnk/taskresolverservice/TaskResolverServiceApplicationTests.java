@@ -1,6 +1,6 @@
 package com.bnk.taskresolverservice;
 
-import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientsSaverServiceRestClient;
+import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientSaverServiceRestClient;
 import com.bnk.taskresolverservice.dtos.RecipientDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +11,11 @@ import org.springframework.data.domain.Page;
 class TaskResolverServiceApplicationTests {
 
     @Autowired
-    RecipientsSaverServiceRestClient recipientsSaverServiceRestClient;
+    RecipientSaverServiceRestClient recipientSaverServiceRestClient;
     @Test
     //testListName1/recipients/
     void contextLoads() {
-        Page<RecipientDto> prdto = recipientsSaverServiceRestClient.getRecipientsPageByListNameAndUserId(
+        Page<RecipientDto> prdto = recipientSaverServiceRestClient.getRecipientsPageByListNameAndUserId(
                 "testListName1",
                 "testUserId1",
                 0,
