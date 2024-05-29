@@ -19,6 +19,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
 
+import java.util.Optional;
+
 
 //TODO: а мб тут рубильник какой-то сделать с проверкой существования списка?
 //мб ситуация пользователь создал список и тут же его удалил
@@ -51,10 +53,14 @@ public class LuiMessageCreateHandler implements LuiMessageHandler {
         String listName = message.getListName();
         String userId = message.getUserId();
         System.out.println("CREATION CREATION CREATION CREATION CREATION");
-        RecipientList recipientListWithoutId = new RecipientList(listName, userId);
 
         boolean lastPage = false;
-        int pageNumber = 0;
+
+        RecipientList recipientList = recipientListRepository.findByNameAndUserId(listName, userId)
+                .orElseGet(()->new RecipientList(listName, userId));
+        int pageNumber = Optional.ofNullable(recipientList.getId())
+                .map(list -> recipientList.getRecipientList().size() / REQUEST_PAGE_SIZE + 1)
+                .orElse(0);
         try {
             while(!lastPage) {
 
@@ -62,20 +68,20 @@ public class LuiMessageCreateHandler implements LuiMessageHandler {
                             .getRecipientsPageByListNameAndUserId(
                                     listName, userId, pageNumber++, REQUEST_PAGE_SIZE
                             );
+                    Thread.sleep(1000);
                     lastPage = recipientDtoPage.isLast();
-                    System.out.println("PAGENUMBER "+pageNumber);
-//                    recipientDtoPage
-//                            .stream()
-//                            .map(dto -> new Recipient(
-//                                    dto.getLastname(),
-//                                    dto.getEmail(),
-//                                    dto.getTg(),
-//                                    dto.getToken(),
-//                                    recipientListWithoutId))//TODO: добавить маппер
-//                            .forEach(recipientListWithoutId::addRecipient);
+                    recipientDtoPage
+                            .stream()
+                            .map(dto -> new Recipient(
+                                    dto.getLastname(),
+                                    dto.getEmail(),
+                                    dto.getTg(),
+                                    dto.getToken(),
+                                    recipientList))//TODO: добавить маппер
+                            .forEach(recipientList::addRecipient);
 
             }
-//            recipientListRepository.save(recipientListWithoutId);
+            recipientListRepository.save(recipientList);
         } catch (HttpClientErrorException ex) {
             log.error("HttpClientErrorException statusCode:{}, message:{}", ex.getStatusCode(), message);
 //            throw ex; //В принципе можем и не пробрасывать тк все равно ретраить не будем

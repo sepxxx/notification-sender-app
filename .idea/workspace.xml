@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="ведется работа над handlers, проведен рефакторинг">
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="теперь при создании списка по kafka message нормально отрабатывают и перехватываются exceptions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/services/impl/RecipientsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/KafkaConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/KafkaConsumerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageCreateHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageCreateHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" afterDir="false" />
     </list>
@@ -263,7 +261,7 @@
       <workItem from="1715436157891" duration="56511000" />
       <workItem from="1716013825401" duration="10625000" />
       <workItem from="1716195143473" duration="41247000" />
-      <workItem from="1716793655242" duration="19967000" />
+      <workItem from="1716793655242" duration="24182000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />
@@ -417,7 +415,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716817139603</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="теперь при создании списка по kafka message нормально отрабатывают и перехватываются exceptions">
+      <option name="closed" value="true" />
+      <created>1716975564634</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1716975564634</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,6 +464,7 @@
     <MESSAGE value="готовы методы сервиса RS, надо поработать над контроллером" />
     <MESSAGE value="ведется работа над handlers" />
     <MESSAGE value="ведется работа над handlers, проведен рефакторинг" />
-    <option name="LAST_COMMIT_MESSAGE" value="ведется работа над handlers, проведен рефакторинг" />
+    <MESSAGE value="теперь при создании списка по kafka message нормально отрабатывают и перехватываются exceptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="теперь при создании списка по kafka message нормально отрабатывают и перехватываются exceptions" />
   </component>
 </project>
