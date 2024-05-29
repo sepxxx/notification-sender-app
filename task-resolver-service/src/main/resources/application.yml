@@ -24,3 +24,10 @@ eureka:
       defaultZone: http://localhost:8070/eureka
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
+kafka:
+  backoff:
+#    initial_interval: 29628 #mills
+#    max_elapsed_time: 21600000 #
+    initial_interval: 1000
+    max_elapsed_time: 28000
+    multiplier: 3

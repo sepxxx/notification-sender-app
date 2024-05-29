@@ -152,6 +152,7 @@ public class RecipientsServiceImpl implements RecipientsService {
 
 
         recipientListRepository.deleteByNameAndUserId(recipientsListName, currentUserId);
+        //TODO: нужно продумать момент когда списка не существует
 
         ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
                 .setCreatedAt(LocalDateTime.now())
@@ -165,6 +166,7 @@ public class RecipientsServiceImpl implements RecipientsService {
 
 
     public Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest) {
+//        throw new RuntimeException();
         RecipientList recipientList = recipientListRepository.findByNameAndUserId(listName, userId)
                 .orElseThrow(() -> new RecipientListNotFoundException(listName, userId));
         return recipientRepository

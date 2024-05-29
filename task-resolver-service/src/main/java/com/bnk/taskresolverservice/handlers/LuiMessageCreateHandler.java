@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
 
 
 //TODO: а мб тут рубильник какой-то сделать с проверкой существования списка?
@@ -43,41 +44,49 @@ public class LuiMessageCreateHandler implements LuiMessageHandler {
     public Boolean canHandle(ListInfoUpdateMessage message) {
         return ListInfoUpdateEventType.CREATION.equals(message.getEventType());
     }
-    //TODO: ситуация когда consumer упал но к тому времени уже создал список
+
     @Override
-    @Transactional
     //TODO: pool interval - время за которое должен обработать
     public void handle(ListInfoUpdateMessage message) {
         String listName = message.getListName();
         String userId = message.getUserId();
         System.out.println("CREATION CREATION CREATION CREATION CREATION");
-        RecipientList recipientListWithId = recipientListRepository.save(new RecipientList(listName, userId));
+        RecipientList recipientListWithoutId = new RecipientList(listName, userId);
 
         boolean lastPage = false;
         int pageNumber = 0;
-        while(!lastPage) {
-            try {
-                Page<RecipientDto> recipientDtoPage = recipientSaverServiceRestClient
-                        .getRecipientsPageByListNameAndUserId(
-                                listName, userId, pageNumber++, REQUEST_PAGE_SIZE
-                        );
-                lastPage = recipientDtoPage.isLast();
+        try {
+            while(!lastPage) {
 
-                recipientDtoPage
-                        .stream()
-                        .map(dto -> new Recipient(
-                                dto.getLastname(),
-                                dto.getEmail(),
-                                dto.getTg(),
-                                dto.getToken(),
-                                recipientListWithId))//TODO: добавить маппер
-                        .forEach(recipientListWithId::addRecipient);
-            } catch (HttpClientErrorException ex) {
-                log.error("HttpClientErrorException statusCode:{}, message:{}", ex.getStatusCode(), message);
-                break;
-            } catch (HttpServerErrorException ex) {
-                log.error("HttpServerErrorException statusCode:{}, message:{}", ex.getStatusCode(), message);
+                    Page<RecipientDto> recipientDtoPage = recipientSaverServiceRestClient
+                            .getRecipientsPageByListNameAndUserId(
+                                    listName, userId, pageNumber++, REQUEST_PAGE_SIZE
+                            );
+                    lastPage = recipientDtoPage.isLast();
+                    System.out.println("PAGENUMBER "+pageNumber);
+//                    recipientDtoPage
+//                            .stream()
+//                            .map(dto -> new Recipient(
+//                                    dto.getLastname(),
+//                                    dto.getEmail(),
+//                                    dto.getTg(),
+//                                    dto.getToken(),
+//                                    recipientListWithoutId))//TODO: добавить маппер
+//                            .forEach(recipientListWithoutId::addRecipient);
+
             }
+//            recipientListRepository.save(recipientListWithoutId);
+        } catch (HttpClientErrorException ex) {
+            log.error("HttpClientErrorException statusCode:{}, message:{}", ex.getStatusCode(), message);
+//            throw ex; //В принципе можем и не пробрасывать тк все равно ретраить не будем
+        } catch (HttpServerErrorException ex) {
+            log.error("HttpServerErrorException statusCode:{}, message:{}", ex.getStatusCode(), message);
+            throw ex;
+        } catch (ResourceAccessException ex) {
+            log.error("ResourceAccessException , message:{}", message);
+            throw ex;
+        } catch (Exception ex) {
+            log.error("Exception , message:{}", message);
         }
     }
 }

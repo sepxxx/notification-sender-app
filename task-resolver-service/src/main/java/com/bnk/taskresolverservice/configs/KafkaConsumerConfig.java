@@ -10,7 +10,15 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
+import org.springframework.util.backoff.BackOff;
+import org.springframework.util.backoff.ExponentialBackOff;
+import org.springframework.util.backoff.FixedBackOff;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +27,12 @@ import java.util.Map;
 public class KafkaConsumerConfig {
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
+    @Value(value = "${kafka.backoff.initial_interval}")
+    private Long initialInterval;
+    @Value(value = "${kafka.backoff.max_elapsed_time}")
+    private Long maxElapsedTime;
+    @Value(value = "${kafka.backoff.multiplier}")
+    private Long multiplier;
 
     @Bean
     public ConsumerFactory<String, ListInfoUpdateMessage> LIUMessageConsumerFactory() {
@@ -46,6 +60,23 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<String, ListInfoUpdateMessage> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(LIUMessageConsumerFactory());
+        factory.setCommonErrorHandler(errorHandler());
         return factory;
+    }
+
+    @Bean
+    public DefaultErrorHandler errorHandler() {
+//        BackOff fixedbackOff =  new FixedBackOff(interval, maxAttempts);
+        ExponentialBackOff expBackOff =  new ExponentialBackOff(initialInterval, multiplier);
+        expBackOff.setMaxElapsedTime(maxElapsedTime);
+        DefaultErrorHandler errorHandler = new DefaultErrorHandler((consumerRecord, e) -> {
+            //TODO: логика когда все попытки исчерпаны
+            System.out.println("ПОПЫТКИ ИСЧЕРПАНЫ!!!! СООБЩЕНИЕ СКИПНУТО");
+        }, expBackOff);
+//        errorHandler.addNotRetryableExceptions(HttpClientErrorException.class);//все равно не пробрасываем
+//        errorHandler.addRetryableExceptions(ResourceAccessException.class); //default?
+//        errorHandler.addRetryableExceptions(HttpServerErrorException.class);//default?
+
+        return errorHandler;
     }
 }
