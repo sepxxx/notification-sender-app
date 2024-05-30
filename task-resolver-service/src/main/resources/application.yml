@@ -18,6 +18,7 @@ server:
   port: 0
 recipients-service:
   url: http://recipients-service
+  request_page_size: 10
 eureka:
   client:
     serviceUrl:
