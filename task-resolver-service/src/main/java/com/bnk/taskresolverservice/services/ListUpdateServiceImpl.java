@@ -3,12 +3,12 @@ package com.bnk.taskresolverservice.services;
 import com.bnk.taskresolverservice.dtos.ListInfoUpdateMessage;
 import com.bnk.taskresolverservice.exceptions.SuitableHandlerNotFoundException;
 import com.bnk.taskresolverservice.handlers.LuiMessageHandler;
-import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +18,8 @@ import java.util.List;
 public class ListUpdateServiceImpl {
 
     List<LuiMessageHandler> handlerList;
+
+//    @Transactional
     public void processLuiMessage(ListInfoUpdateMessage message) {
         handlerList.stream()
                 .filter(handler->handler.canHandle(message))

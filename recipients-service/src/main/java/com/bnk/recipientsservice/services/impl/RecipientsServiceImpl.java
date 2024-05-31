@@ -26,13 +26,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Transactional(readOnly = true)
-@Slf4j
 public class RecipientsServiceImpl implements RecipientsService {
 
     final RecipientRepository recipientRepository;
@@ -42,44 +44,10 @@ public class RecipientsServiceImpl implements RecipientsService {
     final RecipientRecipientDtoMapper recipientRecipientDtoMapper;
     @Value(value = "${spring.kafka.liu-message.topic-name}")
     String LIU_MESSAGE_KAFKA_TOPIC_NAME;
-    /* разные кейсы со списками
-    * сохранение: файл + название + создатель
-    * удаление: название + создатель для проверки
-    * объединение: название1 + название2 + название новое + создатель
-    * дополнение: файл + название + создатель
-    *
-    * сохранение:
-    * создание списка
-    * добавление получателей
-    * отправка сообщения
-    *
-    * объединение:
-    * вытягивание списков (включает проверку на принадлежность)
-    * создание нового списка
-    * добавление получателей
-    * отправка сообщения
-    *
-    * дополнение:
-    * вытягивание списка
-    * добавление получателей
-    * отправка сообщения
-    *
-    * обдумать кейс что если такого списка нет для дополнения
-    *
-    * обдумать как в 1 эндпоинте разделять сохранение и расширение
-    * а нужно ли такое деление в целом RS?
-    * как будто нужно = что если пытаемся создать список который уже есть - тут нужно кинуть exception
-    *
-    *
-    * а для чего TRS знать о том что это расширение а не создание? - чтобы просить только недостающие элементы
-    * хотя и при создании можно проверить сколько уже у себя есть, а потом добирать (хотя если знаем что создание м
-    * можем не делать лишнее действие)
-    *
-    * если доверяем RS то в принципе разницы не будет = тк уже проверили есть ли такой список на самом деле
-    */
+
     //TODO: можно сделать оптимизацию:
     //не искать список, а как предлагает vladmihaelca искать прокси getReferenceByID
-    //для этого с фронта нужно будет ходить не с названием списка а с его ID
+    //для этого с фронта нужно будет ходить не с названием списка а с его ID либо сделать composite
     //но тогда нужно будет проверять принадлежит ли список текущему юзеру
     @Transactional
     public RecipientListResponseDto saveRecipientList(List<RecipientDto> recipientDtosWithoutIds, String recipientsListName,
@@ -130,8 +98,10 @@ public class RecipientsServiceImpl implements RecipientsService {
         RecipientList recipientListWithId2 = recipientListRepository.findByNameAndUserId(recipientsListName2, currentUserId)
                 .orElseThrow(() -> new RecipientListNotFoundException(recipientsListName2, currentUserId));
 
-        recipientListWithId1.getRecipientList().addAll(recipientListWithId2.getRecipientList());
+//        recipientListWithId1.getRecipientList().addAll(recipientListWithId2.getRecipientList());
+        recipientListWithId2.getRecipientList().forEach(recipientListWithId1::addRecipient);
         recipientListWithId1.setName(recipientsListNameNew);
+        recipientListRepository.save(recipientListWithId1);
         recipientListRepository.delete(recipientListWithId2);
 
         ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
@@ -142,7 +112,7 @@ public class RecipientsServiceImpl implements RecipientsService {
                 .setListName(recipientListWithId1.getName())
                 .setUserId(currentUserId);
         sendLUIMessage(LIUMessage, LIU_MESSAGE_KAFKA_TOPIC_NAME);
-        
+
         return new RecipientListResponseDto(recipientListWithId1.getId(),
                 recipientListWithId1.getName(), recipientListWithId1.getRecipientList().size());
     }
@@ -153,7 +123,9 @@ public class RecipientsServiceImpl implements RecipientsService {
 
         recipientListRepository.deleteByNameAndUserId(recipientsListName, currentUserId);
         //TODO: нужно продумать момент когда списка не существует
-
+        //TODO: здесь нужно будет ходить к TRS и узнавать когда была создана последняя таска по этому списку
+        //или же завершена она или нет
+        //делать это нужно будет асинхронно по-хорошему +
         ListsInfoUpdateMessage LIUMessage = new ListsInfoUpdateMessage()
                 .setCreatedAt(LocalDateTime.now())
                 .setEventType(ListInfoUpdateEventType.DELETION)
@@ -166,7 +138,6 @@ public class RecipientsServiceImpl implements RecipientsService {
 
 
     public Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest) {
-//        throw new RuntimeException();
         RecipientList recipientList = recipientListRepository.findByNameAndUserId(listName, userId)
                 .orElseThrow(() -> new RecipientListNotFoundException(listName, userId));
         return recipientRepository

@@ -12,13 +12,16 @@ spring:
     username: postgres
     password: postgres
   jpa:
-      hibernate:
-        ddl-auto: update
+    properties:
+      hibernate.format_sql: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 server:
   port: 0
-recipients-service:
+recipients_service:
   url: http://recipients-service
-  request_page_size: 10
+  request_page_size: 200
 eureka:
   client:
     serviceUrl:

@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>2452</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2493</IntrospectionStateNumber>
       <ServerVersion>16.0</ServerVersion>
       <StartupTime>1716000931</StartupTime>
       <TimeZones>true ACDT
@@ -802,7 +802,7 @@ false Zulu
 14697||10|C|G
 14697||-9223372036854775808|U|G
 14697||10|U|G</Grants>
-      <IntrospectionStateNumber>2452</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2493</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -822,50 +822,50 @@ false Zulu
       <ObjectId>17142</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <role id="7" parent="1" name="pg_checkpoint">
-      <ObjectId>4544</ObjectId>
-    </role>
-    <role id="8" parent="1" name="pg_create_subscription">
-      <ObjectId>6304</ObjectId>
-    </role>
-    <role id="9" parent="1" name="pg_database_owner">
+    <role id="7" parent="1" name="pg_database_owner">
       <ObjectId>6171</ObjectId>
     </role>
-    <role id="10" parent="1" name="pg_execute_server_program">
-      <ObjectId>4571</ObjectId>
+    <role id="8" parent="1" name="pg_read_all_data">
+      <ObjectId>6181</ObjectId>
     </role>
-    <role id="11" parent="1" name="pg_monitor">
+    <role id="9" parent="1" name="pg_write_all_data">
+      <ObjectId>6182</ObjectId>
+    </role>
+    <role id="10" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
       <RoleGrants>3374
 3375
 3377</RoleGrants>
     </role>
-    <role id="12" parent="1" name="pg_read_all_data">
-      <ObjectId>6181</ObjectId>
-    </role>
-    <role id="13" parent="1" name="pg_read_all_settings">
+    <role id="11" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
     </role>
-    <role id="14" parent="1" name="pg_read_all_stats">
+    <role id="12" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
     </role>
-    <role id="15" parent="1" name="pg_read_server_files">
-      <ObjectId>4569</ObjectId>
-    </role>
-    <role id="16" parent="1" name="pg_signal_backend">
-      <ObjectId>4200</ObjectId>
-    </role>
-    <role id="17" parent="1" name="pg_stat_scan_tables">
+    <role id="13" parent="1" name="pg_stat_scan_tables">
       <ObjectId>3377</ObjectId>
     </role>
-    <role id="18" parent="1" name="pg_use_reserved_connections">
+    <role id="14" parent="1" name="pg_read_server_files">
+      <ObjectId>4569</ObjectId>
+    </role>
+    <role id="15" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
+    </role>
+    <role id="16" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
+    </role>
+    <role id="17" parent="1" name="pg_signal_backend">
+      <ObjectId>4200</ObjectId>
+    </role>
+    <role id="18" parent="1" name="pg_checkpoint">
+      <ObjectId>4544</ObjectId>
+    </role>
+    <role id="19" parent="1" name="pg_use_reserved_connections">
       <ObjectId>4550</ObjectId>
     </role>
-    <role id="19" parent="1" name="pg_write_all_data">
-      <ObjectId>6182</ObjectId>
-    </role>
-    <role id="20" parent="1" name="pg_write_server_files">
-      <ObjectId>4570</ObjectId>
+    <role id="20" parent="1" name="pg_create_subscription">
+      <ObjectId>6304</ObjectId>
     </role>
     <role id="21" parent="1" name="postgres">
       <BypassRls>1</BypassRls>
@@ -4251,12 +4251,214 @@ false Zulu
     <schema id="268" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>2452</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2024-05-30.13:00:42.928</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-05-30.10:00:44</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>2493</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2024-05-30.18:26:46.216</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2024-05-30.15:26:49</LocalIntrospectionTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
+    <sequence id="269" parent="268" name="lists_info_updates_seq">
+      <DasType>bigint|0s</DasType>
+      <ObjectId>17738</ObjectId>
+      <SequenceIdentity>1(1)+50</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>2457</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="270" parent="268" name="recipient_lists_seq">
+      <DasType>bigint|0s</DasType>
+      <ObjectId>17739</ObjectId>
+      <SequenceIdentity>1(151)+50</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>2458</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <sequence id="271" parent="268" name="recipients_seq">
+      <DasType>bigint|0s</DasType>
+      <ObjectId>17740</ObjectId>
+      <SequenceIdentity>1(1951)+50</SequenceIdentity>
+      <StartValue>1</StartValue>
+      <StateNumber>2459</StateNumber>
+      <OwnerName>postgres</OwnerName>
+    </sequence>
+    <table id="272" parent="268" name="lists_info_updates">
+      <ObjectId>17716</ObjectId>
+      <StateNumber>2454</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="273" parent="268" name="recipient_lists">
+      <ObjectId>17724</ObjectId>
+      <StateNumber>2460</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="274" parent="268" name="recipients">
+      <ObjectId>17731</ObjectId>
+      <StateNumber>2460</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <check id="275" parent="272" name="lists_info_updates_event_type_check">
+      <ColNames>event_type</ColNames>
+      <ObjectId>17719</ObjectId>
+      <Predicate>(event_type)::text = ANY ((ARRAY[&apos;CREATION&apos;::character varying, &apos;EXTENSION&apos;::character varying, &apos;UNION&apos;::character varying, &apos;DELETION&apos;::character varying])::text[])</Predicate>
+      <StateNumber>2454</StateNumber>
+    </check>
+    <column id="276" parent="272" name="id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>2454</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="277" parent="272" name="created_at">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>2454</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="278" parent="272" name="event_type">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>2454</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="279" parent="272" name="list_name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>2454</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="280" parent="272" name="list_name1">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>2454</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="281" parent="272" name="list_name2">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>2454</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="282" parent="272" name="user_id">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>2454</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="283" parent="272" name="lists_info_updates_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17722</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2454</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="284" parent="272" name="lists_info_updates_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17723</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2454</StateNumber>
+      <UnderlyingIndexId>17722</UnderlyingIndexId>
+    </key>
+    <column id="285" parent="273" name="id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>2455</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="286" parent="273" name="name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>2455</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="287" parent="273" name="user_id">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>2455</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="288" parent="273" name="recipient_lists_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17729</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2455</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="289" parent="273" name="recipient_lists_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17730</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2455</StateNumber>
+      <UnderlyingIndexId>17729</UnderlyingIndexId>
+    </key>
+    <column id="290" parent="274" name="id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>2456</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="291" parent="274" name="email">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>2456</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="292" parent="274" name="lastname">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>2456</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="293" parent="274" name="tg">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>2456</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="294" parent="274" name="token">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>2456</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="295" parent="274" name="recipient_list_id">
+      <DasType>bigint|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>2456</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="296" parent="274" name="fkpfboweuxxu6otkp254do03ukd">
+      <ColNames>recipient_list_id</ColNames>
+      <ObjectId>17741</ObjectId>
+      <StateNumber>2460</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>17724</RefTableId>
+    </foreign-key>
+    <index id="297" parent="274" name="recipients_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17736</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2456</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="298" parent="274" name="recipients_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>17737</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>2456</StateNumber>
+      <UnderlyingIndexId>17736</UnderlyingIndexId>
+    </key>
   </database-model>
 </dataSource>

@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface RecipientListRepository extends JpaRepository<RecipientList, Long> {
     Optional<RecipientList> findByNameAndUserId(String recipientListName, String userId);
+    void deleteByNameAndUserId(String recipientListName, String userId);
 //    List<RecipientList> findAllByUserId(String userId);
 }

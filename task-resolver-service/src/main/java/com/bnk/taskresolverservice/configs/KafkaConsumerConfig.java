@@ -1,6 +1,7 @@
 package com.bnk.taskresolverservice.configs;
 
 import com.bnk.taskresolverservice.dtos.ListInfoUpdateMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +23,7 @@ import org.springframework.web.client.ResourceAccessException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
@@ -71,9 +73,9 @@ public class KafkaConsumerConfig {
         expBackOff.setMaxElapsedTime(maxElapsedTime);
         DefaultErrorHandler errorHandler = new DefaultErrorHandler((consumerRecord, e) -> {
             //TODO: логика когда все попытки исчерпаны
-            System.out.println("ПОПЫТКИ ИСЧЕРПАНЫ!!!! СООБЩЕНИЕ СКИПНУТО");
+            log.info("ПОПЫТКИ ИСЧЕРПАНЫ СООБЩЕНИЕ СКИПНУТО KEY: {} OFFSET: {}", consumerRecord.key(), consumerRecord.offset());
         }, expBackOff);
-//        errorHandler.addNotRetryableExceptions(HttpClientErrorException.class);//все равно не пробрасываем
+//        errorHandler.addNotRetryableExceptions(HttpClientErrorException.class);//TODO: fixedbackOff??
 //        errorHandler.addRetryableExceptions(ResourceAccessException.class); //default?
 //        errorHandler.addRetryableExceptions(HttpServerErrorException.class);//default?
 
