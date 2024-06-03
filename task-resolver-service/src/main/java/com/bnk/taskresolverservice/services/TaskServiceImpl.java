@@ -14,6 +14,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -28,5 +30,12 @@ public class TaskServiceImpl {
                 .orElseThrow(() -> new RecipientListNotFoundException(listName, userId));
         Task task = taskRepository.save(new Task(taskRequestDto.getText(), userId, recipientList));
         return new TaskResponseDto(task.getId(), task.getRecipientList().getName(), task.getText());
+    }
+
+    public List<TaskResponseDto> getTasksByUserId(String userId) {
+        return taskRepository.findAllByUserId(userId)
+                .stream()
+                .map(t -> {return new TaskResponseDto(t.getId(), t.getRecipientList().getName(), t.getText());})
+                .toList();
     }
 }

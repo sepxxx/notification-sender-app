@@ -4,31 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="union и delete работают нормально">
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/ListInfoUpdateMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/NotificationSenderServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/configs/ApplicationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/configs/KafkaConsumerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/listeners/MessageListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/test/java/com/bnk/notificationsenderservice/NotificationSenderServiceApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/TaskRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/TaskResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Notification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/repositories/TaskRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="Создан NSS модуль, ведется работа над TRS tasks">
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/exceptions/ErrorMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/exceptions/ExceptionApiHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Recipient.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Recipient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/repositories/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/repositories/TaskRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +99,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "C:/Users/mihar/Desktop/notification-sender-app/task-resolver-service/src/main/java/com/bnk/taskresolverservice",
+    "last_opened_file_path": "C:/Users/mihar/Desktop/notification-sender-app/task-resolver-service/src/main/java/com/bnk/taskresolverservice/exceptions",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -123,7 +108,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "spring.configuration.checksum": "e3b64adaa8e4d6a13b916acf145db9e6",
     "vue.rearranger.settings.migration": "true"
   },
@@ -138,6 +123,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mihar\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice\exceptions" />
       <recent name="C:\Users\mihar\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice" />
       <recent name="C:\Users\mihar\Desktop\notification-sender-app\notification-sender-service\src\main\java\com\bnk\notificationsenderservice" />
       <recent name="C:\Users\mihar\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice\entities" />
@@ -323,7 +309,7 @@
       <workItem from="1716013825401" duration="10625000" />
       <workItem from="1716195143473" duration="41247000" />
       <workItem from="1716793655242" duration="24182000" />
-      <workItem from="1717143945259" duration="16418000" />
+      <workItem from="1717143945259" duration="18077000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />
@@ -509,7 +495,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717157785135</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Создан NSS модуль, ведется работа над TRS tasks">
+      <option name="closed" value="true" />
+      <created>1717408751777</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1717408751778</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,6 +564,7 @@
       <path value="$PROJECT_DIR$/gateway" />
       <path value="$PROJECT_DIR$/recipients-service" />
       <path value="$PROJECT_DIR$/task-resolver-service" />
+      <path value="$PROJECT_DIR$/notification-sender-service" />
     </ignored-roots>
     <MESSAGE value="попытался совместить решение хабра и baeldung" />
     <MESSAGE value="rs отдает uid который gateway всегда прикладывает к запросам" />
@@ -592,7 +587,8 @@
     <MESSAGE value="решил баг &quot;550&quot;, добавил маппер" />
     <MESSAGE value="привел код handler в порядок" />
     <MESSAGE value="union и delete работают нормально" />
-    <option name="LAST_COMMIT_MESSAGE" value="union и delete работают нормально" />
+    <MESSAGE value="Создан NSS модуль, ведется работа над TRS tasks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Создан NSS модуль, ведется работа над TRS tasks" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

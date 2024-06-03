@@ -10,10 +10,9 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -22,21 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class TasksController {
     TaskServiceImpl taskService;
-    @PostMapping("/upload")
+    @PostMapping("/tasks")
     public ResponseEntity<TaskResponseDto> createTask(@RequestParam("sub") String userId,
                                                       @RequestBody TaskRequestDto taskRequestDto) {
 
         return new ResponseEntity<>(taskService.createTask(taskRequestDto, userId),
                 HttpStatus.CREATED);
     }
-//    @GetMapping("/{listName}/recipients/")
-////    (defaultValue = "10")
-//    public Page<RecipientDto> getRecipientPageByListName(@PathVariable String listName,
-//                                                         @RequestParam("sub") String userId,
-//                                                         @RequestParam Integer pageNumber,
-//                                                         @RequestParam Integer pageSize) {
-//        return recipientsService
-//                .getRecipientsPageByListNameAndUserId(listName, userId,
-//                        PageRequest.of(pageNumber, pageSize));
-//    }
+    @GetMapping("/tasks/")
+    public List<TaskResponseDto> getRecipientPageByListName(@RequestParam("sub") String userId) {
+        return taskService.getTasksByUserId(userId);
+    }
 }

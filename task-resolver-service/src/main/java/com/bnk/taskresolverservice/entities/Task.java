@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +27,9 @@ public class Task {
     @Column
     String userId;
 
+    @Column
+    LocalDateTime createdAt;
+
     @OneToOne
     RecipientList recipientList;
 
@@ -42,5 +46,6 @@ public class Task {
         this.userId = userId;
         this.recipientList = recipientList;
         notifications = new HashSet<>();
+        createdAt = LocalDateTime.now();
     }
 }
