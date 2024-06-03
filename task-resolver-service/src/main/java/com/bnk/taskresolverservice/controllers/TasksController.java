@@ -28,7 +28,7 @@ public class TasksController {
         return new ResponseEntity<>(taskService.createTask(taskRequestDto, userId),
                 HttpStatus.CREATED);
     }
-    @GetMapping("/tasks/")
+    @GetMapping("/tasks")
     public List<TaskResponseDto> getRecipientPageByListName(@RequestParam("sub") String userId) {
         return taskService.getTasksByUserId(userId);
     }

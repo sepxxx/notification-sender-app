@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="Создан NSS модуль, ведется работа над TRS tasks">
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/exceptions/ErrorMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/exceptions/ExceptionApiHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/repositories/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/repositories/TaskRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +70,10 @@
     <option name="currentCommit" value="1" />
     <option name="onto" value="287f175425200d2bc4ea95239cdba6d1ce96a737" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -96,10 +103,14 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.NotificationSenderServiceApplication.executor": "Run",
+    "Spring Boot.RecipientsServiceApplication.executor": "Run",
+    "Spring Boot.TaskResolverServiceApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "C:/Users/mihar/Desktop/notification-sender-app/task-resolver-service/src/main/java/com/bnk/taskresolverservice/exceptions",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/xxx/Desktop/notification-sender-app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -108,6 +119,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
     "spring.configuration.checksum": "e3b64adaa8e4d6a13b916acf145db9e6",
     "vue.rearranger.settings.migration": "true"
@@ -143,6 +155,8 @@
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
@@ -240,7 +254,7 @@
       </method>
     </configuration>
     <configuration name="NotificationSenderServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="notification-sender-service.main" />
+      <module name="notification-sender-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.bnk.notificationsenderservice.NotificationSenderServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -276,13 +290,13 @@
       <item itemvalue="JUnit.RecipientsServiceApplicationTests" />
       <item itemvalue="JUnit.TaskResolverServiceApplicationTests.contextLoads" />
       <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads" />
-      <item itemvalue="Spring Boot.NotificationSenderServiceApplication" />
-      <item itemvalue="Spring Boot.NotificationSenderServiceApplication (1)" />
-      <item itemvalue="Spring Boot.TaskResolverServiceApplication" />
       <item itemvalue="Spring Boot.EurekaServerApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.NotificationSenderServiceApplication" />
+      <item itemvalue="Spring Boot.NotificationSenderServiceApplication (1)" />
       <item itemvalue="Spring Boot.RecipientsServiceApplication" />
       <item itemvalue="Spring Boot.RecipientsServiceApplication (1)" />
+      <item itemvalue="Spring Boot.TaskResolverServiceApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -293,6 +307,14 @@
         <item itemvalue="Java Scratch.Scratch" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -310,6 +332,7 @@
       <workItem from="1716195143473" duration="41247000" />
       <workItem from="1716793655242" duration="24182000" />
       <workItem from="1717143945259" duration="18077000" />
+      <workItem from="1717430404944" duration="4737000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />

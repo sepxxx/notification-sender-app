@@ -30,7 +30,7 @@ public class Task {
     @Column
     LocalDateTime createdAt;
 
-    @OneToOne
+    @ManyToOne
     RecipientList recipientList;
 
     @OneToMany(mappedBy = "task")

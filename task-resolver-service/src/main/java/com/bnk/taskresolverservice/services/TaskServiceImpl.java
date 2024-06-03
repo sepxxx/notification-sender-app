@@ -35,7 +35,7 @@ public class TaskServiceImpl {
     public List<TaskResponseDto> getTasksByUserId(String userId) {
         return taskRepository.findAllByUserId(userId)
                 .stream()
-                .map(t -> {return new TaskResponseDto(t.getId(), t.getRecipientList().getName(), t.getText());})
+                .map(t -> new TaskResponseDto(t.getId(), t.getRecipientList().getName(), t.getText()))
                 .toList();
     }
 }

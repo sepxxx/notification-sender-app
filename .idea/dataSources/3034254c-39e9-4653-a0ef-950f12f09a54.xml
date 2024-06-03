@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="postgres@localhost [2]">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.52">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>847</IntrospectionStateNumber>
-      <ServerVersion>16.2</ServerVersion>
-      <StartupTime>1717144373</StartupTime>
+      <IntrospectionStateNumber>773</IntrospectionStateNumber>
+      <ServerVersion>16.3</ServerVersion>
+      <StartupTime>1717432971</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1400,7 +1400,7 @@ true posixrules
 13212||10|C|G
 13212||-9223372036854775808|U|G
 13212||10|U|G</Grants>
-      <IntrospectionStateNumber>847</IntrospectionStateNumber>
+      <IntrospectionStateNumber>773</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4819,277 +4819,11 @@ true posixrules
     <schema id="263" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>847</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2024-06-03.14:18:00.435</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-06-03.11:18:03</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>773</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-06-03.17:39:09</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <sequence id="264" parent="263" name="notifications_seq">
-      <DasType>bigint|0s</DasType>
-      <ObjectId>16432</ObjectId>
-      <SequenceIdentity>1(1)+50</SequenceIdentity>
-      <StartValue>1</StartValue>
-      <StateNumber>842</StateNumber>
-      <OwnerName>postgres</OwnerName>
-    </sequence>
-    <sequence id="265" parent="263" name="recipient_lists_seq">
-      <DasType>bigint|0s</DasType>
-      <ObjectId>16401</ObjectId>
-      <SequenceIdentity>1(301)+50</SequenceIdentity>
-      <StartValue>1</StartValue>
-      <StateNumber>739</StateNumber>
-      <OwnerName>postgres</OwnerName>
-    </sequence>
-    <sequence id="266" parent="263" name="recipients_seq">
-      <DasType>bigint|0s</DasType>
-      <ObjectId>16402</ObjectId>
-      <SequenceIdentity>1(801)+50</SequenceIdentity>
-      <StartValue>1</StartValue>
-      <StateNumber>740</StateNumber>
-      <OwnerName>postgres</OwnerName>
-    </sequence>
-    <sequence id="267" parent="263" name="tasks_seq">
-      <DasType>bigint|0s</DasType>
-      <ObjectId>16433</ObjectId>
-      <SequenceIdentity>1(51)+50</SequenceIdentity>
-      <StartValue>1</StartValue>
-      <StateNumber>843</StateNumber>
-      <OwnerName>postgres</OwnerName>
-    </sequence>
-    <table id="268" parent="263" name="notifications">
-      <ObjectId>16416</ObjectId>
-      <StateNumber>844</StateNumber>
-      <AccessMethodId>2</AccessMethodId>
-      <OwnerName>postgres</OwnerName>
-    </table>
-    <table id="269" parent="263" name="recipient_lists">
-      <ObjectId>16387</ObjectId>
-      <StateNumber>741</StateNumber>
-      <AccessMethodId>2</AccessMethodId>
-      <OwnerName>postgres</OwnerName>
-    </table>
-    <table id="270" parent="263" name="recipients">
-      <ObjectId>16394</ObjectId>
-      <StateNumber>741</StateNumber>
-      <AccessMethodId>2</AccessMethodId>
-      <OwnerName>postgres</OwnerName>
-    </table>
-    <table id="271" parent="263" name="tasks">
-      <ObjectId>16423</ObjectId>
-      <StateNumber>844</StateNumber>
-      <AccessMethodId>2</AccessMethodId>
-      <OwnerName>postgres</OwnerName>
-    </table>
-    <column id="272" parent="268" name="id">
-      <DasType>bigint|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-      <StateNumber>838</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="273" parent="268" name="text">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>2</Position>
-      <StateNumber>838</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="274" parent="268" name="user_token">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>3</Position>
-      <StateNumber>838</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="275" parent="268" name="task_id">
-      <DasType>bigint|0s</DasType>
-      <Position>4</Position>
-      <StateNumber>838</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <foreign-key id="276" parent="268" name="fk2ktjq1slw0ldkuy5rx8fbte2p">
-      <ColNames>task_id</ColNames>
-      <ObjectId>16434</ObjectId>
-      <StateNumber>844</StateNumber>
-      <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16423</RefTableId>
-    </foreign-key>
-    <index id="277" parent="268" name="notifications_pkey">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16421</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>838</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-    </index>
-    <key id="278" parent="268" name="notifications_pkey">
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16422</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>838</StateNumber>
-      <UnderlyingIndexId>16421</UnderlyingIndexId>
-    </key>
-    <column id="279" parent="269" name="id">
-      <DasType>bigint|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-      <StateNumber>737</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="280" parent="269" name="name">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>2</Position>
-      <StateNumber>737</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="281" parent="269" name="user_id">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>3</Position>
-      <StateNumber>737</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <index id="282" parent="269" name="recipient_lists_pkey">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16392</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>737</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-    </index>
-    <key id="283" parent="269" name="recipient_lists_pkey">
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16393</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>737</StateNumber>
-      <UnderlyingIndexId>16392</UnderlyingIndexId>
-    </key>
-    <column id="284" parent="270" name="id">
-      <DasType>bigint|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-      <StateNumber>738</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="285" parent="270" name="email">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>2</Position>
-      <StateNumber>738</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="286" parent="270" name="lastname">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>3</Position>
-      <StateNumber>738</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="287" parent="270" name="tg">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>4</Position>
-      <StateNumber>738</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="288" parent="270" name="token">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>5</Position>
-      <StateNumber>738</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="289" parent="270" name="recipient_list_id">
-      <DasType>bigint|0s</DasType>
-      <Position>6</Position>
-      <StateNumber>738</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <foreign-key id="290" parent="270" name="fkpfboweuxxu6otkp254do03ukd">
-      <ColNames>recipient_list_id</ColNames>
-      <ObjectId>16403</ObjectId>
-      <StateNumber>741</StateNumber>
-      <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16387</RefTableId>
-    </foreign-key>
-    <index id="291" parent="270" name="recipients_pkey">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16399</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>738</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-    </index>
-    <key id="292" parent="270" name="recipients_pkey">
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16400</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>738</StateNumber>
-      <UnderlyingIndexId>16399</UnderlyingIndexId>
-    </key>
-    <column id="293" parent="271" name="id">
-      <DasType>bigint|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-      <StateNumber>839</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="294" parent="271" name="created_at">
-      <DasType>timestamp(6)|0s</DasType>
-      <Position>2</Position>
-      <StateNumber>839</StateNumber>
-      <TypeId>1114</TypeId>
-    </column>
-    <column id="295" parent="271" name="text">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>3</Position>
-      <StateNumber>839</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="296" parent="271" name="user_id">
-      <DasType>varchar(255)|0s</DasType>
-      <Position>4</Position>
-      <StateNumber>839</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="297" parent="271" name="recipient_list_id">
-      <DasType>bigint|0s</DasType>
-      <Position>5</Position>
-      <StateNumber>839</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <foreign-key id="298" parent="271" name="fk3g4wed0dx19ve5obu86pgh2eu">
-      <ColNames>recipient_list_id</ColNames>
-      <ObjectId>16439</ObjectId>
-      <StateNumber>845</StateNumber>
-      <RefKeyColPositions>1</RefKeyColPositions>
-      <RefTableId>16387</RefTableId>
-    </foreign-key>
-    <index id="299" parent="271" name="tasks_pkey">
-      <ColNames>id</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16428</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>839</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-    </index>
-    <index id="300" parent="271" name="uk_ocaacdcl0ovy2xuuy0aw5fbhy">
-      <ColNames>recipient_list_id</ColNames>
-      <ObjectId>16430</ObjectId>
-      <StateNumber>841</StateNumber>
-      <Unique>1</Unique>
-      <AccessMethodId>403</AccessMethodId>
-    </index>
-    <key id="301" parent="271" name="tasks_pkey">
-      <NameSurrogate>1</NameSurrogate>
-      <ObjectId>16429</ObjectId>
-      <Primary>1</Primary>
-      <StateNumber>839</StateNumber>
-      <UnderlyingIndexId>16428</UnderlyingIndexId>
-    </key>
-    <key id="302" parent="271" name="uk_ocaacdcl0ovy2xuuy0aw5fbhy">
-      <ObjectId>16431</ObjectId>
-      <StateNumber>841</StateNumber>
-      <UnderlyingIndexId>16430</UnderlyingIndexId>
-    </key>
   </database-model>
 </dataSource>
