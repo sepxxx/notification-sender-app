@@ -3,7 +3,9 @@ spring:
     name: task-resolver-service
   kafka:
     bootstrap-servers: localhost:9092
-#    consumer:
+    notifications:
+          topic-name: notifications
+  #    consumer:
 #      properties:
 #        spring.json.trusted.packages: "*"
   datasource:

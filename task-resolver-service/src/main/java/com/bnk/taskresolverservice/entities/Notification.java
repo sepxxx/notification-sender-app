@@ -20,6 +20,9 @@ public class Notification {
     String text;
     @Column
     String userToken;
+    @Column
+    Boolean processed;
     @ManyToOne
     Task task;
+
 }

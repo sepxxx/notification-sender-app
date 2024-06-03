@@ -29,6 +29,17 @@ public class TaskServiceImpl {
         RecipientList recipientList = recipientListRepository.findByNameAndUserId(listName, userId)
                 .orElseThrow(() -> new RecipientListNotFoundException(listName, userId));
         Task task = taskRepository.save(new Task(taskRequestDto.getText(), userId, recipientList));
+
+        new Thread(() -> { //TODO: вообще можно ли так делать а....
+            // Выполните необходимые операции в потоке
+            try {
+                Thread.sleep(5000L);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("ЗАКОНЧИЛИ РАБОТУ ПО ТАСКЕ В ДРУГОМ ПОТОКЕ");
+        }).start();
+
         return new TaskResponseDto(task.getId(), task.getRecipientList().getName(), task.getText());
     }
 

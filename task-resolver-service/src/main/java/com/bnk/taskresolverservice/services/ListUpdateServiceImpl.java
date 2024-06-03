@@ -6,9 +6,7 @@ import com.bnk.taskresolverservice.handlers.LuiMessageHandler;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,7 +17,6 @@ public class ListUpdateServiceImpl {
 
     List<LuiMessageHandler> handlerList;
 
-//    @Transactional
     public void processLuiMessage(ListInfoUpdateMessage message) {
         handlerList.stream()
                 .filter(handler->handler.canHandle(message))
