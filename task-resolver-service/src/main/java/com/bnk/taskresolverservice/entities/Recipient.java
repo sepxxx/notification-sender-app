@@ -7,13 +7,13 @@ import lombok.experimental.FieldDefaults;
 import java.util.Objects;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name="recipients")
 @Setter
 @Getter
-@Table(name="recipients")
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Recipient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
