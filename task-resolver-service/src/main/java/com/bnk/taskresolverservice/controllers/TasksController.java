@@ -3,6 +3,8 @@ package com.bnk.taskresolverservice.controllers;
 
 import com.bnk.taskresolverservice.dtos.TaskRequestDto;
 import com.bnk.taskresolverservice.dtos.TaskResponseDto;
+import com.bnk.taskresolverservice.dtos.TaskTemplateResponseDto;
+import com.bnk.taskresolverservice.dtos.TaskTemplateSharingRequestDto;
 import com.bnk.taskresolverservice.services.TaskServiceImpl;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -29,7 +31,25 @@ public class TasksController {
                 HttpStatus.CREATED);
     }
     @GetMapping("/tasks")
-    public List<TaskResponseDto> getRecipientPageByListName(@RequestParam("sub") String userId) {
+    public List<TaskResponseDto> getTasksByUserId(@RequestParam("sub") String userId) {
         return taskService.getTasksByUserId(userId);
+    }
+    @PostMapping("/tasks/templates")
+    public ResponseEntity<TaskTemplateResponseDto> createTaskTemplate(@RequestParam("sub") String userId,
+                                                                      @RequestBody TaskRequestDto taskRequestDto) {
+
+        return new ResponseEntity<>(taskService.createTaskTemplate(taskRequestDto, userId),
+                HttpStatus.CREATED);
+    }
+    @GetMapping("/tasks/templates")
+    public List<TaskTemplateResponseDto> getTaskTemplatesByUserId(@RequestParam("sub") String userId) {
+        return taskService.getTaskTemplatesByUserId(userId);
+    }
+
+    @PutMapping("/tasks/templates/share")
+    public ResponseEntity<TaskTemplateResponseDto> shareTaskTemplate(@RequestParam("sub") String userId,
+                                                                     @RequestBody TaskTemplateSharingRequestDto taskTemplateSharingRequestDto) {
+        return new ResponseEntity<>(taskService.shareTemplate(userId, taskTemplateSharingRequestDto),
+                HttpStatus.CREATED);
     }
 }

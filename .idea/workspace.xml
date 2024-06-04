@@ -4,18 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="поправлены отношения листов и тасок">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="разделение отправки тасок по потокам">
+      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/dtos/NotificationMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/TaskTemplateResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/TaskTemplateSharingRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/TaskTemplate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/TaskTemplateStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/exceptions/EntityAccessDeniedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/repositories/TaskTemplateRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/NotificationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/configs/KafkaConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/configs/KafkaConsumerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/listeners/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/listeners/MessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/SchedulerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/SchedulerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/test/java/com/bnk/taskresolverservice/TaskResolverServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/test/java/com/bnk/taskresolverservice/TaskResolverServiceApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +53,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -121,7 +129,7 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "corretto-17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/xxx/Desktop/notification-sender-app/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs",
+    "last_opened_file_path": "C:/Users/mihar/Desktop/notification-sender-app/notification-sender-service/src/main/java/com/bnk/notificationsenderservice",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -146,21 +154,21 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mihar\Desktop\notification-sender-app\notification-sender-service\src\main\java\com\bnk\notificationsenderservice" />
       <recent name="C:\Users\xxx\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice\configs" />
       <recent name="C:\Users\xxx\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice" />
       <recent name="C:\Users\mihar\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice\exceptions" />
       <recent name="C:\Users\mihar\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice" />
-      <recent name="C:\Users\mihar\Desktop\notification-sender-app\notification-sender-service\src\main\java\com\bnk\notificationsenderservice" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.bnk.recipientsservice" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.bnk.taskresolverservice.repositories" />
-      <recent name="com.bnk.notificationsenderservice.dtos" />
       <recent name="com.bnk.taskresolverservice.exceptions" />
-      <recent name="com.bnk.taskresolverservice.handlers" />
-      <recent name="com.bnk.recipientsservice.exceptions" />
+      <recent name="com.bnk.taskresolverservice.dtos" />
+      <recent name="com.bnk.taskresolverservice.entities" />
+      <recent name="com.bnk.notificationsenderservice.dtos" />
+      <recent name="com.bnk.taskresolverservice.repositories" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -172,7 +180,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.RecipientsServiceApplication">
+  <component name="RunManager" selected="Spring Boot.TaskResolverServiceApplication">
     <configuration name="RecipientsServiceApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="recipients-service" />
       <extension name="coverage">
@@ -311,10 +319,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TaskResolverServiceApplicationTests.contextLoads" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads2" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests" />
-        <item itemvalue="JUnit.TaskResolverServiceApplicationTests.contextLoads" />
         <item itemvalue="Java Scratch.Scratch" />
       </list>
     </recent_temporary>
@@ -344,7 +352,7 @@
       <workItem from="1716793655242" duration="24182000" />
       <workItem from="1717143945259" duration="18077000" />
       <workItem from="1717430404944" duration="9642000" />
-      <workItem from="1717486500481" duration="3254000" />
+      <workItem from="1717486500481" duration="12734000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />
@@ -546,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717436516007</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="разделение отправки тасок по потокам">
+      <option name="closed" value="true" />
+      <created>1717489990664</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1717489990664</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,17 +648,7 @@
     <MESSAGE value="union и delete работают нормально" />
     <MESSAGE value="Создан NSS модуль, ведется работа над TRS tasks" />
     <MESSAGE value="поправлены отношения листов и тасок" />
-    <option name="LAST_COMMIT_MESSAGE" value="поправлены отношения листов и тасок" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/configs/KafkaConsumerConfig.java</url>
-          <line>72</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="разделение отправки тасок по потокам" />
+    <option name="LAST_COMMIT_MESSAGE" value="разделение отправки тасок по потокам" />
   </component>
 </project>

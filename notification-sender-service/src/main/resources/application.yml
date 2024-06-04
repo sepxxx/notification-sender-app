@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: notification-sender-service
+  kafka:
+    bootstrap-servers: localhost:9092
+    notifications:
+      topic-name: notifications
+

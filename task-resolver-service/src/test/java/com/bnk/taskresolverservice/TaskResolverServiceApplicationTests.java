@@ -1,36 +1,36 @@
 package com.bnk.taskresolverservice;
 
 import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientSaverServiceRestClient;
-import com.bnk.taskresolverservice.dtos.RecipientDto;
+import com.bnk.taskresolverservice.entities.TaskTemplate;
+import com.bnk.taskresolverservice.repositories.TaskTemplateRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 class TaskResolverServiceApplicationTests {
 
     @Autowired
     RecipientSaverServiceRestClient recipientSaverServiceRestClient;
-    @Test
-    //testListName1/recipients/
-    void contextLoads() {
-        Page<RecipientDto> prdto = recipientSaverServiceRestClient.getRecipientsPageByListNameAndUserId(
-                "testListName1",
-                "testUserId1",
-                0,
-                5
-        );
-        System.out.println(
-                "prdto.get().toList().size() " +prdto.get().toList().size()
-        );
-        System.out.println(
-                "prdto.getTotalPages() "+ prdto.getTotalPages()
-        );
-        System.out.println(
-                "prdto.getTotalElements()" + prdto.getTotalElements()
-        );
-        System.out.println("prdto.isFirst() " + prdto.isFirst());
-    }
 
+    @Autowired
+    TaskTemplateRepository taskTemplateRepository;
+
+    @Test
+    @Transactional
+    void contextLoads() {
+//        TaskTemplate taskTemplate = taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
+//        System.out.println(taskTemplate);
+//        taskTemplate.getUserId().add("testUser2");
+//        taskTemplateRepository.save(taskTemplate);
+//        System.out.println(taskTemplate);
+
+//        taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
+//        taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
+//        taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
+        taskTemplateRepository.findAllByUserId("testUser")
+                .forEach(System.out::println);
+        TaskTemplate taskTemplate = new TaskTemplate(null, null, null, null);
+    }
 }
