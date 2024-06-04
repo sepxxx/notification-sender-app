@@ -110,12 +110,27 @@ public class TaskServiceImpl {
         if (Objects.equals(taskTemplate.getUserId(), userIdOwner)) {
             TaskTemplate taskTemplateShared = taskTemplateRepository.save(new TaskTemplate(taskTemplate.getText(), taskTemplateSharingRequestDto.getUserIdShareTo(),
                    TaskTemplateStatus.AWAITS_ACTION, taskTemplate.getRecipientList()));
-            return new TaskTemplateResponseDto(taskTemplateShared.getId(),taskTemplateShared.getRecipientList().getName(),
+            return new TaskTemplateResponseDto(taskTemplateShared.getId(), taskTemplateShared.getRecipientList().getName(),
                     taskTemplateShared.getText(), taskTemplateShared.getTaskTemplateStatus());
         } else {
             throw new EntityAccessDeniedException("TaskTemplate", taskTemplateSharingRequestDto.getTemplateId());
         }
     }
+
+    @Transactional
+    public TaskTemplateResponseDto setTemplateStatus(TaskTemplateStatusRequestDto taskTemplateDto, String userIdOwner) {
+        TaskTemplate taskTemplate = taskTemplateRepository.findById(taskTemplateDto.getTemplateId())
+                .orElseThrow(()-> new ObjectNotFoundException("Not found task template id: " + taskTemplateDto.getTemplateId()));
+        if (Objects.equals(taskTemplate.getUserId(), userIdOwner)) {
+            taskTemplate.setTaskTemplateStatus(taskTemplateDto.getTaskTemplateStatus());
+            taskTemplate = taskTemplateRepository.save(taskTemplate);
+            return new TaskTemplateResponseDto(taskTemplate.getId(), taskTemplate.getRecipientList().getName(),
+                    taskTemplate.getText(), taskTemplate.getTaskTemplateStatus());
+        } else {
+            throw new EntityAccessDeniedException("TaskTemplate", taskTemplateDto.getTemplateId());
+        }
+    }
+
 
     //TODO: вынос?
     private void sendMessage(Notification notification, String topicName) {

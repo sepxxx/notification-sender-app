@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="работаю над многопоточкой с тасками">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="введена фильтрация шаблонов по статусам">
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/TaskTemplateStatusRequestDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/repositories/TaskTemplateRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/repositories/TaskTemplateRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/test/java/com/bnk/taskresolverservice/TaskResolverServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/test/java/com/bnk/taskresolverservice/TaskResolverServiceApplicationTests.java" afterDir="false" />
     </list>
@@ -157,8 +151,8 @@
       <recent name="com.bnk.recipientsservice" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.bnk.taskresolverservice.exceptions" />
       <recent name="com.bnk.taskresolverservice.dtos" />
+      <recent name="com.bnk.taskresolverservice.exceptions" />
       <recent name="com.bnk.taskresolverservice.entities" />
       <recent name="com.bnk.notificationsenderservice.dtos" />
       <recent name="com.bnk.taskresolverservice.repositories" />
@@ -346,7 +340,7 @@
       <workItem from="1717143945259" duration="18077000" />
       <workItem from="1717430404944" duration="9642000" />
       <workItem from="1717486500481" duration="12734000" />
-      <workItem from="1717519074887" duration="1052000" />
+      <workItem from="1717519074887" duration="2328000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />
@@ -556,7 +550,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717489990664</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="введена фильтрация шаблонов по статусам">
+      <option name="closed" value="true" />
+      <created>1717520234037</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717520234037</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -643,6 +645,7 @@
     <MESSAGE value="Создан NSS модуль, ведется работа над TRS tasks" />
     <MESSAGE value="поправлены отношения листов и тасок" />
     <MESSAGE value="разделение отправки тасок по потокам" />
-    <option name="LAST_COMMIT_MESSAGE" value="разделение отправки тасок по потокам" />
+    <MESSAGE value="введена фильтрация шаблонов по статусам" />
+    <option name="LAST_COMMIT_MESSAGE" value="введена фильтрация шаблонов по статусам" />
   </component>
 </project>

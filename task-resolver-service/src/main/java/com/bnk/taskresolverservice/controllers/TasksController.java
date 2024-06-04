@@ -1,10 +1,7 @@
 package com.bnk.taskresolverservice.controllers;
 
 
-import com.bnk.taskresolverservice.dtos.TaskRequestDto;
-import com.bnk.taskresolverservice.dtos.TaskResponseDto;
-import com.bnk.taskresolverservice.dtos.TaskTemplateResponseDto;
-import com.bnk.taskresolverservice.dtos.TaskTemplateSharingRequestDto;
+import com.bnk.taskresolverservice.dtos.*;
 import com.bnk.taskresolverservice.entities.TaskTemplateStatus;
 import com.bnk.taskresolverservice.services.TaskServiceImpl;
 import lombok.AccessLevel;
@@ -48,9 +45,14 @@ public class TasksController {
     }
 
     @PutMapping("/tasks/templates/share")
-    public ResponseEntity<TaskTemplateResponseDto> shareTaskTemplate(@RequestParam("sub") String userId,
+    public TaskTemplateResponseDto shareTaskTemplate(@RequestParam("sub") String userId,
                                                                      @RequestBody TaskTemplateSharingRequestDto taskTemplateSharingRequestDto) {
-        return new ResponseEntity<>(taskService.shareTemplate(userId, taskTemplateSharingRequestDto),
-                HttpStatus.CREATED);
+        return taskService.shareTemplate(userId, taskTemplateSharingRequestDto);
+    }
+
+    @PutMapping("/tasks/templates")
+    public TaskTemplateResponseDto setTaskTemplateStatus(@RequestParam("sub") String userId,
+                                                                     @RequestBody TaskTemplateStatusRequestDto taskTemplateStatusRequestDto) {
+        return taskService.setTemplateStatus(taskTemplateStatusRequestDto, userId);
     }
 }

@@ -1,7 +1,6 @@
 package com.bnk.taskresolverservice;
 
 import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientSaverServiceRestClient;
-import com.bnk.taskresolverservice.entities.TaskTemplate;
 import com.bnk.taskresolverservice.repositories.TaskTemplateRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +28,8 @@ class TaskResolverServiceApplicationTests {
 //        taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
 //        taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
 //        taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
-        taskTemplateRepository.findAllByUserIdAnd("testUser")
-                .forEach(System.out::println);
-        TaskTemplate taskTemplate = new TaskTemplate(null, null, null, null);
+//        taskTemplateRepository.findAllByUserIdAnd("testUser")
+//                .forEach(System.out::println);
+//        TaskTemplate taskTemplate = new TaskTemplate(null, null, null, null);
     }
 }
