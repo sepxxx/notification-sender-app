@@ -25,4 +25,9 @@ public class Notification {
     @ManyToOne
     Task task;
 
+    public Notification(String text, String userToken) {
+        this.text = text;
+        this.userToken = userToken;
+        this.processed = Boolean.FALSE;
+    }
 }

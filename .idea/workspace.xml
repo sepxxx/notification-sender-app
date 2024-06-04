@@ -5,19 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="поправлены отношения листов и тасок">
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/KafkaProducerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/KafkaTopicConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/SchedulerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/NotificationMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/repositories/NotificationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/scheduled/NotificationResenderScheduler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/NotificationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/entities/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/ListUpdateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/ListUpdateServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/NotificationServiceImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,12 +59,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "sepxxx"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sepxxx&quot;
   }
-}]]></component>
+}</component>
   <component name="GitRewordedCommitMessages">
     <option name="commitMessagesMapping">
       <RewordedCommitMessageMapping>
@@ -77,16 +75,16 @@
     <option name="currentCommit" value="1" />
     <option name="onto" value="287f175425200d2bc4ea95239cdba6d1ce96a737" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/sepxxx/notification-sender-app",
-    "accountId": "60704c06-13f6-474a-9c10-1db63b33e8d6"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sepxxx/notification-sender-app&quot;,
+    &quot;accountId&quot;: &quot;60704c06-13f6-474a-9c10-1db63b33e8d6&quot;
   }
-}]]></component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -134,7 +132,7 @@
     "project.structure.side.proportion": "0.0",
     "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "spring.configuration.checksum": "e3b64adaa8e4d6a13b916acf145db9e6",
+    "spring.configuration.checksum": "8fce1626515f1f2125ceab306d2df0d6",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -174,7 +172,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.TaskResolverServiceApplication">
+  <component name="RunManager" selected="Spring Boot.RecipientsServiceApplication">
     <configuration name="RecipientsServiceApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="recipients-service" />
       <extension name="coverage">
@@ -346,6 +344,7 @@
       <workItem from="1716793655242" duration="24182000" />
       <workItem from="1717143945259" duration="18077000" />
       <workItem from="1717430404944" duration="9642000" />
+      <workItem from="1717486500481" duration="3254000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />
