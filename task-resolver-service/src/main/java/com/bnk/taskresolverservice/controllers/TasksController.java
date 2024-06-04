@@ -5,6 +5,7 @@ import com.bnk.taskresolverservice.dtos.TaskRequestDto;
 import com.bnk.taskresolverservice.dtos.TaskResponseDto;
 import com.bnk.taskresolverservice.dtos.TaskTemplateResponseDto;
 import com.bnk.taskresolverservice.dtos.TaskTemplateSharingRequestDto;
+import com.bnk.taskresolverservice.entities.TaskTemplateStatus;
 import com.bnk.taskresolverservice.services.TaskServiceImpl;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -42,8 +43,8 @@ public class TasksController {
                 HttpStatus.CREATED);
     }
     @GetMapping("/tasks/templates")
-    public List<TaskTemplateResponseDto> getTaskTemplatesByUserId(@RequestParam("sub") String userId) {
-        return taskService.getTaskTemplatesByUserId(userId);
+    public List<TaskTemplateResponseDto> getTaskTemplatesByUserId(@RequestParam("sub") String userId, @RequestParam TaskTemplateStatus taskTemplateStatus) {
+        return taskService.getTaskTemplatesByUserId(userId, taskTemplateStatus);
     }
 
     @PutMapping("/tasks/templates/share")

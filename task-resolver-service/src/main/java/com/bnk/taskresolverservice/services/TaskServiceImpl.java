@@ -85,7 +85,7 @@ public class TaskServiceImpl {
                 .map(t -> new TaskResponseDto(t.getId(), t.getRecipientList().getName(), t.getText()))
                 .toList();
     }
-
+    @Transactional
     public TaskTemplateResponseDto createTaskTemplate(TaskRequestDto taskRequestDto, String userId) {
         RecipientList recipientList = recipientListRepository.findByNameAndUserId(taskRequestDto.getListName(), userId)
                 .orElseThrow(() -> new RecipientListNotFoundException(taskRequestDto.getListName(), userId));
@@ -93,8 +93,8 @@ public class TaskServiceImpl {
         return new TaskTemplateResponseDto(taskTemplate.getId(), taskTemplate.getRecipientList().getName(), taskTemplate.getText(), taskTemplate.getTaskTemplateStatus());
     }
 
-    public List<TaskTemplateResponseDto> getTaskTemplatesByUserId(String userId) {
-        return taskTemplateRepository.findAllByUserId(userId)
+    public List<TaskTemplateResponseDto> getTaskTemplatesByUserId(String userId, TaskTemplateStatus taskTemplateStatus) {
+        return taskTemplateRepository.findAllByUserIdAndTaskTemplateStatus(userId, taskTemplateStatus)
                 .stream()
                 .map(taskTemplate ->
                         new TaskTemplateResponseDto(taskTemplate.getId(), taskTemplate.getRecipientList().getName(),
@@ -103,14 +103,15 @@ public class TaskServiceImpl {
                 .toList();
     }
 
+    @Transactional
     public TaskTemplateResponseDto shareTemplate(String userIdOwner, TaskTemplateSharingRequestDto taskTemplateSharingRequestDto) {
         TaskTemplate taskTemplate = taskTemplateRepository.findById(taskTemplateSharingRequestDto.getTemplateId())
                 .orElseThrow(()-> new ObjectNotFoundException("Not found task template id: " + taskTemplateSharingRequestDto.getTemplateId()));
         if (Objects.equals(taskTemplate.getUserId(), userIdOwner)) {
             TaskTemplate taskTemplateShared = taskTemplateRepository.save(new TaskTemplate(taskTemplate.getText(), taskTemplateSharingRequestDto.getUserIdShareTo(),
                    TaskTemplateStatus.AWAITS_ACTION, taskTemplate.getRecipientList()));
-            return new TaskTemplateResponseDto(taskTemplateShared.getId(), taskTemplateShared.getText(),
-                    taskTemplateShared.getRecipientList().getName(), taskTemplateShared.getTaskTemplateStatus());
+            return new TaskTemplateResponseDto(taskTemplateShared.getId(),taskTemplateShared.getRecipientList().getName(),
+                    taskTemplateShared.getText(), taskTemplateShared.getTaskTemplateStatus());
         } else {
             throw new EntityAccessDeniedException("TaskTemplate", taskTemplateSharingRequestDto.getTemplateId());
         }

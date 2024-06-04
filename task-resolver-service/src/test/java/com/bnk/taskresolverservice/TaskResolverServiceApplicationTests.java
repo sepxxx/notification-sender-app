@@ -29,7 +29,7 @@ class TaskResolverServiceApplicationTests {
 //        taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
 //        taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
 //        taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
-        taskTemplateRepository.findAllByUserId("testUser")
+        taskTemplateRepository.findAllByUserIdAnd("testUser")
                 .forEach(System.out::println);
         TaskTemplate taskTemplate = new TaskTemplate(null, null, null, null);
     }

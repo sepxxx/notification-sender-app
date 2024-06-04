@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="postgres@localhost">
-  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.52">
     <root id="1">
       <DateStyle>dmy</DateStyle>
       <IntrospectionStateNumber>2523</IntrospectionStateNumber>
@@ -4252,8 +4252,7 @@ false Zulu
       <Comment>standard public schema</Comment>
       <Current>1</Current>
       <IntrospectionStateNumber>2523</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2024-06-04.11:23:21.515</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2024-06-04.08:23:22</LocalIntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-06-04.08:23:22</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
