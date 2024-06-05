@@ -28,6 +28,12 @@ public class TasksController {
         return new ResponseEntity<>(taskService.createTask(taskRequestDto, userId),
                 HttpStatus.CREATED);
     }
+
+    @PostMapping("/tasks/prefilled")
+    public ResponseEntity<TaskResponseDto> createTaskFromTemplate(@RequestParam("sub") String userId, @RequestBody TaskFromTemplateDto taskFromTemplateDto) {
+        return new ResponseEntity<>(taskService.createTaskFromTemplate(taskFromTemplateDto, userId),
+                HttpStatus.CREATED);
+    }
     @GetMapping("/tasks")
     public List<TaskResponseDto> getTasksByUserId(@RequestParam("sub") String userId) {
         return taskService.getTasksByUserId(userId);

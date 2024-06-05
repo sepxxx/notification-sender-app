@@ -55,12 +55,22 @@ public class TaskServiceImpl {
 
     @Transactional
     public TaskResponseDto createTask(TaskRequestDto taskRequestDto, String userId) {
-        String listName = taskRequestDto.getListName();
+        return createTask(taskRequestDto.getText(), userId, taskRequestDto.getListName());
+    }
+
+    @Transactional
+    public TaskResponseDto createTaskFromTemplate(TaskFromTemplateDto taskFromTemplateDto, String userId) {
+        TaskTemplate taskTemplate = taskTemplateRepository.findById(taskFromTemplateDto.getTemplateId())
+                .orElseThrow(()->new ObjectNotFoundException("Not found taskTemplate id: " + taskFromTemplateDto.getTemplateId()));
+        return createTask(taskTemplate.getText(), userId, taskTemplate.getRecipientList().getName());
+    }
+
+    private TaskResponseDto createTask(String text, String userId, String listName) {
         RecipientList recipientList = recipientListRepository.findByNameAndUserId(listName, userId)
                 .orElseThrow(() -> new RecipientListNotFoundException(listName, userId));
-        Task task = new Task(taskRequestDto.getText(), userId, recipientList);
+        Task task = new Task(text, userId, recipientList);
         recipientList.getRecipientList().stream()
-                .map(recipient -> new Notification(taskRequestDto.getText(), recipient.getToken()))
+                .map(recipient -> new Notification(text, recipient.getToken()))
                 .forEach(task::addNotification);
         task = taskRepository.save(task);
         List<List<Notification>> notificationsSubLists = Lists.partition(new ArrayList<>(task.getNotifications()), 3);//TODO: вынос
@@ -68,11 +78,11 @@ public class TaskServiceImpl {
         notificationsSubLists.forEach(list->{
             executorService.submit(()->{
                 log.info("THREAD INFO {}", Thread.currentThread().getName());
-                try {
-                    Thread.sleep(30000L);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+//                try {
+//                    Thread.sleep(30000L);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
                 list.forEach(notification -> sendMessage(notification, notificationsKafkaTopicName));
             });
         });
