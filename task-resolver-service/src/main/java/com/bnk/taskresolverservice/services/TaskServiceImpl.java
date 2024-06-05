@@ -144,7 +144,7 @@ public class TaskServiceImpl {
 
     //TODO: вынос?
     private void sendMessage(Notification notification, String topicName) {
-        NotificationMessage message = new NotificationMessage(notification.getText(), notification.getUserToken());
+        NotificationMessage message = new NotificationMessage(notification.getTask().getId(), notification.getText(), notification.getUserToken());
         CompletableFuture<SendResult<String, NotificationMessage>> future = kafkaTemplate.send(topicName, message);
         future.whenComplete((result, ex) -> {
             if (ex == null) { //TODO: логирование

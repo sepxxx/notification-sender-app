@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="статусы для шаблонов">
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/TaskFromTemplateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3034254c-39e9-4653-a0ef-950f12f09a54/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c563bc48-6fa0-4fe2-a3b7-56f6cbf89bb7.xml" beforeDir="false" />
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="создание таски по шаблону">
+      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/configs/RedisConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/controllers/StatsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/services/StatsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/dtos/NotificationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/dtos/NotificationMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/listeners/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/listeners/MessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/test/java/com/bnk/notificationsenderservice/NotificationSenderServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/test/java/com/bnk/notificationsenderservice/NotificationSenderServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/NotificationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/NotificationMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,50 +104,50 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.NotificationSenderServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.RecipientsServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.TaskResolverServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/xxx/Desktop/notification-sender-app/notification-sender-service/src/main/java/com/bnk/notificationsenderservice&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;8fce1626515f1f2125ceab306d2df0d6&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.NotificationSenderServiceApplication.executor": "Run",
+    "Spring Boot.RecipientsServiceApplication.executor": "Run",
+    "Spring Boot.TaskResolverServiceApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/mihar/Desktop/notification-sender-app/notification-sender-service/src/main/java/com/bnk/notificationsenderservice",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "spring.configuration.checksum": "8fce1626515f1f2125ceab306d2df0d6",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\xxx\Desktop\notification-sender-app\notification-sender-service\src\main\java\com\bnk\notificationsenderservice" />
       <recent name="C:\Users\mihar\Desktop\notification-sender-app\notification-sender-service\src\main\java\com\bnk\notificationsenderservice" />
+      <recent name="C:\Users\xxx\Desktop\notification-sender-app\notification-sender-service\src\main\java\com\bnk\notificationsenderservice" />
       <recent name="C:\Users\xxx\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice\configs" />
       <recent name="C:\Users\xxx\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice" />
       <recent name="C:\Users\mihar\Desktop\notification-sender-app\task-resolver-service\src\main\java\com\bnk\taskresolverservice\exceptions" />
@@ -171,6 +173,22 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.TaskResolverServiceApplication">
+    <configuration name="NotificationSenderServiceApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="notification-sender-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bnk.notificationsenderservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bnk.notificationsenderservice" />
+      <option name="MAIN_CLASS_NAME" value="com.bnk.notificationsenderservice.NotificationSenderServiceApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RecipientsServiceApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="recipients-service" />
       <extension name="coverage">
@@ -234,13 +252,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Scratch" />
-      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="eureka-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.bnk.eurekaserver.EurekaServerApplication" />
@@ -294,7 +305,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Java Scratch.Scratch" />
+      <item itemvalue="JUnit.NotificationSenderServiceApplicationTests.contextLoads" />
       <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads2" />
       <item itemvalue="JUnit.RecipientsServiceApplicationTests" />
       <item itemvalue="JUnit.TaskResolverServiceApplicationTests.contextLoads" />
@@ -309,11 +320,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.NotificationSenderServiceApplicationTests.contextLoads" />
         <item itemvalue="JUnit.TaskResolverServiceApplicationTests.contextLoads" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads2" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests" />
-        <item itemvalue="Java Scratch.Scratch" />
       </list>
     </recent_temporary>
   </component>
@@ -569,7 +580,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717521419887</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="создание таски по шаблону">
+      <option name="closed" value="true" />
+      <created>1717571736686</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1717571736686</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,7 +651,6 @@
       <path value="$PROJECT_DIR$/task-resolver-service" />
       <path value="$PROJECT_DIR$/notification-sender-service" />
     </ignored-roots>
-    <MESSAGE value="rs отдает uid который gateway всегда прикладывает к запросам" />
     <MESSAGE value="подружил gateway + eureka + loadbalancer" />
     <MESSAGE value="RS парсит csv и сохраняет пользователей" />
     <MESSAGE value="подружил RS и TRS через кафку для строковых значений" />
@@ -657,6 +675,7 @@
     <MESSAGE value="разделение отправки тасок по потокам" />
     <MESSAGE value="введена фильтрация шаблонов по статусам" />
     <MESSAGE value="статусы для шаблонов" />
-    <option name="LAST_COMMIT_MESSAGE" value="статусы для шаблонов" />
+    <MESSAGE value="создание таски по шаблону" />
+    <option name="LAST_COMMIT_MESSAGE" value="создание таски по шаблону" />
   </component>
 </project>
