@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="создание таски по шаблону">
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/configs/RedisConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/controllers/StatsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/services/StatsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-sender-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/dtos/NotificationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/dtos/NotificationMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/listeners/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/listeners/MessageListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/test/java/com/bnk/notificationsenderservice/NotificationSenderServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/test/java/com/bnk/notificationsenderservice/NotificationSenderServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/NotificationMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/dtos/NotificationMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/services/TaskServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="статистика с редисом работает нормально" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -588,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717571736686</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="статистика с редисом работает нормально">
+      <option name="closed" value="true" />
+      <created>1717576012856</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1717576012856</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -651,7 +648,6 @@
       <path value="$PROJECT_DIR$/task-resolver-service" />
       <path value="$PROJECT_DIR$/notification-sender-service" />
     </ignored-roots>
-    <MESSAGE value="подружил gateway + eureka + loadbalancer" />
     <MESSAGE value="RS парсит csv и сохраняет пользователей" />
     <MESSAGE value="подружил RS и TRS через кафку для строковых значений" />
     <MESSAGE value="решен баг с асинхронным проставлением статуса LIUMessage" />
@@ -676,6 +672,7 @@
     <MESSAGE value="введена фильтрация шаблонов по статусам" />
     <MESSAGE value="статусы для шаблонов" />
     <MESSAGE value="создание таски по шаблону" />
-    <option name="LAST_COMMIT_MESSAGE" value="создание таски по шаблону" />
+    <MESSAGE value="статистика с редисом работает нормально" />
+    <option name="LAST_COMMIT_MESSAGE" value="статистика с редисом работает нормально" />
   </component>
 </project>
