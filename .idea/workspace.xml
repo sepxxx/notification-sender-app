@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="статистика с редисом работает нормально" />
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="начало работы с клиентом">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="fix_bug_550_nested_trans" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -107,7 +109,7 @@
     "Spring Boot.RecipientsServiceApplication.executor": "Run",
     "Spring Boot.TaskResolverServiceApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "client",
     "jdk.selected.JAVA_MODULE": "corretto-17",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/mihar/Desktop/notification-sender-app/notification-sender-service/src/main/java/com/bnk/notificationsenderservice",
@@ -344,6 +346,7 @@
       <workItem from="1717430404944" duration="9642000" />
       <workItem from="1717486500481" duration="12734000" />
       <workItem from="1717519074887" duration="5117000" />
+      <workItem from="1717586844751" duration="255000" />
     </task>
     <task id="LOCAL-00001" summary="попытался совместить решение хабра и baeldung">
       <option name="closed" value="true" />
@@ -585,7 +588,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717576012856</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="начало работы с клиентом">
+      <option name="closed" value="true" />
+      <created>1717587022799</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1717587022799</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,7 +659,6 @@
       <path value="$PROJECT_DIR$/task-resolver-service" />
       <path value="$PROJECT_DIR$/notification-sender-service" />
     </ignored-roots>
-    <MESSAGE value="RS парсит csv и сохраняет пользователей" />
     <MESSAGE value="подружил RS и TRS через кафку для строковых значений" />
     <MESSAGE value="решен баг с асинхронным проставлением статуса LIUMessage" />
     <MESSAGE value="переделана outbox логика + реализован шедулер переотправки сообщений" />
@@ -673,6 +683,7 @@
     <MESSAGE value="статусы для шаблонов" />
     <MESSAGE value="создание таски по шаблону" />
     <MESSAGE value="статистика с редисом работает нормально" />
-    <option name="LAST_COMMIT_MESSAGE" value="статистика с редисом работает нормально" />
+    <MESSAGE value="начало работы с клиентом" />
+    <option name="LAST_COMMIT_MESSAGE" value="начало работы с клиентом" />
   </component>
 </project>
