@@ -1,23 +1,23 @@
 package com.bnk.taskresolverservice;
 
-import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientSaverServiceRestClient;
-import com.bnk.taskresolverservice.repositories.TaskTemplateRepository;
+import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientsServiceFeignClient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
+//@EnableFeignClients
 class TaskResolverServiceApplicationTests {
 
+//    @Autowired
+//    RecipientSaverServiceRestClient recipientSaverServiceRestClient;
+//
+//    @Autowired
+//    TaskTemplateRepository taskTemplateRepository;
     @Autowired
-    RecipientSaverServiceRestClient recipientSaverServiceRestClient;
-
-    @Autowired
-    TaskTemplateRepository taskTemplateRepository;
-
+    RecipientsServiceFeignClient recipientsServiceFeignClient;
     @Test
-    @Transactional
+//    @Transactional
     void contextLoads() {
 //        TaskTemplate taskTemplate = taskTemplateRepository.save(new TaskTemplate("testText", "testUser", null));
 //        System.out.println(taskTemplate);
@@ -31,5 +31,6 @@ class TaskResolverServiceApplicationTests {
 //        taskTemplateRepository.findAllByUserIdAnd("testUser")
 //                .forEach(System.out::println);
 //        TaskTemplate taskTemplate = new TaskTemplate(null, null, null, null);
+        recipientsServiceFeignClient.getRecipientsPageByListNameAndUserId("testListName", "98724058-f909-4163-926b-3382fd8d270c", 0, 10);
     }
 }

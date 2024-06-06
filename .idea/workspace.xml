@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="теперь статистика пишется адекватно">
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="запросы извне проходят через gateway до RS, планирую внедрение OpenFeign для коннекта RS-TRS">
+      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/clients/RecipientsSaverServiceRestClient/RecipientsServiceFeignClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/bnk/gateway/filters/UserAttributeFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/bnk/gateway/filters/UserAttributeFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/RecipientsServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/RecipientsServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/RecipientsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/RecipientsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/ResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/ResourceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/dtos/requests/RecipientListRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/dtos/requests/RecipientListRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/TaskResolverServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/TaskResolverServiceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/clients/RecipientsSaverServiceRestClient/RecipientSaverServiceRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/clients/RecipientsSaverServiceRestClient/RecipientSaverServiceRestClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/clients/RecipientsSaverServiceRestClient/RssRestClientErrorHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/ApplicationConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageCreationAndExtensionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageCreationAndExtensionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageUnionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageUnionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/test/java/com/bnk/taskresolverservice/TaskResolverServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/test/java/com/bnk/taskresolverservice/TaskResolverServiceApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -173,23 +173,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.RecipientsServiceApplication">
-    <configuration name="NotificationSenderServiceApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="notification-sender-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.bnk.notificationsenderservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.bnk.notificationsenderservice" />
-      <option name="MAIN_CLASS_NAME" value="com.bnk.notificationsenderservice.NotificationSenderServiceApplicationTests" />
-      <option name="METHOD_NAME" value="contextLoads" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.TaskResolverServiceApplicationTests">
     <configuration name="RecipientsServiceApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="recipients-service" />
       <extension name="coverage">
@@ -233,6 +217,21 @@
       <option name="MAIN_CLASS_NAME" value="com.bnk.recipientsservice.RecipientsServiceApplicationTests" />
       <option name="METHOD_NAME" value="contextLoads2" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskResolverServiceApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-resolver-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bnk.taskresolverservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bnk.taskresolverservice" />
+      <option name="MAIN_CLASS_NAME" value="com.bnk.taskresolverservice.TaskResolverServiceApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -306,7 +305,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.NotificationSenderServiceApplicationTests.contextLoads" />
+      <item itemvalue="JUnit.TaskResolverServiceApplicationTests" />
       <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads2" />
       <item itemvalue="JUnit.RecipientsServiceApplicationTests" />
       <item itemvalue="JUnit.TaskResolverServiceApplicationTests.contextLoads" />
@@ -321,11 +320,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.TaskResolverServiceApplicationTests" />
         <item itemvalue="JUnit.TaskResolverServiceApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests" />
         <item itemvalue="JUnit.RecipientsServiceApplicationTests.contextLoads2" />
-        <item itemvalue="JUnit.NotificationSenderServiceApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
   </component>
@@ -597,7 +596,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717657654704</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="запросы извне проходят через gateway до RS, планирую внедрение OpenFeign для коннекта RS-TRS">
+      <option name="closed" value="true" />
+      <created>1717666354230</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1717666354230</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +667,6 @@
       <path value="$PROJECT_DIR$/task-resolver-service" />
       <path value="$PROJECT_DIR$/notification-sender-service" />
     </ignored-roots>
-    <MESSAGE value="RS парсит csv и сохраняет пользователей" />
     <MESSAGE value="подружил RS и TRS через кафку для строковых значений" />
     <MESSAGE value="решен баг с асинхронным проставлением статуса LIUMessage" />
     <MESSAGE value="переделана outbox логика + реализован шедулер переотправки сообщений" />
@@ -685,6 +691,7 @@
     <MESSAGE value="статусы для шаблонов" />
     <MESSAGE value="создание таски по шаблону" />
     <MESSAGE value="теперь статистика пишется адекватно" />
-    <option name="LAST_COMMIT_MESSAGE" value="теперь статистика пишется адекватно" />
+    <MESSAGE value="запросы извне проходят через gateway до RS, планирую внедрение OpenFeign для коннекта RS-TRS" />
+    <option name="LAST_COMMIT_MESSAGE" value="запросы извне проходят через gateway до RS, планирую внедрение OpenFeign для коннекта RS-TRS" />
   </component>
 </project>

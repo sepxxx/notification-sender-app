@@ -1,20 +1,17 @@
 package com.bnk.taskresolverservice.handlers;
 
 
-import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientSaverServiceRestClient;
 import com.bnk.taskresolverservice.dtos.ListInfoUpdateEventType;
 import com.bnk.taskresolverservice.dtos.ListInfoUpdateMessage;
+import com.bnk.taskresolverservice.entities.RecipientList;
 import com.bnk.taskresolverservice.exceptions.RecipientListNotFoundException;
 import com.bnk.taskresolverservice.repositories.RecipientListRepository;
-import com.bnk.taskresolverservice.entities.RecipientList;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
 
 @Slf4j
 @Component
@@ -23,7 +20,6 @@ import java.time.LocalDateTime;
 public class LuiMessageUnionHandler implements LuiMessageHandler {
 
     RecipientListRepository recipientListRepository;
-    RecipientSaverServiceRestClient recipientSaverServiceRestClient;
     @Override
     public Boolean canHandle(ListInfoUpdateMessage message) {
         return ListInfoUpdateEventType.UNION.equals(message.getEventType());

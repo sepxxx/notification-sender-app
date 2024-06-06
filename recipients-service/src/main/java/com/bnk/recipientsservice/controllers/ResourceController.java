@@ -19,5 +19,10 @@ public class ResourceController {
         return new ResponseEntity<>(new Message(true, "uid: "+ uid + "FROM PORT: " + port), HttpStatusCode.valueOf(HttpStatus.OK.value()));
     }
 
+    @GetMapping(value = "/hello")
+    public String helloUser() {
+        return "hello";
+    }
+
 
 }

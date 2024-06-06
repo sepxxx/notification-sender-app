@@ -1,7 +1,7 @@
 package com.bnk.taskresolverservice.handlers;
 
 
-import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientSaverServiceRestClient;
+import com.bnk.taskresolverservice.clients.RecipientsSaverServiceRestClient.RecipientsServiceFeignClient;
 import com.bnk.taskresolverservice.dtos.ListInfoUpdateEventType;
 import com.bnk.taskresolverservice.dtos.ListInfoUpdateMessage;
 import com.bnk.taskresolverservice.dtos.RecipientDto;
@@ -23,23 +23,21 @@ import org.springframework.web.client.ResourceAccessException;
 
 @Slf4j
 @Component
-//@AllArgsConstructor
-//@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LuiMessageCreationAndExtensionHandler implements LuiMessageHandler {
 
     final RecipientListRepository recipientListRepository;
-    final RecipientSaverServiceRestClient recipientSaverServiceRestClient;
+    final RecipientsServiceFeignClient recipientsServiceFeignClient;
     final RecipientRecipientDtoMapper recipientRecipientDtoMapper;
     final TransactionTemplate transactionTemplate;
     @Value("${recipients_service.request_page_size}")
     Integer REQUEST_PAGE_SIZE; //TODO: прочесть про static
     public LuiMessageCreationAndExtensionHandler(RecipientListRepository recipientListRepository,
-                                                 RecipientSaverServiceRestClient recipientSaverServiceRestClient,
+                                                 RecipientsServiceFeignClient recipientsServiceFeignClient,
                                                  RecipientRecipientDtoMapper recipientRecipientDtoMapper,
                                                  PlatformTransactionManager transactionManager) {
         this.recipientListRepository = recipientListRepository;
-        this.recipientSaverServiceRestClient = recipientSaverServiceRestClient;
+        this.recipientsServiceFeignClient = recipientsServiceFeignClient;
         this.recipientRecipientDtoMapper = recipientRecipientDtoMapper;
         this.transactionTemplate = new TransactionTemplate(transactionManager);
     }
@@ -70,7 +68,7 @@ public class LuiMessageCreationAndExtensionHandler implements LuiMessageHandler 
             pageNumber = recipientListSize / REQUEST_PAGE_SIZE;
         try {
             while (!lastPage) {
-                Page<RecipientDto> recipientDtoPage = recipientSaverServiceRestClient
+                Page<RecipientDto> recipientDtoPage = recipientsServiceFeignClient
                         .getRecipientsPageByListNameAndUserId(
                                 listName, userId, pageNumber++, REQUEST_PAGE_SIZE
                         );
