@@ -19,6 +19,9 @@ public class KafkaTopicConfig {
     @Value(value = "${spring.kafka.notifications.topic-name}")
     private String notificationsKafkaTopicName;
 
+    @Value(value = "${spring.kafka.notifications.num-partitions}")
+    private Integer numPartitions;
+
     @Bean
     public KafkaAdmin kafkaAdmin() {
         Map<String, Object> configs = new HashMap<>();
@@ -28,6 +31,6 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic recipientsListsUpdatesTopic() {
-        return new NewTopic(notificationsKafkaTopicName, 1, (short) 1);
+        return new NewTopic(notificationsKafkaTopicName, numPartitions, (short) 1);
     }
 }

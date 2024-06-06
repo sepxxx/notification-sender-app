@@ -3,6 +3,7 @@ package com.bnk.taskresolverservice.configs;
 
 import com.bnk.taskresolverservice.dtos.NotificationMessage;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.RoundRobinPartitioner;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,7 @@ public class KafkaProducerConfig {
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
     @Bean
-    public ProducerFactory<String, NotificationMessage> LIUMessageProducerFactory() {
+    public ProducerFactory<String, NotificationMessage> MessageProducerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -32,12 +33,14 @@ public class KafkaProducerConfig {
         configProps.put(
                 ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 JsonSerializer.class);
+        configProps.put(ProducerConfig.PARTITIONER_CLASS_CONFIG,
+                RoundRobinPartitioner.class);
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
     @Bean
-    public KafkaTemplate<String, NotificationMessage> LIUMessageKafkaTemplate() {
-        return new KafkaTemplate<>(LIUMessageProducerFactory());
+    public KafkaTemplate<String, NotificationMessage> MessageKafkaTemplate() {
+        return new KafkaTemplate<>(MessageProducerFactory());
     }
 
 }

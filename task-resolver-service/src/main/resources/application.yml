@@ -4,10 +4,11 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     notifications:
-          topic-name: notifications
+      topic-name: notifications
+      num-partitions: 2
   #    consumer:
-#      properties:
-#        spring.json.trusted.packages: "*"
+  #      properties:
+  #        spring.json.trusted.packages: "*"
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5433/postgres
@@ -32,8 +33,8 @@ eureka:
     instance-id: ${spring.application.name}:${random.uuid}
 kafka:
   backoff:
-#    initial_interval: 29628 #mills
-#    max_elapsed_time: 21600000 #
+    #    initial_interval: 29628 #mills
+    #    max_elapsed_time: 21600000 #
     initial_interval: 1000
     max_elapsed_time: 28000
     multiplier: 3
