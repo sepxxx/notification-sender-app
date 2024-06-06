@@ -21,14 +21,10 @@ spring:
   cloud:
     gateway:
       routes:
-#        - id : rs_route
-#          uri: http://localhost:8081
-#          predicates:
-#            - Path=/rs/user
         - id : rs_route
           uri: lb://recipients-service
           predicates:
-            - Path=/rs/user
+            - Path=/recipients-service/**
           filters:
               - StripPrefix=1
 eureka:

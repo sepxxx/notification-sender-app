@@ -10,8 +10,6 @@ import com.bnk.taskresolverservice.mappers.RecipientRecipientDtoMapper;
 import com.bnk.taskresolverservice.repositories.RecipientListRepository;
 import com.bnk.taskresolverservice.utils.Tuple;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,8 +20,6 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
-
-import java.util.Optional;
 
 @Slf4j
 @Component
@@ -101,7 +97,7 @@ public class LuiMessageCreationAndExtensionHandler implements LuiMessageHandler 
             log.error("ResourceAccessException , message:{}", message);
             throw ex;
         } catch (Exception ex) {
-            log.error("Exception , message:{}", message);
+            log.error("Exception {}, message:{}", ex, message);
         }
     }
 }
