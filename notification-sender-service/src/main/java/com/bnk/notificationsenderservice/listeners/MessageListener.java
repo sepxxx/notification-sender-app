@@ -1,7 +1,7 @@
 package com.bnk.notificationsenderservice.listeners;
 
 
-import com.bnk.notificationsenderservice.RecipientsSaverServiceRestClient.AlertzyRestClient;
+import com.bnk.notificationsenderservice.restClients.AlertzyRestClient;
 import com.bnk.notificationsenderservice.dtos.NotificationMessage;
 import com.bnk.notificationsenderservice.services.StatsServiceImpl;
 import lombok.AccessLevel;

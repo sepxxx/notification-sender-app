@@ -1,4 +1,4 @@
-package com.bnk.notificationsenderservice.RecipientsSaverServiceRestClient;
+package com.bnk.notificationsenderservice.restClients;
 
 import com.bnk.notificationsenderservice.dtos.AlertzyResponse;
 import lombok.AccessLevel;

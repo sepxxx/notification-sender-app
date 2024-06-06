@@ -4,18 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="запросы извне проходят через gateway до RS, планирую внедрение OpenFeign для коннекта RS-TRS">
-      <change afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/clients/RecipientsSaverServiceRestClient/RecipientsServiceFeignClient.java" afterDir="false" />
+    <list default="true" id="0150dd0c-fa6a-4186-a5cb-a98968872aaf" name="Changes" comment="FeignClinet дружит с Eureka: TRS дружит c RS">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/ResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/recipients-service/src/main/java/com/bnk/recipientsservice/controllers/ResourceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/TaskResolverServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/TaskResolverServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/clients/RecipientsSaverServiceRestClient/RecipientSaverServiceRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/clients/RecipientsSaverServiceRestClient/RecipientSaverServiceRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/clients/RecipientsSaverServiceRestClient/RssRestClientErrorHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/configs/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageCreationAndExtensionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageCreationAndExtensionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageUnionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/handlers/LuiMessageUnionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/test/java/com/bnk/taskresolverservice/TaskResolverServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/test/java/com/bnk/taskresolverservice/TaskResolverServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/RecipientsSaverServiceRestClient/AlertzyRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/restClients/AlertzyRestClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/RecipientsSaverServiceRestClient/RssRestClientErrorHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/configs/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/configs/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/listeners/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/java/com/bnk/notificationsenderservice/listeners/MessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-sender-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-sender-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/java/com/bnk/taskresolverservice/controllers/TasksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/task-resolver-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -604,7 +603,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717666354230</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="FeignClinet дружит с Eureka: TRS дружит c RS">
+      <option name="closed" value="true" />
+      <created>1717674877300</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1717674877301</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,7 +674,6 @@
       <path value="$PROJECT_DIR$/task-resolver-service" />
       <path value="$PROJECT_DIR$/notification-sender-service" />
     </ignored-roots>
-    <MESSAGE value="подружил RS и TRS через кафку для строковых значений" />
     <MESSAGE value="решен баг с асинхронным проставлением статуса LIUMessage" />
     <MESSAGE value="переделана outbox логика + реализован шедулер переотправки сообщений" />
     <MESSAGE value="RS теперь постранично удобно отдает получателей" />
@@ -692,6 +698,7 @@
     <MESSAGE value="создание таски по шаблону" />
     <MESSAGE value="теперь статистика пишется адекватно" />
     <MESSAGE value="запросы извне проходят через gateway до RS, планирую внедрение OpenFeign для коннекта RS-TRS" />
-    <option name="LAST_COMMIT_MESSAGE" value="запросы извне проходят через gateway до RS, планирую внедрение OpenFeign для коннекта RS-TRS" />
+    <MESSAGE value="FeignClinet дружит с Eureka: TRS дружит c RS" />
+    <option name="LAST_COMMIT_MESSAGE" value="FeignClinet дружит с Eureka: TRS дружит c RS" />
   </component>
 </project>

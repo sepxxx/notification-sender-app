@@ -27,6 +27,18 @@ spring:
             - Path=/recipients-service/**
           filters:
               - StripPrefix=1
+        - id: trs_route
+          uri: lb://task-resolver-service
+          predicates:
+            - Path=/task-resolver-service/**
+          filters:
+            - StripPrefix=1
+        - id: nss_route
+          uri: lb://notification-sender-service
+          predicates:
+            - Path=/notification-sender-service/**
+          filters:
+            - StripPrefix=1
 eureka:
   client:
     serviceUrl:
