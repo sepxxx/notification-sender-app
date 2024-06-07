@@ -11,10 +11,24 @@
         </el-col>
       </el-row>
       <el-row class="report-card__row">
-        <el-col :span="2"><span>Alertzy</span></el-col>
-        <el-col :span="5"><span>12.03.1999</span></el-col>
-        <el-col :span="5"><span>Мой список</span></el-col>
-        <!-- <el-col :span="5"><span>Мой список</span></el-col> -->
+        <el-col :span="4">
+          <div class="data-block">
+            <i class="el-icon-s-promotion icon"></i>
+            <span>Alertzy</span>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="data-block">
+            <i class="el-icon-date icon"></i>
+            <span>12.03.1999</span>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="data-block">
+            <i class="el-icon-tickets icon"></i>
+            <span>Мой список</span>
+          </div>
+        </el-col>
       </el-row>
 
       <el-row class="report-card__row">
@@ -119,6 +133,18 @@ export default {
     margin: 15px;
   }
   .status-block .icon {
+    font-size: 20px;
+  }
+
+  .data-block {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    justify-content: start;
+    margin: 0px 15px;
+
+  }
+  .data-block .icon{
     font-size: 20px;
   }
 
