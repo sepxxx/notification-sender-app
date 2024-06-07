@@ -137,4 +137,10 @@ a {
   text-align: left;
   padding: 0 15px 0 15px;
 }
+
+.zaglavie {
+  font-weight: 500;
+  color: black;
+  font-size: 32px;
+}
 </style>

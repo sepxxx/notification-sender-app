@@ -3,7 +3,7 @@
     <!-- Main -->
     <el-row type="flex">
       <el-col :span="3">
-        <div class="obzor">Обзор</div>
+        <div class="zaglavie">Обзор</div>
       </el-col>
     </el-row>
     <el-row>
@@ -77,9 +77,9 @@ export default {
   background-color: #1db7ad;
 }
 
-.obzor {
+/* .obzor {
   font-weight: 500;
   color: black;
   font-size: 32px;
-}
+} */
 </style>
