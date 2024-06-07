@@ -42,10 +42,12 @@
             </el-menu-item>
           </router-link>
 
+          <router-link to="/mailings/creation">
             <el-menu-item index="4">
               <i class="el-icon-menu"></i>
               <span>СОЗДАТЬ РАССЫЛКУ</span>
             </el-menu-item>
+          </router-link>
           </el-menu>
         </el-aside>
 
