@@ -135,7 +135,7 @@ a {
 
 .el-menu-item {
   text-align: left;
-  padding: 0 15px 0 15px;
+  /* padding: 0 15px 0 15px; */
 }
 
 .zaglavie {
