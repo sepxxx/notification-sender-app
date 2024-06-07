@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-container>
+    <el-container class="header-container">
       <el-header>
         <el-row>
           <el-col :span="5">
@@ -18,8 +18,8 @@
         </el-row>
       </el-header>
 
-      <el-container>
-        <el-aside width="200px" class="container__aside">
+      <el-container class="main-container">
+        <el-aside width="200px" class="main-container__aside">
           <el-menu default-active="2" class="el-menu-vertical-demo">
             <router-link to="/">
               <el-menu-item index="1">
@@ -72,39 +72,47 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: "Inter", "PT Sans", Calibri, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  height: 100vh;
 }
-
-.container__aside {
-  /* background-color: #fafbfc; */
+#app section {
+  height: 100%;
+  /* overflow: hidden; */
+}
+.main-container {
+  height: 90%;
+  /* overflow: hidden; */
+}
+.main-container__aside {
   border-radius: 24px;
 }
 
 .el-header,
 .el-footer {
-  /* background-color: #B3C0D1; */
   background-color: white;
-  /* color: #333; */
   text-align: center;
   line-height: 60px;
 }
 
 .el-main {
-  /* background-color: #E9EEF3; */
-  /* color: #333; */
   background-color: #fafbfc;
   text-align: center;
   line-height: 160px;
-  height: 100vh;
   border-radius: 24px;
+  /* overflow: hidden; */
 }
 
 body>.el-container {
   margin-bottom: 40px;
+}
+
+.el-container main {
+  overflow: hidden;
 }
 
 .icon {
@@ -121,7 +129,6 @@ body>.el-container {
 }
 
 a {
-  /* color: #00bfff; */
   text-decoration: none;
   cursor: pointer;
 }
