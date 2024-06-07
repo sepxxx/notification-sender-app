@@ -3,16 +3,14 @@
     <el-container>
       <el-header>
         <el-row>
-          <el-col :span="3">
+          <el-col :span="5">
             <div class="logo-block">
               <i class="el-icon-umbrella icon"></i>
               <h1>UMISENDER</h1>
             </div>
           </el-col>
-          <el-col :span="18">
-            <div></div>
-          </el-col>
-          <el-col :span="3">
+
+          <el-col :span="3" :offset="16">
               <div>
                 <i class="el-icon-user icon"></i>
               </div>
@@ -29,22 +27,29 @@
               <span>ДАШБОРД</span>
             </el-menu-item>
             </router-link>
+
+            <router-link to="/lists">
             <el-menu-item index="2">
               <i class="el-icon-menu"></i>
               <span>СПИСКИ</span>
             </el-menu-item>
+          </router-link>
+
             <router-link to="/mailings">
             <el-menu-item index="3">
               <i class="el-icon-menu"></i>
               <span>РАССЫЛКИ</span>
             </el-menu-item>
           </router-link>
+
             <el-menu-item index="4">
               <i class="el-icon-menu"></i>
               <span>СОЗДАТЬ РАССЫЛКУ</span>
             </el-menu-item>
           </el-menu>
         </el-aside>
+
+
         <el-main>
           <router-view/>
         </el-main>
@@ -74,19 +79,28 @@ export default {
   margin-top: 60px;
 }
 
+.container__aside {
+  /* background-color: #fafbfc; */
+  border-radius: 24px;
+}
+
 .el-header,
 .el-footer {
-  background-color: #B3C0D1;
-  color: #333;
+  /* background-color: #B3C0D1; */
+  background-color: white;
+  /* color: #333; */
   text-align: center;
   line-height: 60px;
 }
 
 .el-main {
-  background-color: #E9EEF3;
-  color: #333;
+  /* background-color: #E9EEF3; */
+  /* color: #333; */
+  background-color: #fafbfc;
   text-align: center;
   line-height: 160px;
+  height: 100vh;
+  border-radius: 24px;
 }
 
 body>.el-container {
@@ -98,9 +112,7 @@ body>.el-container {
 }
 
 .logo-block {
-  text-align: center;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .logo-block h1{
@@ -109,9 +121,13 @@ body>.el-container {
 }
 
 a {
-  color: #00bfff;
+  /* color: #00bfff; */
   text-decoration: none;
   cursor: pointer;
 }
 
+.el-menu-item {
+  text-align: left;
+  padding: 0 15px 0 15px;
+}
 </style>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import MainPage from './views/MainPage.vue'
 import MailingsPage from './views/MailingsPage.vue'
+import ListsPage from './views/ListsPage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -15,6 +16,10 @@ export default new Router({
             path: "/mailings",
             component: MailingsPage
 
-        }
+        },
+        {
+            path: "/lists",
+            component: ListsPage
+        },
     ]
 })
