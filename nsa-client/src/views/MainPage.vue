@@ -2,14 +2,13 @@
   <div class="fullpage">
     <!-- Main -->
     <el-row class="row-zaglavie">
-      <el-col :span="3">
+      <el-col :span="6">
         <div class="zaglavie-block">
           <span class="zaglavie">Обзор</span>
+          <span>Начните свою первую рассылку прямо сейчас!</span>
         </div>
       </el-col>
-      <el-col :span="9">
-        <span>Начните свою первую рассылку прямо сейчас!</span>
-      </el-col>
+
     </el-row>
     <el-row :gutter="20">
       <el-col :span="4" >
@@ -27,18 +26,20 @@
         </div>
       </el-col>
 
-      <el-col :span="8" offset="8">
-        <el-carousel>
-          <el-carousel-item v-for="item in 4" :key="item">
-            <h3 class="small">{{ item }}</h3>
+      <el-col :span="14" >
+        <el-carousel :interval="1000" type="card" height="240px" width="450px">
+          <el-carousel-item v-for="(image, index) in images" :key="index">
+            <img :src="require(`@/assets/${image}`)" class="image">
           </el-carousel-item>
         </el-carousel>
       </el-col>
 
     </el-row>
     <el-row class="row-zaglavie">
-      <el-col :span="9">
-          <span>Выберите шаблон и используйте прошлые рассылки или начните с нуля.</span>
+      <el-col :span="6">
+        <div class="last-mailing-block">
+          <span class="zaglavie">Последняя рассылка</span>
+        </div>
       </el-col>
     </el-row>
 
@@ -54,6 +55,16 @@ export default {
   name: 'MainPage',
   components: {
     MailingReportCard,
+  },
+  data() {
+    return {
+      images: [
+        'ab-testy.png',
+          'detalnaya-statistika.png',
+          'gibkie-integracii.png',
+          'vsplyvaushchie-formy.png'
+      ]
+    }
   }
 }
 </script>
@@ -88,6 +99,9 @@ export default {
 
 .main__card--upload {
   background-color: #1db7ad;
+}
+.last-mailing-block {
+  line-height: 80px;
 }
 
 /* .obzor {
