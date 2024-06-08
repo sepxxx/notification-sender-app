@@ -10,10 +10,18 @@
             </div>
           </el-col>
 
-          <el-col :span="3" :offset="16">
-              <div>
-                <i class="el-icon-user icon"></i>
+          <el-col :span="4" :offset="15">
+<!--              <div>-->
+<!--                <i class="el-icon-user icon"></i>-->
+<!--              </div>-->
+            <div class="user-info-block">
+              <el-avatar icon="el-icon-user-solid"></el-avatar>
+              <div class="user-info-block__data">
+                <span>USERNAME</span>
+                <span>USER ID</span>
               </div>
+            </div>
+
           </el-col>
         </el-row>
       </el-header>
@@ -170,5 +178,15 @@ a {
 
 .zaglavie-block span {
   padding: 2px 0px;
+}
+
+.user-info-block {
+  display: flex;
+}
+
+.user-info-block__data {
+  display: flex;
+  flex-direction: column;
+  line-height: 120%;
 }
 </style>

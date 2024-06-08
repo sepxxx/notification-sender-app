@@ -12,18 +12,22 @@
     </el-row>
     <el-row :gutter="20">
       <el-col :span="4" >
-        <div class="main__card main__card--promotion">
-          <p>СОЗДАТЬ</p>
-          <p>РАССЫЛКУ</p>
-          <i class="el-icon-s-promotion"></i>
-        </div>
+        <router-link to="/mailings/creation">
+          <div class="main__card main__card--promotion">
+            <p>СОЗДАТЬ</p>
+            <p>РАССЫЛКУ</p>
+            <i class="el-icon-s-promotion"></i>
+          </div>
+        </router-link>
       </el-col>
       <el-col :span="4">
-        <div class="main__card main__card--upload">
-          <p>ИМПОРТИРОВАТЬ</p>
-          <p>КОНТАКТЫ</p>
-          <i class="el-icon-upload"></i>
-        </div>
+        <router-link to="/lists">
+          <div class="main__card main__card--upload">
+            <p>ИМПОРТИРОВАТЬ</p>
+            <p>КОНТАКТЫ</p>
+            <i class="el-icon-upload"></i>
+          </div>
+        </router-link>
       </el-col>
 
       <el-col :span="14" >
@@ -94,12 +98,22 @@ export default {
 }
 
 .main__card--promotion {
+  background-color: rgba(135, 40, 118, 0.8);
+}
+.main__card--upload {
+  background-color: rgba(29, 183, 173, 0.8);
+}
+
+/*
+.main__card--promotion {
   background-color: #852876;
 }
 
 .main__card--upload {
   background-color: #1db7ad;
 }
+ */
+
 .last-mailing-block {
   line-height: 80px;
 }
