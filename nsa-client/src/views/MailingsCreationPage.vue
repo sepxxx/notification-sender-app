@@ -13,6 +13,8 @@
       </el-col>
     </el-row>
 
+    <TemplateCard></TemplateCard>
+
 
     <el-dialog title="Создание рассылки" :visible.sync="dialogFormMailingCreationVisible">
       <el-form :model="formMailingCreation">
@@ -29,8 +31,8 @@
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormMailingCreationVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogFormMailingCreationVisible = false">Confirm</el-button>
+        <el-button @click="dialogFormMailingCreationVisible = false">Отменить</el-button>
+        <el-button type="primary" @click="dialogFormMailingCreationVisible = false">Начать</el-button>
       </span>
     </el-dialog>
   </div>
@@ -44,9 +46,12 @@
 
 <script>
 
+import TemplateCard from "@/components/TemplateCard.vue";
+
 export default {
   name: 'MailingsCreationPage',
   components: {
+    TemplateCard
   },
   data() {
     return {
