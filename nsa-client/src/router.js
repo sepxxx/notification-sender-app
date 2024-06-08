@@ -4,6 +4,7 @@ import MainPage from './views/MainPage.vue'
 import MailingsPage from './views/MailingsPage.vue'
 import MailingsCreationPage from './views/MailingsCreationPage.vue'
 import ListsPage from './views/ListsPage.vue'
+import OffersPage from "@/views/OffersPage.vue";
 Vue.use(Router)
 
 export default new Router({
@@ -25,6 +26,11 @@ export default new Router({
         {
             path: "/mailings/creation",
             component: MailingsCreationPage
+
+        },
+        {
+            path: "/templates/offers",
+            component: OffersPage
 
         }
     ]

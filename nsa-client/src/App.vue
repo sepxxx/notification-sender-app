@@ -38,16 +38,24 @@
             <router-link to="/mailings">
             <el-menu-item index="3">
               <i class="el-icon-menu"></i>
-              <span>РАССЫЛКИ</span>
+              <span>ИСТОРИЯ</span>
             </el-menu-item>
           </router-link>
 
           <router-link to="/mailings/creation">
             <el-menu-item index="4">
               <i class="el-icon-menu"></i>
-              <span>СОЗДАТЬ РАССЫЛКУ</span>
+              <span>РАССЫЛКА</span>
             </el-menu-item>
           </router-link>
+
+          <router-link to="/templates/offers">
+            <el-menu-item index="5">
+              <i class="el-icon-menu"></i>
+              <span>ПРЕДЛОЖЕНИЯ</span>
+            </el-menu-item>
+          </router-link>
+
           </el-menu>
         </el-aside>
 
@@ -144,5 +152,23 @@ a {
   font-weight: 500;
   color: black;
   font-size: 32px;
+}
+
+.row-zaglavie {
+  background-color: white;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.zaglavie-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 200%;
+}
+
+.zaglavie-block span {
+  padding: 2px 0px;
 }
 </style>

@@ -11,10 +11,10 @@
         <span class="template__list-name-block"><i class="el-icon-s-unfold icon" ></i> Название списка </span>
       </el-col>
       <el-col :span="4" :offset="12">
-        <el-button plain round class="template__button">Начать рассылку по шаблону <i class="el-icon-edit icon" ></i></el-button>
+        <el-button plain round class="template__button">Принять<i class="el-icon-check icon" ></i></el-button>
       </el-col>
       <el-col :span="4">
-        <el-button plain round class="template__button">Поделиться шаблоном <i class="el-icon-star-off icon" ></i></el-button>
+        <el-button plain round class="template__button">Отклонить <i class="el-icon-close icon" ></i></el-button>
       </el-col>
     </el-row>
 
@@ -33,12 +33,9 @@
 </template>
 
 <script>
-//el-icon-s-unfold
-//el-icon-message
-//el-icon-document-copy
-//el-icon-document
+
 export default {
-  name: 'TemplateCard',
+  name: 'TemplateOfferCard',
   // components: {
 
   // }

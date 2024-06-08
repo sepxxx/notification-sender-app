@@ -1,20 +1,25 @@
 <template>
   <div class="fullpage">
     <!-- Main -->
-    <el-row type="flex">
+    <el-row class="row-zaglavie">
       <el-col :span="3">
-        <div class="zaglavie">Обзор</div>
+        <div class="zaglavie-block">
+          <span class="zaglavie">Обзор</span>
+        </div>
+      </el-col>
+      <el-col :span="9">
+        <span>Начните свою первую рассылку прямо сейчас!</span>
       </el-col>
     </el-row>
-    <el-row>
-      <el-col :span="5">
+    <el-row :gutter="20">
+      <el-col :span="4" >
         <div class="main__card main__card--promotion">
           <p>СОЗДАТЬ</p>
           <p>РАССЫЛКУ</p>
           <i class="el-icon-s-promotion"></i>
         </div>
       </el-col>
-      <el-col :span="5">
+      <el-col :span="4">
         <div class="main__card main__card--upload">
           <p>ИМПОРТИРОВАТЬ</p>
           <p>КОНТАКТЫ</p>
@@ -22,25 +27,33 @@
         </div>
       </el-col>
 
+      <el-col :span="8" offset="8">
+        <el-carousel>
+          <el-carousel-item v-for="item in 4" :key="item">
+            <h3 class="small">{{ item }}</h3>
+          </el-carousel-item>
+        </el-carousel>
+      </el-col>
+
     </el-row>
-    <!-- <el-row>
-      <StatBar></StatBar>
-    </el-row> -->
-    <el-row>
-      <div styles="height:500px; background-color:blue;">GO</div>
+    <el-row class="row-zaglavie">
+      <el-col :span="9">
+          <span>Выберите шаблон и используйте прошлые рассылки или начните с нуля.</span>
+      </el-col>
     </el-row>
-    <el-row>
-      <div styles="height:500px; background-color:blue;">GO</div>
-    </el-row>
+
+    <MailingReportCard></MailingReportCard>
   </div>
 </template>
 
 <script>
 // import StatBar from '../components/StatBar.vue'
+import MailingReportCard from "@/components/MailingReportCard.vue";
+
 export default {
   name: 'MainPage',
   components: {
-    // StatBar
+    MailingReportCard,
   }
 }
 </script>

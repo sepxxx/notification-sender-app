@@ -8,7 +8,7 @@
         </div>
       </el-col>
       <el-col :span="4" :offset="14">
-        <el-button plain class="row-zaglavie__button" @click="dialogFormMailingCreationVisible = true">Создать рассылку
+        <el-button plain round class="row-zaglavie__button" @click="dialogFormMailingCreationVisible = true">Создать рассылку
           <i class="el-icon-upload el-icon-right"></i></el-button>
       </el-col>
     </el-row>
@@ -35,6 +35,19 @@
         <el-button type="primary" @click="dialogFormMailingCreationVisible = false">Начать</el-button>
       </span>
     </el-dialog>
+
+
+    <el-dialog title="Шейринг шаблона" :visible.sync="dialogFormTemplateSharingVisible">
+      <el-form :model="formTemplateSharing">
+        <el-form-item label="ID получателя">
+          <el-input v-model="formTemplateSharing.userName" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormTemplateSharingVisible = false">Отменить</el-button>
+        <el-button type="primary" @click="dialogFormTemplateSharingVisible = false">Поделиться</el-button>
+      </span>
+    </el-dialog>
   </div>
 
   
@@ -59,7 +72,11 @@ export default {
         listName: '',
         text: '',
       },
+      formTemplateSharing: {
+        userName: '',
+      },
       dialogFormMailingCreationVisible: false,
+      dialogFormTemplateSharingVisible: false,
     }
   }
 }
@@ -93,6 +110,5 @@ export default {
 .row-zaglavie__button {
   background-color: #852876;
   color: white;
-  border-radius: 12px;
 }
 </style>

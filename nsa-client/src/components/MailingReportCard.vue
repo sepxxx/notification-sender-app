@@ -1,7 +1,12 @@
 <template>
 <div class="report-card">
       <el-row class="report-card__row" >
-        <el-col :span="3"><span>Id рассылки</span></el-col>
+<!--        <el-col :span="3"><span>Id рассылки</span></el-col>-->
+        <el-col :span="3">
+          <span class="report-card___id-block"><i class="el-icon-message icon" ></i> ID</span>
+        </el-col>
+
+
         <el-col :span="4" :offset="17">
           <div class="status-block">
             <span>Статус</span>
@@ -88,8 +93,6 @@ export default {
 
 <style scoped>
   .report-card {
-    width: 80%;
-    /* height: 33%; */
     background-color: white;
     border-radius: 24px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -98,6 +101,22 @@ export default {
 
   .report-card__row {
     line-height: 60px;
+  }
+
+  .report-card___id-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 100%;
+    padding: 4px 16px;
+    background-color: #d2f4ed;
+    border-radius: 12px;
+    margin: 15px;
+
+  }
+
+  .report-card___id-block .icon {
+    font-size: 20px;
   }
 
   .icon {
@@ -131,10 +150,11 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    line-height: 100%;
     background-color: #d2f4ed;
     padding: 4px 16px;
     border-radius: 12px;
-    line-height: 100%;
+
     margin: 15px;
   }
   .status-block .icon {
