@@ -18,4 +18,5 @@ public interface RecipientsService {
                                                         String recipientsListNameNew, String currentUserId);
     Page<RecipientDto> getRecipientsPageByListNameAndUserId(String listName, String userId, PageRequest pageRequest);
     RecipientListResponseDto deleteRecipientList(String recipientsListName, String currentUserId);
+    List<RecipientListResponseDto> getAllUserLists(String currentUserId);
 }

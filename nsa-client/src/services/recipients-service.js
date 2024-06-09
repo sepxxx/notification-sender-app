@@ -7,7 +7,7 @@ class RecipientsService {
     }
 
     getRecipientsLists() {
-        return axios.get(`${this.baseUrl}/${this.servicePrefix}/lists/recipients`)
+        return axios.get(`${this.baseUrl}/${this.servicePrefix}/lists`)
             .then(response => response.data)
             .catch(error => {
                 console.log(error);

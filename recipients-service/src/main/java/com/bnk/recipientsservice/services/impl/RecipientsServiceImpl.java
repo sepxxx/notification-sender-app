@@ -144,6 +144,12 @@ public class RecipientsServiceImpl implements RecipientsService {
                 .findAllByRecipientList(recipientList, pageRequest)
                 .map(recipientRecipientDtoMapper::recipientToRecipientDto);
     }
+    public List<RecipientListResponseDto> getAllUserLists(String currentUserId) {
+        return recipientListRepository.findAllByUserId(currentUserId)
+                .stream()
+                .map(recipientList -> new RecipientListResponseDto(recipientList.getId(), recipientList.getName(), recipientList.getRecipientList().size()))
+                .toList();
+    }
 
     //TODO: вынос?
     private void sendLUIMessage(ListsInfoUpdateMessage message, String topicName) {

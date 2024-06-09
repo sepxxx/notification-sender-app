@@ -31,6 +31,11 @@ public class RecipientsController {
     RecipientsService recipientsService;
     CsvParser csvParser;
 
+    @GetMapping("")
+    public List<RecipientListResponseDto> getAllLists(@RequestHeader("sub") String userId) {
+        return recipientsService.getAllUserLists(userId);
+    }
+
     @PostMapping("/upload")
     public ResponseEntity<RecipientListResponseDto> saveRecipientList(@RequestParam MultipartFile file,
                                                                       @RequestHeader("sub") String userId,
@@ -73,4 +78,5 @@ public class RecipientsController {
                 .getRecipientsPageByListNameAndUserId(listName, userId,
                         PageRequest.of(pageNumber, pageSize));
     }
+
 }
