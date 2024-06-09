@@ -25,8 +25,11 @@
           <el-button plain @click="deleteList(scope.row.name)">Удалить</el-button>
         </template>
       </el-table-column>
-      <el-table-column><el-button plain
-          @click="dialogFormListExtensionVisible = true">Дополнить</el-button></el-table-column>
+      <el-table-column>
+        <template #default="scope">
+          <el-button plain @click="handleListExtendButtonClick(scope.row.name)">Дополнить</el-button>
+        </template>
+      </el-table-column>
       <el-table-column><el-button plain
           @click="dialogFormListUnionVisible = true">Объединить</el-button></el-table-column>
 
@@ -37,12 +40,13 @@
       <!-- <el-form :model="form"> -->
       <el-form>
         <el-form-item label="Прикрепите csv файл">
-          <el-input type="file" accept=".csv"></el-input>
+<!--          <el-input type="file" accept=".csv"></el-input>-->
+          <input type="file" @change="handleFileListExtend($event)" accept=".csv">
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormListExtensionVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogFormListExtensionVisible = false">Confirm</el-button>
+        <el-button @click="dialogFormListExtensionVisible = false">Отмена</el-button>
+        <el-button type="primary" @click="extendList">Подтвердить</el-button>
       </span>
     </el-dialog>
 
@@ -77,7 +81,7 @@
           <el-form-item label="Прикрепите csv файл">
 <!--            <el-input type="file" v-model="formListCreation.csvFile" accept=".csv" ></el-input>-->
 <!--            <el-input type="file" id="file" name="file" accept=".csv" ></el-input>-->
-            <input type="file" @change="handleFileUpload($event)" accept=".csv">
+            <input type="file" @change="handleFileListUpload($event)" accept=".csv">
           </el-form-item>
         </el-form>
       </el-form>
@@ -111,6 +115,10 @@ export default {
         listName: '',
         csvFile: null,
         fileCostyl: null
+      },
+      formListExtend: {
+        listName: '',
+        csvFile: null,
       }
     };
 
@@ -156,7 +164,7 @@ export default {
     },
     async deleteList(listName) {
       try {
-        console.log(listName);
+        // console.log(listName);
         await this.$recipientsService.deleteRecipientList(listName);
         this.getLists();
       } catch (error) {
@@ -166,11 +174,40 @@ export default {
         });
       }
     },
-    handleFileUpload( event ){
-      console.log("handleFileUpload")
-      console.log(event)
+    async extendList() {
+      try {
+        // console.log(listName);
+        const formData = new FormData()
+        formData.append("file", this.formListExtend.csvFile);
+        formData.append("listName", this.formListExtend.listName);
+        // console.log(this.formListExtend.csvFile);
+        // console.log("listName", this.formListExtend.listName);
+        await this.$recipientsService.extendRecipientList(formData);
+        this.getLists();
+      } catch (error) {
+        this.$message({
+          message: error.response.data.message,
+          type: 'error'
+        });
+      } finally {
+        this.dialogFormListExtensionVisible = false
+      }
+    },
+    handleFileListUpload( event ){
+      // console.log("handleFileUpload")
+      // console.log(event)
       this.formListCreation.csvFile = event.target.files[0];
     },
+    handleFileListExtend( event ){
+      // console.log("handleFileUpload")
+      // console.log(event)
+      this.formListExtend.csvFile = event.target.files[0];
+    },
+    handleListExtendButtonClick(listName) {
+      console.log("handleListExtendButtonClick ", listName);
+      this.dialogFormListExtensionVisible = true;
+      this.formListExtend.listName = listName;
+    }
   },
 
 }

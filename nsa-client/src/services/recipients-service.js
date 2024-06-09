@@ -51,13 +51,29 @@ class RecipientsService {
             });
     }
     deleteRecipientList(listName) {
-        console.log("deleteRecipientList: ", listName);
+        // console.log("deleteRecipientList: ", listName);
         return axios.delete(
             `${this.baseUrl}/${this.servicePrefix}/lists`, {
                 data: {
                     listName: listName
                 }
             } )
+            .then(response => response.data)
+            .catch(error => {
+                console.log(error);
+                return Promise.reject(error);
+            });
+    }
+
+    extendRecipientList(formData) {
+        return axios.put(
+            `${this.baseUrl}/${this.servicePrefix}/lists/upload`,
+            formData,
+    {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+            })
             .then(response => response.data)
             .catch(error => {
                 console.log(error);
