@@ -50,6 +50,20 @@ class RecipientsService {
                 return Promise.reject(error);
             });
     }
+    deleteRecipientList(listName) {
+        console.log("deleteRecipientList: ", listName);
+        return axios.delete(
+            `${this.baseUrl}/${this.servicePrefix}/lists`, {
+                data: {
+                    listName: listName
+                }
+            } )
+            .then(response => response.data)
+            .catch(error => {
+                console.log(error);
+                return Promise.reject(error);
+            });
+    }
 }
 
 export default new RecipientsService('http://localhost:8080', 'recipients-service');

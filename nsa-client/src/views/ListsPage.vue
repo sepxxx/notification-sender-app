@@ -15,11 +15,16 @@
 
     <el-table :data="tableData" :default-sort="{ prop: 'date', order: 'descending' }" class="lists-table">
       <el-table-column prop="id" label="ID"></el-table-column>
-      <el-table-column prop="date" label="Дата создания" sortable></el-table-column>
+<!--      <el-table-column prop="date" label="Дата создания" sortable></el-table-column>-->
+      <el-table-column prop="date" label="Дата создания"></el-table-column>
       <el-table-column prop="name" label="Название"></el-table-column>
       <el-table-column prop="recipientsTotal" label="Получатели"></el-table-column>
       <el-table-column prop="mailingsTotal" label="Рассылки"></el-table-column>
-      <el-table-column label="Действие"><el-button plain>Удалить</el-button></el-table-column>
+      <el-table-column label="Действие">
+        <template #default="scope">
+          <el-button plain @click="deleteList(scope.row.name)">Удалить</el-button>
+        </template>
+      </el-table-column>
       <el-table-column><el-button plain
           @click="dialogFormListExtensionVisible = true">Дополнить</el-button></el-table-column>
       <el-table-column><el-button plain
@@ -94,29 +99,7 @@ export default {
   },
   data() {
     return {
-      tableData: [{
-        id: '777',
-        date: '2016-05-03',
-        name: 'Tom',
-        recipientsTotal: '999',
-        mailingsTotal: "3"
-      },
-      {
-        id: '777',
-        date: '2016-05-03',
-        name: 'Tom',
-        recipientsTotal: '999',
-        mailingsTotal: "3"
-      },
-      {
-        id: '777',
-        date: '2016-05-03',
-        name: 'Tom',
-        recipientsTotal: '999',
-        mailingsTotal: "3"
-      },
-      ],
-
+      tableData: [],
       dialogFormListExtensionVisible: false,
       dialogFormListUnionVisible: false,
       dialogFormListCreationVisible: false,
@@ -169,6 +152,18 @@ export default {
         });
       } finally {
         this.dialogFormListCreationVisible = false;
+      }
+    },
+    async deleteList(listName) {
+      try {
+        console.log(listName);
+        await this.$recipientsService.deleteRecipientList(listName);
+        this.getLists();
+      } catch (error) {
+        this.$message({
+          message: error.response.data.message,
+          type: 'error'
+        });
       }
     },
     handleFileUpload( event ){
