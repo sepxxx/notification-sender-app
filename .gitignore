@@ -11,7 +11,11 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea/dataSources
+.idea/inspectionProfiles
 .idea/
+.idea/shelf
+
 
 ### Eclipse ###
 .apt_generated
