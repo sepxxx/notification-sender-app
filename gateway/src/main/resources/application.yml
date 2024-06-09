@@ -5,20 +5,25 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:8180/realms/demo/protocol/openid-connect/certs
+#          jwk-set-uri: http://localhost:8180/realms/demo/protocol/openid-connect/certs
+          issuer-uri: http://localhost:8180/realms/demo
       client:
         provider:
           keycloak:
             issuer-uri: http://localhost:8180/realms/demo
+#        registration:
+#          spring-with-test-scope:
+#            provider: keycloak
+#            client-id: spring-with-test-scope
+##            client-secret: tLmZ6qe4LR40701ul7PHQnajJEwJLa8L
+#            client-secret: RlSllCAQoPdT25PCOQwtEl7RhSMLRWMW
+#            authorization-grant-type: authorization_code
+#            scope: openid
         registration:
-          spring-with-test-scope:
-            provider: keycloak
+          keycloak:
             client-id: spring-with-test-scope
-#            client-secret: tLmZ6qe4LR40701ul7PHQnajJEwJLa8L
-            client-secret: kpIsLFjNlbpBgTZkMrm7lsJ0k3p9VxsF
-            authorization-grant-type: authorization_code
+            client-secret: RlSllCAQoPdT25PCOQwtEl7RhSMLRWMW
             scope: openid
-
   cloud:
     gateway:
       globalcors:
@@ -31,6 +36,7 @@ spring:
               - "*"
             allowedHeaders:
               - "*"
+#              - "COOKIE"
 #            exposedHeaders:
 #              - "*"
 #            allowCredentials: true

@@ -1,8 +1,12 @@
 package com.bnk.recipientsservice.dtos.requests;
 
-import lombok.Value;
+import lombok.*;
 
-@Value
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class RecipientListRequestDto {
     String listName;
 }

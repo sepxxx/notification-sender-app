@@ -19,4 +19,8 @@ public class ResourceController {
         return Mono.just(authentication.getPrincipal().getAttributes().get("sub"));
     }
 
+    @GetMapping(value = "/hello")
+    public Mono<Object> getHello() {
+        return Mono.just("HELLO");
+    }
 }

@@ -14,7 +14,11 @@ Vue.prototype.$recipientsService = RecipientsService
 function tokenInterceptor () {
   axios.interceptors.request.use(config => {
     if (Vue.prototype.$keycloak.authenticated) {
+      // const session = localStorage.getItem('session');
+      // console.log(session)
       config.headers.Authorization = `Bearer ${Vue.prototype.$keycloak.token}`
+      // config.headers.Cookie = `session=${session}`;
+      // config.withCredentials = true;
     }
     return config
   }, error => {
