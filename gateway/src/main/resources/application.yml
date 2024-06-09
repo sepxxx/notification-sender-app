@@ -21,6 +21,20 @@ spring:
 
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+#            exposedHeaders:
+#              - "*"
+#            allowCredentials: true
+#      default-filters:
+#        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       routes:
         - id : rs_route
           uri: lb://recipients-service

@@ -31,7 +31,7 @@
     <el-dialog title="Дополнение списка" :visible.sync="dialogFormListExtensionVisible">
       <!-- <el-form :model="form"> -->
       <el-form>
-        <el-form-item label="Прикрепите csv файл" :label-width="formLabelWidth">
+        <el-form-item label="Прикрепите csv файл">
           <el-input type="file" accept=".csv"></el-input>
         </el-form-item>
       </el-form>
@@ -128,8 +128,25 @@ export default {
     };
 
   },
+  mounted() {
+    this.getLists();
+    // console.log(this.$recipientsService.getSub())
+  },
   methods: {
-
+    async getLists() {
+      try {
+        const response = await this.$recipientsService.getRecipientsLists();
+        this.tableData = response.data.map(item => ({
+          id: item.id,
+          date: item.date,
+          name: item.name,
+          recipientsTotal: item.total,
+          mailingsTotal: 0
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 }
 </script>

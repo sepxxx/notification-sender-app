@@ -10,15 +10,15 @@
             </div>
           </el-col>
 
-          <el-col :span="4" :offset="15">
+          <el-col :span="6" :offset="13">
 <!--              <div>-->
 <!--                <i class="el-icon-user icon"></i>-->
 <!--              </div>-->
             <div class="user-info-block">
               <el-avatar icon="el-icon-user-solid"></el-avatar>
               <div class="user-info-block__data">
-                <span>USERNAME</span>
-                <span>USER ID</span>
+                <span>EMAIL: {{$keycloak.tokenParsed.email}}</span>
+                <span>SUB: {{$keycloak.tokenParsed.sub}}</span>
               </div>
             </div>
 
@@ -63,6 +63,10 @@
               <span>ПРЕДЛОЖЕНИЯ</span>
             </el-menu-item>
           </router-link>
+          <el-menu-item index="6">
+            <i class="el-icon-menu"></i>
+            <span @click="$keycloak.logoutFn" v-if="$keycloak.authenticated">ВЫЙТИ</span>
+          </el-menu-item>
 
           </el-menu>
         </el-aside>
@@ -188,5 +192,6 @@ a {
   display: flex;
   flex-direction: column;
   line-height: 120%;
+  align-items: start;
 }
 </style>

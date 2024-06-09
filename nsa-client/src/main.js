@@ -3,10 +3,25 @@ import App from './App.vue'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
+import axios from 'axios';
 import VueKeycloakJs from '@dsb-norge/vue-keycloak-js'
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+import RecipientsService from './services/recipients-service';
+Vue.prototype.$recipientsService = RecipientsService
+
+
+function tokenInterceptor () {
+  axios.interceptors.request.use(config => {
+    if (Vue.prototype.$keycloak.authenticated) {
+      config.headers.Authorization = `Bearer ${Vue.prototype.$keycloak.token}`
+    }
+    return config
+  }, error => {
+    return Promise.reject(error)
+  })
+}
+
 Vue.use(VueKeycloakJs, {
   init: {
     // Use 'login-required' to always require authentication
@@ -21,6 +36,7 @@ Vue.use(VueKeycloakJs, {
     realm: 'demo'
   },
   onReady: kc => {
+    tokenInterceptor ()
     new Vue({
       router,
       render: h => h(App)

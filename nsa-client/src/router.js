@@ -95,12 +95,15 @@ router.beforeEach(async (to, from, next) => {
             await sleep(100)
         }
         if (router.app.$keycloak.authenticated) {
+            console.log("все НОРМ authenticated")
             next()
         } else {
+            console.log("ЧЕ У ВАС ТУТ ПРОИСХОДИТ")
             const loginUrl = router.app.$keycloak.createLoginUrl()
             window.location.replace(loginUrl)
         }
     } else {
+        console.log("все НОРМ вообще не смотрим")
         next()
     }
 })
