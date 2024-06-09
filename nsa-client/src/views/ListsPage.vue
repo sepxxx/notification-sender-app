@@ -143,10 +143,10 @@ export default {
         console.log(response)
         this.tableData = response.map(item => ({
           id: item.id,
-          date: "2024-10-10",
+          date: "2024-06-09",
           name: item.name,
           recipientsTotal: item.total,
-          mailingsTotal: 0
+          mailingsTotal: "?"
         }));
       } catch (error) {
         console.error(error);
@@ -154,14 +154,19 @@ export default {
     },
     async saveList() {
       try {
-        // const file = this.$refs.file.files[0];
         const formData = new FormData()
         formData.append("file", this.formListCreation.csvFile);
         formData.append("listName", this.formListCreation.listName);
-        const response = await this.$recipientsService.saveRecipientList(formData);
-        console.log(response)
+        // const response = await this.$recipientsService.saveRecipientList(formData);
+        await this.$recipientsService.saveRecipientList(formData);
+        this.getLists();
+        // console.log(response)
       } catch (error) {
-        console.error(error);
+        // console.error(error);
+        this.$message({
+          message: error.response.data.message,
+          type: 'error'
+        });
       } finally {
         this.dialogFormListCreationVisible = false;
       }
