@@ -70,13 +70,15 @@
         </el-form-item>
         <el-form>
           <el-form-item label="Прикрепите csv файл">
-            <el-input type="file" accept=".csv"></el-input>
+<!--            <el-input type="file" v-model="formListCreation.csvFile" accept=".csv" ></el-input>-->
+<!--            <el-input type="file" id="file" name="file" accept=".csv" ></el-input>-->
+            <input type="file" @change="handleFileUpload($event)" accept=".csv">
           </el-form-item>
         </el-form>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormListCreationVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogFormListCreationVisible = false">Confirm</el-button>
+        <el-button @click="dialogFormListCreationVisible = false">Отменить</el-button>
+        <el-button type="primary" @click="saveList()">Создать</el-button>
       </span>
     </el-dialog>
   </div>
@@ -124,6 +126,8 @@ export default {
       },
       formListCreation: {
         listName: '',
+        csvFile: null,
+        fileCostyl: null
       }
     };
 
@@ -136,9 +140,10 @@ export default {
     async getLists() {
       try {
         const response = await this.$recipientsService.getRecipientsLists();
-        this.tableData = response.data.map(item => ({
+        console.log(response)
+        this.tableData = response.map(item => ({
           id: item.id,
-          date: item.date,
+          date: "2024-10-10",
           name: item.name,
           recipientsTotal: item.total,
           mailingsTotal: 0
@@ -146,8 +151,28 @@ export default {
       } catch (error) {
         console.error(error);
       }
-    }
-  }
+    },
+    async saveList() {
+      try {
+        // const file = this.$refs.file.files[0];
+        const formData = new FormData()
+        formData.append("file", this.formListCreation.csvFile);
+        formData.append("listName", this.formListCreation.listName);
+        const response = await this.$recipientsService.saveRecipientList(formData);
+        console.log(response)
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.dialogFormListCreationVisible = false;
+      }
+    },
+    handleFileUpload( event ){
+      console.log("handleFileUpload")
+      console.log(event)
+      this.formListCreation.csvFile = event.target.files[0];
+    },
+  },
+
 }
 </script>
 

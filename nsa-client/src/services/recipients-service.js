@@ -15,8 +15,35 @@ class RecipientsService {
             });
     }
 
-    getSub() {
-        return axios.get(`${this.baseUrl}/myone`)
+    // saveRecipientList(listName, csvFile) {
+    //     const formData = new FormData();
+    //     formData.append('listName', listName)
+    //     formData.append('file', csvFile)
+    //     console.log(csvFile)
+    //     return axios.post(
+    //         `${this.baseUrl}/${this.servicePrefix}/lists/upload`,
+    //         formData,
+    //         {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data'
+    //             }
+    //         })
+    //         .then(response => response.data)
+    //         .catch(error => {
+    //             console.log(error);
+    //             return Promise.reject(error);
+    //         });
+    // }
+
+    saveRecipientList(formData) {
+        return axios.post(
+            `${this.baseUrl}/${this.servicePrefix}/lists/upload`,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
             .then(response => response.data)
             .catch(error => {
                 console.log(error);
