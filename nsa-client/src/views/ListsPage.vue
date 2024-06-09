@@ -30,9 +30,12 @@
           <el-button plain @click="handleListExtendButtonClick(scope.row.name)">Дополнить</el-button>
         </template>
       </el-table-column>
-      <el-table-column><el-button plain
-          @click="dialogFormListUnionVisible = true">Объединить</el-button></el-table-column>
+      <el-table-column>
+        <template #default="scope">
+          <el-button plain @click="handleListUnionButtonClick(scope.row.name)">Объединить</el-button>
+        </template>
 
+      </el-table-column>
     </el-table>
 
 
@@ -58,16 +61,21 @@
           <el-input v-model="formListUnion.listNameNew" autocomplete="off"></el-input>
         </el-form-item>
 
+<!--        <el-form-item label="Выбор списка 2">-->
+<!--          <el-select v-model="formListUnion.listName2" placeholder="Выбор списка 2">-->
+<!--            <el-option label="No.1" value="shanghai"></el-option>-->
+<!--            <el-option label="No.2" value="beijing"></el-option>-->
+<!--          </el-select>-->
+<!--        </el-form-item>-->
         <el-form-item label="Выбор списка 2">
           <el-select v-model="formListUnion.listName2" placeholder="Выбор списка 2">
-            <el-option label="No.1" value="shanghai"></el-option>
-            <el-option label="No.2" value="beijing"></el-option>
+            <el-option v-for="list in tableData" :key="list.name" :label="list.name" :value="list.name"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormListUnionVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogFormListUnionVisible = false">Confirm</el-button>
+        <el-button type="primary" @click="unionLists">Confirm</el-button>
       </span>
     </el-dialog>
 
@@ -108,8 +116,9 @@ export default {
       dialogFormListUnionVisible: false,
       dialogFormListCreationVisible: false,
       formListUnion: {
-        listNameNew: '',
+        listName1:'',
         listName2: '',
+        listNameNew: '',
       },
       formListCreation: {
         listName: '',
@@ -193,6 +202,19 @@ export default {
         this.dialogFormListExtensionVisible = false
       }
     },
+    async unionLists() {
+      try {
+        await this.$recipientsService.unionRecipientLists(this.formListUnion);
+        this.getLists();
+      } catch (error) {
+        this.$message({
+          message: error.response.data.message,
+          type: 'error'
+        });
+      } finally {
+        this.dialogFormListUnionVisible = false
+      }
+    },
     handleFileListUpload( event ){
       // console.log("handleFileUpload")
       // console.log(event)
@@ -207,6 +229,10 @@ export default {
       console.log("handleListExtendButtonClick ", listName);
       this.dialogFormListExtensionVisible = true;
       this.formListExtend.listName = listName;
+    },
+    handleListUnionButtonClick(listName) {
+      this.dialogFormListUnionVisible = true;
+      this.formListUnion.listName1 = listName;
     }
   },
 

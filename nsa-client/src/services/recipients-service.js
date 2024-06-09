@@ -80,6 +80,17 @@ class RecipientsService {
                 return Promise.reject(error);
             });
     }
+
+    unionRecipientLists(data) {
+        return axios.put(
+            `${this.baseUrl}/${this.servicePrefix}/lists/union`,
+            data)
+            .then(response => response.data)
+            .catch(error => {
+                console.log(error);
+                return Promise.reject(error);
+            });
+    }
 }
 
 export default new RecipientsService('http://localhost:8080', 'recipients-service');
