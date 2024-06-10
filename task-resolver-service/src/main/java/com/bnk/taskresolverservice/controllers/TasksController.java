@@ -50,7 +50,7 @@ public class TasksController {
         return taskService.getTaskTemplatesByUserId(userId, taskTemplateStatus);
     }
 
-    @PutMapping("/templates/share")
+    @PostMapping("/templates/share")
     public TaskTemplateResponseDto shareTaskTemplate(@RequestHeader("sub") String userId,
                                                                      @RequestBody TaskTemplateSharingRequestDto taskTemplateSharingRequestDto) {
         return taskService.shareTemplate(userId, taskTemplateSharingRequestDto);

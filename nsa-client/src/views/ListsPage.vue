@@ -13,7 +13,7 @@
       </el-col>
     </el-row>
 
-    <el-table :data="tableData" :default-sort="{ prop: 'date', order: 'descending' }" class="lists-table">
+    <el-table :data="tableData" :default-sort="{ prop: 'date', order: 'descending' }" class="lists-table" empty-text="Нет данных">
       <el-table-column prop="id" label="ID"></el-table-column>
 <!--      <el-table-column prop="date" label="Дата создания" sortable></el-table-column>-->
       <el-table-column prop="date" label="Дата создания"></el-table-column>

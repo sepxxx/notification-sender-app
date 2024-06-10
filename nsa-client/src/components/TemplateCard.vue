@@ -32,12 +32,12 @@
     <el-dialog title="Шейринг шаблона" :visible.sync="dialogFormTemplateSharingVisible">
       <el-form :model="formTemplateSharing">
         <el-form-item label="ID получателя">
-          <el-input v-model="formTemplateSharing.userName" autocomplete="off"></el-input>
+          <el-input v-model="formTemplateSharing.userIdShareTo" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormTemplateSharingVisible = false">Отменить</el-button>
-        <el-button type="primary" @click="dialogFormTemplateSharingVisible = false">Поделиться</el-button>
+        <el-button type="primary" @click="shareTemplate">Поделиться</el-button>
       </span>
     </el-dialog>
 
@@ -90,6 +90,22 @@ export default {
           message: 'Отменено'
         });
       });
+    },
+    async shareTemplate() {
+      if (this.formTemplateSharing.userIdShareTo) {
+        try {
+          const data = {templateId: this.templateId, userIdShareTo: this.formTemplateSharing.userIdShareTo};
+          console.log(data)
+          await this.$taskResolverService.shareTemplate(data);
+        } catch (error) {
+          this.$message({
+            message: error.response.data.message,
+            type: 'error'
+          });
+        } finally {
+          this.dialogFormTemplateSharingVisible = false
+        }
+      }
     }
   }
 }

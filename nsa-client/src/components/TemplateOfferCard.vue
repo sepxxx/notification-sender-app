@@ -2,13 +2,13 @@
   <div class="full-component">
     <el-row>
       <el-col :span="4">
-        <span class="template__id-block"><i class="el-icon-message icon" ></i> ID шаблона</span>
+        <span class="template__id-block"><i class="el-icon-message icon" ></i> ID шаблона: {{templateId}}</span>
       </el-col>
     </el-row>
 
     <el-row>
       <el-col :span="4">
-        <span class="template__list-name-block"><i class="el-icon-s-unfold icon" ></i> Название списка </span>
+        <span class="template__list-name-block"><i class="el-icon-s-unfold icon" ></i> Список: {{listName}} </span>
       </el-col>
       <el-col :span="4" :offset="12">
         <el-button plain round class="template__button">Принять<i class="el-icon-check icon" ></i></el-button>
@@ -25,7 +25,7 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <span>TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT </span>
+        <span>{{text}}</span>
       </el-col>
     </el-row>
 
@@ -39,6 +39,11 @@ export default {
   // components: {
 
   // }
+  props: {
+    templateId: null,
+    listName: null,
+    text: null
+  },
   data() {
       return {
       };
