@@ -2,12 +2,12 @@
 <div class="report-card">
       <el-row class="report-card__row" >
 <!--        <el-col :span="3"><span>Id рассылки</span></el-col>-->
-        <el-col :span="3">
-          <span class="report-card___id-block"><i class="el-icon-message icon" ></i> ID</span>
+        <el-col :span="2">
+          <span class="report-card___id-block"><i class="el-icon-message icon" ></i> ID: {{id}}</span>
         </el-col>
 
 
-        <el-col :span="4" :offset="17">
+        <el-col :span="3" :offset="19">
           <div class="status-block">
             <span>Статус</span>
             <i class="el-icon-s-flag icon"></i>
@@ -15,22 +15,22 @@
         </el-col>
       </el-row>
       <el-row class="report-card__row">
-        <el-col :span="4">
+        <el-col :span="2">
           <div class="data-block">
             <i class="el-icon-s-promotion icon"></i>
             <span>Alertzy</span>
           </div>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="6">
           <div class="data-block">
             <i class="el-icon-date icon"></i>
-            <span>12.03.1999</span>
+            <span>Создана: {{createdAt}}</span>
           </div>
         </el-col>
         <el-col :span="4">
           <div class="data-block">
             <i class="el-icon-tickets icon"></i>
-            <span>Мой список</span>
+            <span>Список: {{listName}}</span>
           </div>
         </el-col>
       </el-row>
@@ -40,7 +40,7 @@
           <div class="stat-block">
            <div class="icon-wrapper"><i class="el-icon-edit icon"></i></div>
            <div class="stat-block__info">
-            <span>100%</span>
+            <span>?%</span>
             <span>Отправлено</span>
            </div>
           </div>
@@ -49,7 +49,7 @@
           <div class="stat-block">
            <div class="icon-wrapper"><i class="el-icon-document-checked icon"></i></div>
            <div class="stat-block__info">
-            <span>100%</span>
+            <span>?%</span>
             <span>Доставлено</span>
            </div>
           </div>
@@ -83,7 +83,12 @@ export default {
   name: 'MailingReportCard',
   // components: {
 
-  // }
+  // },
+  props: {
+    id: null,
+    listName: null,
+    createdAt: null
+  },
   data() {
       return {
       };

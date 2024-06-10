@@ -97,6 +97,10 @@ export default {
         console.log(response)
       } catch (error) {
         console.error(error);
+        this.$message({
+          message: error.response.data.message,
+          type: 'error'
+        });
       } finally {
         this.dialogFormMailingCreationVisible = false;
       }

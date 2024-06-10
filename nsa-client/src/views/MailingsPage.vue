@@ -1,8 +1,12 @@
 <template>
   <div class="fullpage">
-    <MailingReportCard> </MailingReportCard>
-    <MailingReportCard> </MailingReportCard>
-    <MailingReportCard> </MailingReportCard>
+    <MailingReportCard
+        v-for="task in tasks"
+        :key="task.id"
+        :id="task.id"
+        :listName="task.listName"
+        :createdAt="task.createdAt"
+    ></MailingReportCard>
   </div>
 </template>
 
@@ -22,6 +26,7 @@ export default {
   methods: {
     async getTasks() {
       const resp = await this.$taskResolverService.getTasks();
+      this.tasks = resp;
       console.log(resp)
     }
   },
