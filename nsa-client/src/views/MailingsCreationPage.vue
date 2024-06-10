@@ -114,7 +114,7 @@ export default {
       } finally {
         this.dialogFormMailingCreationVisible = false;
       }
-    }
+    },
   },
   mounted() {
     this.getLists();

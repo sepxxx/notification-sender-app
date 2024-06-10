@@ -11,7 +11,7 @@
         <span class="template__list-name-block"><i class="el-icon-s-unfold icon" ></i> Список: {{listName}} </span>
       </el-col>
       <el-col :span="4" :offset="12">
-        <el-button plain round class="template__button">Начать рассылку по шаблону <i class="el-icon-edit icon" ></i></el-button>
+        <el-button plain round class="template__button" @click="openDialogStartMailingFromTemplate">Начать рассылку по шаблону <i class="el-icon-edit icon" ></i></el-button>
       </el-col>
       <el-col :span="4">
         <el-button plain round class="template__button" @click="dialogFormTemplateSharingVisible=true">Поделиться шаблоном <i class="el-icon-star-off icon" ></i></el-button>
@@ -67,7 +67,31 @@ export default {
         },
         dialogFormTemplateSharingVisible: false,
       };
-    },
+  },
+  methods: {
+    openDialogStartMailingFromTemplate() {
+      this.$confirm('Начать рассылку по шаблону?', 'Старт рассылки', {
+        confirmButtonText: 'Да',
+        cancelButtonText: 'Нет',
+        type: 'warning'
+      }).then(() => {
+        const data = {
+          "templateId": this.templateId
+        }
+        console.log(data)
+        this.$taskResolverService.createTaskFromTemplate(data)
+        this.$message({
+          type: 'success',
+          message: 'Сохранено'
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Отменено'
+        });
+      });
+    }
+  }
 }
 </script>
 

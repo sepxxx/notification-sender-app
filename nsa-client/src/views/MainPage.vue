@@ -137,7 +137,10 @@ export default {
 .last-mailing-block {
   line-height: 80px;
 }
-
+.zaglavie-block {
+  align-items: start;
+  padding-left: 40px;
+}
 /* .obzor {
   font-weight: 500;
   color: black;
