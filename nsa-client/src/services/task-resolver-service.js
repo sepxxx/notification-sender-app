@@ -36,6 +36,18 @@ class RecipientsService {
                 return Promise.reject(error);
             });
     }
+
+    getTaskTemplates(params) {
+        return axios.get(
+            `${this.baseUrl}/${this.servicePrefix}/templates`, {
+                params: params
+            })
+            .then(response => response.data)
+            .catch(error => {
+                console.log(error);
+                return Promise.reject(error);
+            });
+    }
 }
 
 export default new RecipientsService('http://localhost:8080', 'task-resolver-service/tasks');

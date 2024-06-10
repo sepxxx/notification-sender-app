@@ -2,19 +2,19 @@
   <div class="full-component">
     <el-row>
       <el-col :span="4">
-        <span class="template__id-block"><i class="el-icon-message icon" ></i> ID шаблона</span>
+        <span class="template__id-block"><i class="el-icon-message icon" ></i> ID шаблона: {{templateId}}</span>
       </el-col>
     </el-row>
 
     <el-row>
       <el-col :span="4">
-        <span class="template__list-name-block"><i class="el-icon-s-unfold icon" ></i> Название списка </span>
+        <span class="template__list-name-block"><i class="el-icon-s-unfold icon" ></i> Список: {{listName}} </span>
       </el-col>
       <el-col :span="4" :offset="12">
         <el-button plain round class="template__button">Начать рассылку по шаблону <i class="el-icon-edit icon" ></i></el-button>
       </el-col>
       <el-col :span="4">
-        <el-button plain round class="template__button">Поделиться шаблоном <i class="el-icon-star-off icon" ></i></el-button>
+        <el-button plain round class="template__button" @click="dialogFormTemplateSharingVisible=true">Поделиться шаблоном <i class="el-icon-star-off icon" ></i></el-button>
       </el-col>
     </el-row>
 
@@ -25,9 +25,21 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <span>TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT </span>
+        <span>{{text}}</span>
       </el-col>
     </el-row>
+
+    <el-dialog title="Шейринг шаблона" :visible.sync="dialogFormTemplateSharingVisible">
+      <el-form :model="formTemplateSharing">
+        <el-form-item label="ID получателя">
+          <el-input v-model="formTemplateSharing.userName" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormTemplateSharingVisible = false">Отменить</el-button>
+        <el-button type="primary" @click="dialogFormTemplateSharingVisible = false">Поделиться</el-button>
+      </span>
+    </el-dialog>
 
   </div>
 </template>
@@ -42,8 +54,18 @@ export default {
   // components: {
 
   // }
+  props: {
+    templateId: null,
+    listName: null,
+    text: null
+  },
   data() {
       return {
+        formTemplateSharing: {
+          templateId: null,
+          userIdShareTo: null
+        },
+        dialogFormTemplateSharingVisible: false,
       };
     },
 }
@@ -54,6 +76,7 @@ export default {
     border-radius: 24px;
     background-color: white;
     line-height: 40px;
+    margin-bottom: 15px;
   }
 
   .template__id-block {

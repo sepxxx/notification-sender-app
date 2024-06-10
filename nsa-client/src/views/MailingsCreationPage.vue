@@ -13,7 +13,13 @@
       </el-col>
     </el-row>
 
-    <TemplateCard></TemplateCard>
+    <TemplateCard
+      v-for="templ in taskTemplates"
+      :key="templ.id"
+      :list-name="templ.listName"
+      :template-id="templ.id"
+      :text="templ.text"
+    ></TemplateCard>
 
 
     <el-dialog title="Создание рассылки" :visible.sync="dialogFormMailingCreationVisible">
@@ -32,19 +38,6 @@
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormMailingCreationVisible = false">Отменить</el-button>
         <el-button type="primary" @click="saveTask">Начать</el-button>
-      </span>
-    </el-dialog>
-
-
-    <el-dialog title="Шейринг шаблона" :visible.sync="dialogFormTemplateSharingVisible">
-      <el-form :model="formTemplateSharing">
-        <el-form-item label="ID получателя">
-          <el-input v-model="formTemplateSharing.userName" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormTemplateSharingVisible = false">Отменить</el-button>
-        <el-button type="primary" @click="dialogFormTemplateSharingVisible = false">Поделиться</el-button>
       </span>
     </el-dialog>
   </div>
@@ -67,15 +60,12 @@ export default {
   },
   data() {
     return {
+      taskTemplates: [],
       formMailingCreation: {
         listName: '',
         text: '',
       },
-      formTemplateSharing: {
-        userName: '',
-      },
       dialogFormMailingCreationVisible: false,
-      dialogFormTemplateSharingVisible: false,
       listsNames: [],
     }
   },
@@ -104,10 +94,31 @@ export default {
       } finally {
         this.dialogFormMailingCreationVisible = false;
       }
+    },
+
+    async getTaskTemplates() { //TODO: убрать повторный вызов
+      try {
+        let params = {"taskTemplateStatus": "CREATED"};
+        let response = await this.$taskResolverService.getTaskTemplates(params);
+        this.taskTemplates = response;
+        params = {"taskTemplateStatus": "ACCEPTED"};
+        response = await this.$taskResolverService.getTaskTemplates(params);
+        this.taskTemplates.concat(response);
+        console.log(response)
+      } catch (error) {
+        console.error(error);
+        this.$message({
+          message: error.response.data.message,
+          type: 'error'
+        });
+      } finally {
+        this.dialogFormMailingCreationVisible = false;
+      }
     }
   },
   mounted() {
     this.getLists();
+    this.getTaskTemplates();
   }
 }
 </script>
