@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class TaskResponseDto {
     Long id;
     String listName;
+    Integer listTotal;
     String text;
     LocalDateTime createdAt;
 }

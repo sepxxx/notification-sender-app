@@ -40,8 +40,8 @@
           <div class="stat-block">
            <div class="icon-wrapper"><i class="el-icon-edit icon"></i></div>
            <div class="stat-block__info">
-            <span>?%</span>
-            <span>Отправлено</span>
+            <span>{{listTotal}}</span>
+            <span>Всего</span>
            </div>
           </div>
         </el-col>
@@ -49,8 +49,8 @@
           <div class="stat-block">
            <div class="icon-wrapper"><i class="el-icon-document-checked icon"></i></div>
            <div class="stat-block__info">
-            <span>?%</span>
-            <span>Доставлено</span>
+            <span>?</span>
+            <span>Отправлено</span>
            </div>
           </div>
         </el-col>
@@ -58,7 +58,7 @@
           <div class="stat-block">
            <div class="icon-wrapper"><i class="el-icon-notebook-1 icon"></i></div>
            <div class="stat-block__info">
-            <span>?%</span>
+            <span>?</span>
             <span>Прочитано</span>
            </div>
           </div>
@@ -67,7 +67,7 @@
           <div class="stat-block">
            <div class="icon-wrapper"><i class="el-icon-thumb icon"></i></div>
            <div class="stat-block__info">
-            <span>?%</span>
+            <span>?</span>
             <span>Переходы</span>
            </div>
           </div>
@@ -89,6 +89,7 @@ export default {
   props: {
     id: null,
     listName: null,
+    listTotal: null,
     createdAt: null,
     text: null
   },

@@ -7,6 +7,7 @@
         :listName="task.listName"
         :createdAt="task.createdAt"
         :text="task.text"
+        :list-total="task.listTotal"
     ></MailingReportCard>
   </div>
 </template>
