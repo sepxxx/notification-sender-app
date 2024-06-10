@@ -8,6 +8,7 @@
         :createdAt="task.createdAt"
         :text="task.text"
         :list-total="task.listTotal"
+        :task-stat="task.taskStat"
     ></MailingReportCard>
   </div>
 </template>
@@ -27,9 +28,18 @@ export default {
   },
   methods: {
     async getTasks() {
-      const resp = await this.$taskResolverService.getTasks();
-      this.tasks = resp;
-      console.log(resp)
+      const tasks = await this.$taskResolverService.getTasks();
+      // tasks.forEach(
+      //     task -> {task.taskStat = await this.$notificationSenderService.getTaskStat(task.id)};
+      // )
+      const updatedTasks = await Promise.all(tasks.map(
+          async task => {
+            task.taskStat = await this.$notificationSenderService.getTaskStat(task.id);
+            return task;
+          }
+      ));
+      this.tasks = updatedTasks;
+      console.log(tasks)
     }
   },
   mounted() {

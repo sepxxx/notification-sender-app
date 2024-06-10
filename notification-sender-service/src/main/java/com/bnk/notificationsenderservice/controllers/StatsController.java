@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class StatsController {
     StatsServiceImpl statsService;
-    @GetMapping("/tasks/{id}")
+    @GetMapping("stat/task/{id}")
     public String getStatByTaskId(@PathVariable Long id) {
         return statsService.getStatByTaskId(id);
     }

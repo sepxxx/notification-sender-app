@@ -49,7 +49,7 @@
           <div class="stat-block">
            <div class="icon-wrapper"><i class="el-icon-document-checked icon"></i></div>
            <div class="stat-block__info">
-            <span>?</span>
+            <span>{{taskStat}}</span>
             <span>Отправлено</span>
            </div>
           </div>
@@ -90,6 +90,7 @@ export default {
     id: null,
     listName: null,
     listTotal: null,
+    taskStat: null,
     createdAt: null,
     text: null
   },

@@ -9,8 +9,10 @@ Vue.config.productionTip = false
 Vue.use(ElementUI);
 import RecipientsService from './services/recipients-service';
 import TaskResolverService from "@/services/task-resolver-service";
+import NotificationSenderService from "@/services/notification-sender-service";
 Vue.prototype.$recipientsService = RecipientsService;
 Vue.prototype.$taskResolverService = TaskResolverService;
+Vue.prototype.$notificationSenderService = NotificationSenderService;
 
 function tokenInterceptor () {
   axios.interceptors.request.use(config => {
