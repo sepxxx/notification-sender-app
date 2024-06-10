@@ -129,6 +129,7 @@ public class TaskServiceImpl {
 
     @Transactional
     public TaskTemplateResponseDto setTemplateStatus(TaskTemplateStatusRequestDto taskTemplateDto, String userIdOwner) {
+        log.info("setTemplateStatus {}", taskTemplateDto);
         TaskTemplate taskTemplate = taskTemplateRepository.findById(taskTemplateDto.getTemplateId())
                 .orElseThrow(()-> new ObjectNotFoundException("Not found task template id: " + taskTemplateDto.getTemplateId()));
         if (Objects.equals(taskTemplate.getUserId(), userIdOwner)) {

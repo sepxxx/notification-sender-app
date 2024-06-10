@@ -103,7 +103,7 @@ export default {
         this.taskTemplates = response;
         params = {"taskTemplateStatus": "ACCEPTED"};
         response = await this.$taskResolverService.getTaskTemplates(params);
-        this.taskTemplates.concat(response);
+        this.taskTemplates = this.taskTemplates.concat(response);
         console.log(response)
       } catch (error) {
         console.error(error);

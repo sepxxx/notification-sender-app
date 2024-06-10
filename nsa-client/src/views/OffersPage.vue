@@ -15,6 +15,7 @@
         :text="templateOffer.text"
         :list-name="templateOffer.listName"
         :template-id="templateOffer.id"
+        @status-changed="handleTemplateStatusChanged"
     >
     </TemplateOfferCard>
   </div>
@@ -55,6 +56,9 @@ export default {
         });
       }
     },
+    handleTemplateStatusChanged() {
+      this.getTaskTemplateOffers();
+    }
   },
   mounted() {
     this.getTaskTemplateOffers();
