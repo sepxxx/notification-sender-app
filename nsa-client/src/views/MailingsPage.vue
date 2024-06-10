@@ -6,6 +6,7 @@
         :id="task.id"
         :listName="task.listName"
         :createdAt="task.createdAt"
+        :text="task.text"
     ></MailingReportCard>
   </div>
 </template>

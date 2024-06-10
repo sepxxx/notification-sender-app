@@ -47,7 +47,12 @@
       </el-col>
     </el-row>
 
-    <MailingReportCard></MailingReportCard>
+    <MailingReportCard
+        :id="lastTask.id"
+        :listName="lastTask.listName"
+        :createdAt="lastTask.createdAt"
+        :text="lastTask.text"
+    ></MailingReportCard>
   </div>
 </template>
 
@@ -67,8 +72,23 @@ export default {
           'detalnaya-statistika.png',
           'gibkie-integracii.png',
           'vsplyvaushchie-formy.png'
-      ]
+      ],
+      lastTask: {
+        id: null,
+        listName: null,
+        text: null,
+        createdAt: null,
+      }
     }
+  },
+  methods: {
+    async getLastTask() {
+      const r = await this.$taskResolverService.getTasks();
+      this.lastTask = r[r.length - 1];
+    }
+  },
+  mounted() {
+    this.getLastTask();
   }
 }
 </script>

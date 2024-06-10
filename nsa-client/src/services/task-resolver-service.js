@@ -25,6 +25,17 @@ class RecipientsService {
                 return Promise.reject(error);
             });
     }
+
+    saveTaskTemplate(data) {
+        return axios.post(
+            `${this.baseUrl}/${this.servicePrefix}/templates`,
+            data)
+            .then(response => response.data)
+            .catch(error => {
+                console.log(error);
+                return Promise.reject(error);
+            });
+    }
 }
 
 export default new RecipientsService('http://localhost:8080', 'task-resolver-service/tasks');

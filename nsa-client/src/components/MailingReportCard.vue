@@ -72,7 +72,9 @@
            </div>
           </div>
         </el-col>
-        <el-col :span="2" :offset="6"> <div class="icon-wrapper"><i class="el-icon-more-outline icon"></i></div></el-col>
+        <el-col :span="2" :offset="6"> <div class="icon-wrapper icon-wrapper--share" @click="openDialog"><i class="el-icon-star-off icon" ></i></div></el-col>
+<!--        <el-col :span="2" :offset="6"> <div class="icon-wrapper"><i class="el-icon-more-outline icon"></i></div></el-col>-->
+<!--        <i class="el-icon-star-off icon" >-->
       </el-row>
     </div>
 </template>
@@ -87,13 +89,39 @@ export default {
   props: {
     id: null,
     listName: null,
-    createdAt: null
+    createdAt: null,
+    text: null
   },
   data() {
       return {
       };
     },
-}
+  methods: {
+      openDialog() {
+          this.$confirm('Сохранить рассылку как шаблон?', 'Сохранение шаблона', {
+            confirmButtonText: 'Да',
+            cancelButtonText: 'Нет',
+            type: 'warning'
+          }).then(() => {
+            this.$message({
+              type: 'success',
+              message: 'Сохранено'
+            });
+            const data = {
+              "listName": this.listName,
+              "text": this.text
+            }
+            console.log(data)
+            this.$taskResolverService.saveTaskTemplate(data)
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: 'Отменено'
+            });
+          });
+      }
+    }
+  }
 </script>
 
 <style scoped>
@@ -137,6 +165,10 @@ export default {
     margin: 10px;
   }
 
+  .icon-wrapper--share:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
   .stat-block {
     display: flex;
     /* height: 40px; */
@@ -177,4 +209,6 @@ export default {
   .data-block .icon{
     font-size: 20px;
   }
+
+
 </style>
