@@ -4,7 +4,7 @@
       <el-col :span="6">
         <div class="zaglavie-block">
           <span class="zaglavie">Списки</span>
-          <span>Списки - 3 • Контакты в списках - 4</span>
+          <span>Списки - {{amountOfLists}} • Контакты в списках - {{amountOfContacts}}</span>
         </div>
       </el-col>
       <el-col :span="4" :offset="14">
@@ -235,6 +235,14 @@ export default {
       this.formListUnion.listName1 = listName;
     }
   },
+  computed: {
+    amountOfLists() {
+      return this.tableData.length;
+    },
+    amountOfContacts() {
+      return this.tableData.reduce((total, item) => total + item.recipientsTotal, 0);
+    }
+  }
 
 }
 </script>
