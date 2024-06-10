@@ -25,14 +25,13 @@
 
         <el-form-item label="Выбор списка">
           <el-select v-model="formMailingCreation.listName" placeholder="Выбор списка">
-            <el-option label="No.1" value="shanghai"></el-option>
-            <el-option label="No.2" value="beijing"></el-option>
+            <el-option v-for="listName in listsNames" :key="listName" :label="listName" :value="listName"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormMailingCreationVisible = false">Отменить</el-button>
-        <el-button type="primary" @click="dialogFormMailingCreationVisible = false">Начать</el-button>
+        <el-button type="primary" @click="saveTask">Начать</el-button>
       </span>
     </el-dialog>
 
@@ -77,7 +76,34 @@ export default {
       },
       dialogFormMailingCreationVisible: false,
       dialogFormTemplateSharingVisible: false,
+      listsNames: [],
     }
+  },
+  methods: {
+    async getLists() {
+      try {
+        const response = await this.$recipientsService.getRecipientsLists();
+        console.log(response)
+        this.listsNames = response.map(item => item.name);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async saveTask() {
+      try {
+        const data = {"listName": this.formMailingCreation.listName,
+        "text": this.formMailingCreation.text};
+        const response = await this.$taskResolverService.saveTask(data);
+        console.log(response)
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.dialogFormMailingCreationVisible = false;
+      }
+    }
+  },
+  mounted() {
+    this.getLists();
   }
 }
 </script>

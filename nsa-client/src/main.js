@@ -8,8 +8,9 @@ import VueKeycloakJs from '@dsb-norge/vue-keycloak-js'
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 import RecipientsService from './services/recipients-service';
-Vue.prototype.$recipientsService = RecipientsService
-
+import TaskResolverService from "@/services/task-resolver-service";
+Vue.prototype.$recipientsService = RecipientsService;
+Vue.prototype.$taskResolverService = TaskResolverService;
 
 function tokenInterceptor () {
   axios.interceptors.request.use(config => {

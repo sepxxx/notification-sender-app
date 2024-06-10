@@ -86,13 +86,13 @@ public class TaskServiceImpl {
                 list.forEach(notification -> sendMessage(notification, notificationsKafkaTopicName));
             });
         });
-        return new TaskResponseDto(task.getId(), task.getRecipientList().getName(), task.getText());
+        return new TaskResponseDto(task.getId(), task.getRecipientList().getName(), task.getText(), task.getCreatedAt());
     }
 
     public List<TaskResponseDto> getTasksByUserId(String userId) {
         return taskRepository.findAllByUserId(userId)
                 .stream()
-                .map(t -> new TaskResponseDto(t.getId(), t.getRecipientList().getName(), t.getText()))
+                .map(t -> new TaskResponseDto(t.getId(), t.getRecipientList().getName(), t.getText(), t.getCreatedAt()))
                 .toList();
     }
     @Transactional

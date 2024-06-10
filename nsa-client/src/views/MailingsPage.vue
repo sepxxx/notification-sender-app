@@ -13,6 +13,20 @@ export default {
   name: 'MailingsPage',
   components: {
     MailingReportCard
+  },
+  data() {
+    return  {
+      tasks: [],
+    }
+  },
+  methods: {
+    async getTasks() {
+      const resp = await this.$taskResolverService.getTasks();
+      console.log(resp)
+    }
+  },
+  mounted() {
+    this.getTasks();
   }
 }
 </script>

@@ -56,7 +56,7 @@
     <el-dialog title="Объединение списков" :visible.sync="dialogFormListUnionVisible" class="form--lists-union">
       <el-form :model="formListUnion">
 
-        <span>Название списка 1</span>
+        <span>{{this.formListUnion.listName1}}</span>
         <el-form-item label="Название объединенного списка">
           <el-input v-model="formListUnion.listNameNew" autocomplete="off"></el-input>
         </el-form-item>
